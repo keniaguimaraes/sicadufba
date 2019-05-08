@@ -1,0 +1,2 @@
+class Restricao < ApplicationRecord
+end

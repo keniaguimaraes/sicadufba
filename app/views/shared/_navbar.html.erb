@@ -1,0 +1,48 @@
+
+  
+<nav class="light-blue darken-4" role="navigation">
+  <div class="nav-wrapper container">
+   <a href="/" class="brand-logo"> <%= image_tag "logo.png"%></a>
+      <!--<ul id="nav-mobile" class="right hide-on-med-and-down">
+         <li><%= link_to 'Professores ', professors_path, :class => 'white-text' %></li>
+      </ul>-->
+       <ul class="right hide-on-med-and-down">
+       <a href="/login" ><i class="material-icons white-text">person_pin</i></a>
+      </ul>
+    </div>
+</nav>
+
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+     <% if user_signed_in? %>
+       <% @curso = Curso.where("id =:curso_id",{curso_id:current_user.curso_id}).all 
+         @curso.each do |curso| %>
+           <div class="row left">
+          <b>Logado como:</b> <strong><%= current_user.username %></strong> | <b>Curso: </b><strong><%= curso.nome %> </strong>     
+         <% end  %>
+       
+          <%if can? :admin, User%>
+          <br>
+          <!-- <%= link_to 'Semestres   |   ', semestres_path, :class => 'navbar-link' %>
+           <%= link_to 'Disciplinas   |   ', disciplinas_path, :class => 'navbar-link' %>
+           <%= link_to 'Professores   |   ', professors_path, :class => 'navbar-link' %>
+           <%= link_to 'Cursos   |   ', cursos_path, :class => 'navbar-link' %>
+           <%= link_to 'Disciplina X Curso   |   ', disciplinacursos_path, :class => 'navbar-link' %>
+           <%= link_to 'Item Avaliação   |   ', itemavaliacaos_path, :class => 'navbar-link' %>-->
+         
+           <a href="<%= crawl_admin_path(0) %>">Crawlear cursos | </a>
+           <a href="<%= crawldisc_admin_path(0) %>">Crawlear disciplinas | </a>
+           <%= link_to 'Crawlear professor  | ',crawlprof_admin_path(0), :class => 'navbar-link' %>   
+           <%= link_to 'Limpar | ', clear_admin_path(0), :class => 'navbar-link' %>    
+           <%= link_to 'Restrição   |   ', restricaos_path, :class => 'navbar-link' %> 
+       <%end%>
+          <%= link_to 'Realizar Comentário      ', new_comentar_path, :class => 'navbar-link' %>
+       </div>    
+         <div class="row right">
+          <%= link_to 'Editar Perfil  |  ', edit_user_registration_path, :class => 'navbar-link' %>
+        <a href="/logout" >Sair</a> 
+        
+         </div>
+      <% end %>
+  </div>    
+ 

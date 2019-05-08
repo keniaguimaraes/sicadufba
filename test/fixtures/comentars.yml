@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  disciplinacurso_id: 1
+  professor_id: 1
+  semestre_id: 1
+
+two:
+  user_id: 1
+  disciplinacurso_id: 1
+  professor_id: 1
+  semestre_id: 1

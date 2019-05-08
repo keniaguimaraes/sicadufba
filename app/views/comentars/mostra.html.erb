@@ -1,0 +1,47 @@
+ 
+    <%= @comentarios_disciplina.each do |comentarios_disciplina| %>
+  
+    <div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content black-text">
+          <p><%=  truncate(comentarios_disciplina.comentario, :length => 60)%></p>
+          <a href="#">Ler Mais</a>
+        </div>
+        <div class="card-action">
+
+        <a href="" class="rodape">Usuario:<%= comentarios_disciplina.email%></a> 
+        <a href=""class="rodape">Curso: <%= comentarios_disciplina.curso%></a>
+            
+        </div>
+      </div>
+    </div>
+   
+
+    <% next %>
+     
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content black-text">
+          <p><%=  truncate(comentarios_disciplina.comentario, :length => 60)%></p>
+           <a href="#">Ler Mais</a>
+        <div class="card-action">
+
+        <a href="" class="rodape">Usuario:<%= comentarios_disciplina.email%></a> 
+           <a href=""class="rodape">Curso: <%= comentarios_disciplina.curso%></a>
+            
+        </div>
+      </div>
+  </div>
+  </div>
+   
+   <% end %>
+   <div class="container">
+ <!-- Paginação -->
+    <div class="row">
+    <div class="col s12 m6">
+         <%= will_paginate @comentarios_disciplina %>
+  </div>
+ </div> 
+  </div> 
+<!--Fim Paginação -->

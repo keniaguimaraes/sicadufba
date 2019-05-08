@@ -1,0 +1,36 @@
+ <p id="notice"><%= notice %></p>
+
+<br><br>
+<h5 class="header center red-text">Manutenção Restricaos</h5>
+
+
+<div class="container">
+<table class="striped">
+  <thead>
+    <tr>
+             <th>Palavra</th>
+            <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @restricaos.each do |restricao| %>
+      <tr>
+                    <td><%= restricao.palavra %></td>
+                <td class="actions">
+         <%= link_to 'Editar', edit_restricao_path(restricao), class: 'btn btn-warning btn-xs' %>
+         <%= link_to 'Deletar', restricao, method: :delete, data: { confirm: 'Você tem Certeza?'}, class: 'btn btn-danger btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+ <%= link_to 'Adicionar Restricao', new_restricao_path, class: 'btn waves-effect waves-light light-blue darken-3' %>
+   
+ </div>
+
+

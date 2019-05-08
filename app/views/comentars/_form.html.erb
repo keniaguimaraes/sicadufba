@@ -1,0 +1,68 @@
+<%= form_for(comentar) do |f| %>
+  <% if comentar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comentar.errors.count, "error") %> prohibited this comentar from being saved:</h2>
+
+      <ul>
+      <% comentar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+ 
+ 
+ <div class="container">
+<table class="striped">
+<tbody>
+   
+  
+
+  <div class="field">
+
+ <%= f.hidden_field:user_id,:value =>current_user.id %>
+  </div>
+
+  <div class="field">
+
+ <tr>
+   <th> <%= f.label :disciplinacurso_id %></th>
+    <th> <%=collection_select(:comentar, :disciplinacurso_id, @disciplinacurso, :id, :nome, { }, { class: 'browser-default' })%></th>
+  </tr> 
+
+  </div>
+
+  <tr>
+   <th> <%= f.label :professor_id %></th>
+ <th>  <%=collection_select(:comentar, :professor_id, @professor, :id, :nome, { }, { class: 'browser-default' })%></th>
+  </tr> 
+ <tr>
+   <th> <%= f.label :semestre_id %></th>
+   <th>  <%=collection_select(:comentar, :semestre_id, @semestre, :id, :ano, { }, { class: 'browser-default' })%></th>
+  </tr> 
+
+
+  <tr>
+   <th> <%= f.label :comentario %></th>
+   <th> <%= f.text_area :comentario %></th>
+  </tr> 
+  </div>
+
+<tr>
+ <th>
+  <div class="actions">
+    <%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>
+  </div>
+ </th>
+ </tr>
+ </tbody>
+</table>
+</div>   
+  
+<% end %>
+
+
+
+
+

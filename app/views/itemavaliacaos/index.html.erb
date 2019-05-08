@@ -1,0 +1,47 @@
+ <p id="notice"><%= notice %></p>
+
+<br><br>
+<h5 class="header center red-text">Manutenção Itemavaliacaos</h5>
+
+
+<div class="container">
+<table class="striped">
+  <thead>
+    <tr>
+             <th>Item</th>
+            <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @itemavaliacaos.each do |itemavaliacao| %>
+      <tr>
+                    <td><%= itemavaliacao.item %></td>
+                <td class="actions">
+         <%= link_to 'Editar', edit_itemavaliacao_path(itemavaliacao) %>
+         <%= link_to 'Deletar', itemavaliacao, method: :delete, data: { confirm: 'Você tem Certeza?'}%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!-- Paginação -->
+<!--  <div class="text-center">
+
+  <div class="pagination">
+    <table>
+     <tr>
+       
+     <tr>
+    </table>
+  </div>
+ </div> -->
+<!--Fim Paginação -->
+
+<br>
+
+ <%= link_to 'Adicionar', new_itemavaliacao_path, class: 'btn waves-effect waves-light light-blue darken-3' %>
+  <br> 
+ </div>
+
+

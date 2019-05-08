@@ -1,0 +1,13 @@
+<p id="notice"><%%= notice %></p>
+<div id="main" class="container-fluid">
+<h5 class="header center red-text">Manutenção</h5>
+
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+<p>
+  <strong><%= attribute.human_name %>:</strong>
+  <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+</p>
+
+<% end -%>
+</div>
+<a class="btn btn-default btn-sm"  <%%= link_to 'Voltar', <%= index_helper %>_path %> </a>

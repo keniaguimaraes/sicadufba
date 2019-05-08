@@ -1,0 +1,51 @@
+ <p id="notice"><%%= notice %></p>
+
+<br><br>
+<h5 class="header center red-text">Manutenção <%= plural_table_name.titleize %></h5>
+
+
+<div class="container">
+<table class="striped">
+  <thead>
+    <tr>
+      <% attributes.reject(&:password_digest?).each do |attribute| -%>
+       <th><%= attribute.human_name %></th>
+      <% end -%>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+        <% attributes.reject(&:password_digest?).each do |attribute| -%>
+            <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+        <% end -%>
+        <td class="actions">
+         <%%= link_to 'Editar', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn btn-warning btn-xs' %>
+         <%%= link_to 'Deletar', <%= singular_table_name %>, method: :delete, data: { confirm: 'Você tem Certeza?'}, class: 'btn btn-danger btn-xs' %>
+        </td>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+<!-- Paginação -->
+<!--  <div class="text-center">
+
+  <div class="pagination">
+    <table>
+     <tr>
+       <td><%%= paginate @<%=plural_table_name %> %></td>
+     <tr>
+    </table>
+  </div>
+ </div> -->
+<!--Fim Paginação -->
+
+<br>
+
+ <%%= link_to 'Adicionar <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path, class: 'btn waves-effect waves-light light-blue darken-3' %>
+   
+ </div>
+
+

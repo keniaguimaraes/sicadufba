@@ -1,0 +1,40 @@
+ <p id="notice"><%= notice %></p>
+
+<br><br>
+<h5 class="header center red-text">Manutenção Comentars</h5>
+
+
+<div class="container">
+<table class="striped">
+  <thead>
+    <tr>
+             <th>Disciplina</th>
+             <th>Professor</th>
+             <th>Semestre</th>
+            <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comentars.each do |comentar| %>
+      <tr>
+                    <td><%= comentar.disciplinacurso_id %></td>
+                    <td><%= comentar.professor_id %></td>
+                    <td><%= comentar.semestre_id %></td>
+                <td class="actions">
+         <%= link_to 'Editar', edit_comentar_path(comentar), class: 'btn btn-warning btn-xs' %>
+         <%= link_to 'Deletar', comentar, method: :delete, data: { confirm: 'Você tem Certeza?'}, class: 'btn btn-danger btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+ <%= link_to 'Adicionar Comentar', new_comentar_path, class: 'btn waves-effect waves-light light-blue darken-3' %>
+   
+ </div>
+
+

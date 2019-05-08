@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<br><br>
+<h5 class="header center red-text">Manutenção Disciplinas</h5>
+
+
+<div class="container">
+<table class="striped">
+
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Código</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @disciplinas.each do |disciplina| %>
+      <tr>
+        <td><%= disciplina.nome %></td>
+        <td><%= disciplina.codigo %></td>
+        <td><%= link_to 'Editar', edit_disciplina_path(disciplina) %></td>
+        <td><%= link_to 'Excluir', disciplina, method: :delete, data: { confirm: 'Você tem Certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+ <a class="btn waves-effect waves-light light-blue darken-3" <%= link_to 'Adicionar', new_disciplina_path %></a>
+<br> 
+</div>
+  

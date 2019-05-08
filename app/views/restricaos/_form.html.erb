@@ -1,0 +1,48 @@
+<%= form_for(restricao) do |f| %>
+  <% if restricao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(restricao.errors.count, "error") %> prohibited this restricao from being saved:</h2>
+
+      <ul>
+      <% restricao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+ 
+ 
+ <div class="container">
+<table class="striped">
+<tbody>
+   
+  
+
+  <div class="field">
+
+ <tr>
+   <th> <%= f.label :palavra %></th>
+   <th> <%= f.text_field :palavra %></th>
+  </tr> 
+
+  </div>
+
+<br>
+<tr>
+ <th>
+  <div class="actions">
+    <%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>
+  </div>
+ </th>
+ </tr>
+ </tbody>
+</table>
+</div>   
+  
+<% end %>
+
+
+
+
+

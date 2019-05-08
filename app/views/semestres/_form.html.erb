@@ -1,0 +1,36 @@
+
+
+<%= form_with(model: semestre, local: true) do |form| %>
+  <% if semestre.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(semestre.errors.count, "error") %> prohibited this semestre from being saved:</h2>
+
+      <ul>
+      <% semestre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  
+ <div class="container">
+ <table class="responsive-table">
+  <tbody>
+   <tr>
+     <th><%= form.label :Ano %></th>
+     <th><%= form.number_field :ano %></th>
+   </tr>
+   <tr>
+      <th> <%= form.label :Código %></th> 
+       <th> <%= form.number_field :codigo %> </th> 
+   </tr>
+  </tbody>
+  
+ </table>
+ <br><br>
+ <%= form.submit class: 'btn waves-effect waves-light light-blue darken-3'%>
+ </div>   
+
+ 
+<% end %>

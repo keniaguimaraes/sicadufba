@@ -1,0 +1,35 @@
+<%= form_with(model: disciplina, local: true) do |form| %>
+  <% if disciplina.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(disciplina.errors.count, "error") %> prohibited this disciplina from being saved:</h2>
+
+      <ul>
+      <% disciplina.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+<div class="container">
+ 
+<table class="responsive-table">
+ <tbody>
+  <tr>
+   <th width="10%" ><%= form.label :Nome %></th>
+  <th  width="30%" ><%= form.text_field:nome %></th>
+  </tr>
+
+  <tr>
+   <th><%= form.label :Codigo %></th>
+   <th><%= form.text_field :codigo %></th>
+  </tr>
+</tbody>
+</table>
+<br><br>
+  <%= form.submit class: 'btn waves-effect waves-light light-blue darken-3'%>
+ </div> 
+  
+ 
+<% end %>

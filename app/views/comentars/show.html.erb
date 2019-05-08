@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<div id="main" class="container-fluid">
+<h5 class="header center red-text">Manutenção</h5>
+
+<p>
+  <strong>User:</strong>
+  <%= @comentar.user_id %>
+</p>
+
+<p>
+  <strong>Disciplinacurso:</strong>
+  <%= @comentar.disciplinacurso_id %>
+</p>
+
+<p>
+  <strong>Professor:</strong>
+  <%= @comentar.professor_id %>
+</p>
+
+<p>
+  <strong>Semestre:</strong>
+  <%= @comentar.semestre_id %>
+</p>
+
+</div>
+<a class="btn btn-default btn-sm"  <%= link_to 'Voltar', comentars_path %> </a>

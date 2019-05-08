@@ -1,0 +1,8 @@
+<div id="main" class="container-fluid">
+<br><br>
+<h5 class="header center red-text">Manutenção <%= singular_table_name.titleize %></h5>
+<br>
+<%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
+
+ <%%= link_to 'Voltar', <%= index_helper %>_path, class: 'btn waves-effect waves-light light-blue darken-3' %> 
+</div>

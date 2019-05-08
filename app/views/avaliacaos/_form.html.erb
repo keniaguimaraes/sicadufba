@@ -1,0 +1,57 @@
+<%= form_for(avaliacao) do |f| %>
+  <% if avaliacao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(avaliacao.errors.count, "error") %> prohibited this avaliacao from being saved:</h2>
+
+      <ul>
+      <% avaliacao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<div class="container">
+<table class="responsive">
+<tbody>
+   
+
+ <tr>
+   <th> <%= f.label :user_id %></th>
+   <th><%= f.text_field :user_id,:value =>current_user.id, :readonly => true %></th>
+  </tr> 
+
+ <tr>
+   <th> <%= f.label :professor_id %></th>
+   <th> <%= collection_select(:avaliacao, :professor_id, @professor, :id, :nome, {}, { class: 'browser-default' })%></th>
+  </tr> 
+ 
+
+ <tr>
+   <th> <%= f.label :itemavaliacao_id %></th>
+   <th> <%= collection_select(:avaliacao, :itemavaliacao_id, @itemavaliacao, :id, :item, { prompt: true }, { class: 'browser-default' })%></th>
+  </tr> 
+
+ <tr>
+   <th> <%= f.label :resp_positiva %></th>
+   <th> <%= f.check_box :resp_positiva%></th>
+  </tr> 
+
+ <tr>
+   <th> <%= f.label :resp_negativa %></th>
+   <th> <%= f.check_box :resp_negativa %></th>
+  </tr> 
+
+
+ </tbody>
+</table>
+<br><br>
+ <%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>
+</div>   
+  
+<% end %>
+
+
+
+
+

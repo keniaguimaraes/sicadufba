@@ -1,0 +1,62 @@
+<%%= form_for(<%= singular_table_name %>) do |f| %>
+  <%% if <%= singular_table_name %>.errors.any? %>
+    <div id="error_explanation">
+      <h2><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+
+      <ul>
+      <%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
+        <li><%%= message %></li>
+      <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+  
+ 
+ 
+ <div class="container">
+<table class="striped">
+<tbody>
+   
+  
+
+<% attributes.each do |attribute| -%>
+  <div class="field">
+<% if attribute.password_digest? -%>
+    <%%= f.label :password %>
+    <%%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%%= f.label :password_confirmation %>
+    <%%= f.password_field :password_confirmation %>
+<% elsif attribute.reference? %>
+ <tr>
+    <th><%%= f.label :<%= attribute.column_name %> %>
+    <th><%%= f.select :<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, {}, { :class => 'chosen-select' } %>
+  </tr>    
+<% else %>
+ <tr>
+   <th> <%%= f.label :<%= attribute.column_name %> %></th>
+   <th> <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %></th>
+  </tr> 
+<% end %>
+  </div>
+
+<% end %>
+<tr>
+ <th>
+  <div class="actions">
+    <%%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>
+  </div>
+ </th>
+ </tr>
+ </tbody>
+</table>
+</div>   
+  
+<%% end %>
+
+
+
+
+
