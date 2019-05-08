@@ -20,7 +20,6 @@ class ComentarsController < ApplicationController
                                  .joins('join professors on professors.id = comentars.professor_id')
                                  .joins('JOIN users ON users.id = comentars.user_id ')
                                  .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]}).all
-                              
   end
   
   
@@ -34,20 +33,16 @@ class ComentarsController < ApplicationController
                                  .joins('JOIN users ON users.id = comentars.user_id ')
                                  .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
                                  .paginate(:page => params[:page], :per_page => 4)
-                              
-                             
-                                 
-
   end
 
   # GET /comentars/new
   def new
     @comentar = Comentar.new
-    @disciplinacurso = Disciplinacurso.select("disciplinas.nome as nome, disciplinacursos.* ")
-                                 .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
-                                 .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")
-                                 .where(" disciplinacursos.curso_id =:curso_id",{curso_id:current_user.curso_id}).all
-                                 .order("cursos.nome")
+    @disciplinacurso = Disciplinacurso.select("disciplinas.nome||' - ' || disciplinacursos.semestre as nome, disciplinacursos.* ")
+                                       .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
+                                       .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")
+                                       .where(" disciplinacursos.curso_id =:curso_id",{curso_id:current_user.curso_id}).all
+                                       .order("cursos.nome")
     @professor = Professor.all.order("nome")
 
     @semestre   = Semestre.all                                    
@@ -66,7 +61,7 @@ class ComentarsController < ApplicationController
     @compara = Restricao.all
     
     @restricao = []
-    @restricao =  @compara.map{|compara| compara.palavra }
+    @restricao =  @compara.map{|compara| compara.palavra}
   
     @resultado = []
     @resultado =  @comentario.select{ |comentario| @restricao.include?(comentario)}.map{ |comentario| comentario}
@@ -85,7 +80,7 @@ class ComentarsController < ApplicationController
           format.json { render json: @coment.errors, status: :unprocessable_entity }
         end
        else 
-          format.html { redirect_to '/', notice: 'Comentario Não Está no Padrões Permitidos! Favor reformular' }
+          format.html { redirect_to '/', notice: 'Comentario não está no padrões permitidos! Favor refazer.' }
        end   
     end 
 

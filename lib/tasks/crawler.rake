@@ -85,7 +85,7 @@ namespace :crawler do
           course_discipline = Disciplinacurso.where(curso_id: course.id, disciplina_id: discipline.id)
           if course_discipline.blank?
             course_discipline = Disciplinacurso.new
-           #course_discipline.semester = semester
+            course_discipline.semestre = semester
             #course_discipline.nature = nature
             course_discipline.disciplina_id = discipline.id
             course_discipline.curso_id =  course.id

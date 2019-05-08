@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_04_17_011903) do
   create_table "disciplinacursos", force: :cascade do |t|
     t.integer "curso_id"
     t.integer "disciplina_id"
+    t.string "semestre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
