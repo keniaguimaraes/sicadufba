@@ -16,10 +16,11 @@
 <tbody>
    
 
- <tr>
-   <th> <%= f.label :user_id %></th>
-   <th><%= f.text_field :user_id,:value =>current_user.id, :readonly => true %></th>
-  </tr> 
+  
+    <div class="field">
+
+ <%= f.hidden_field:user_id,:value =>current_user.id %>
+  </div>
 
  <tr>
    <th> <%= f.label :professor_id %></th>

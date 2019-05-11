@@ -16,3 +16,19 @@
 //= require jquery
 //= require materialize-sprockets
 //= require_tree .
+
+
+
+('.dropdown-button').dropdown({
+      container: document.body,
+      coverTrigger: false,
+      closeOnClick: true
+ }); 
+
+
+( document ).ready(function() {
+    ('.collapsible').collapsible();
+    ('.tooltipped').tooltip();
+    ('.modal').modal();
+}); // end of document ready
+

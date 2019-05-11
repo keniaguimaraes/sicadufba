@@ -1,5 +1,5 @@
 class ComentarsController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_comentar, only: [:show, :edit, :update, :destroy]
 
 
