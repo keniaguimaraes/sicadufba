@@ -18,11 +18,14 @@
  <div class="field">
    <%= f.hidden_field:user_id,:value =>current_user.id %>
  </div>
+ 
  <tr>
    <th> <%= f.label :professor_id %></th>
+   
    <th> <%= collection_select(:avaliacao, :professor_id, @professor, :id, :nome, {}, { class: 'browser-default' })%></th>
  </tr> 
  
+
 </tbody>
 </table>
 
@@ -41,23 +44,62 @@
  @item.each do |item| %>
             
   <tr>
+    
   <th> <%= item.item %></th>
-  <th> <%= f.label :resp_positiva %></th>
-  <th> <%= f.label :resp_negativa %></th>
-  <th> <%= f.check_box :resp_positiva%></th>
+   <div class="input-field">
+    <th><label> <%= f.radio_button :resp_positiva, 1, id:"k"  %> <span> Legal </span></label>
+    <th><label> <%= f.radio_button :resp_positiva, 2, id:"k1"  %> <span> Ruim </span></label>
+  </th>
+  
+ 
+   </div>
   </tr> 
-       
-<% end %>
 
+<% end %>
  </tbody>
 </table>
-<br><br>
+
+
+<br>
+<br>
  <%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>
 </div>   
   
 <% end %>
 
+<script>
+
+(document).ready(function() {
+  ('select').material_select();
+});
+
+</script>
 
 
+
+
+<style>
+ 
+[type="radio"]:checked + span:after,
+ 
+[type="radio"].with-gap:checked + span:before,
+ 
+[type="radio"].with-gap:checked + span:after {
+ 
+  border: 2px solid #ef5350;
+ 
+}
+ 
+ 
+ 
+[type="radio"]:checked + span:after,
+ 
+[type="radio"].with-gap:checked + span:after {
+ 
+  background-color: #ef5350;
+ 
+}
+ 
+</style>
 
 
