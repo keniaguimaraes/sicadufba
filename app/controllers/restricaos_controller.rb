@@ -30,7 +30,7 @@ class RestricaosController < ApplicationController
     respond_to do |format|
       if @restricao.save
         format.html { redirect_to @restricao, notice: 'Restricao was successfully created.' }
-        format.json { render :show, status: :created, location: @restricao }
+       # format.json { render :show, status: :created, location: @restricao }
       else
         format.html { render :new }
         format.json { render json: @restricao.errors, status: :unprocessable_entity }

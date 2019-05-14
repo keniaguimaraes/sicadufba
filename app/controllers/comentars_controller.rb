@@ -8,7 +8,8 @@ class ComentarsController < ApplicationController
   # GET /comentars
   # GET /comentars.json
   def index
-    @comentars = Comentar.all
+    @comentars = Comentar.where("user_id =:user_id",{user_id:current_user.id}).all
+                         .paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /comentars/1
@@ -22,6 +23,7 @@ class ComentarsController < ApplicationController
                                  .joins('join professors on professors.id = comentars.professor_id')
                                  .joins('JOIN users ON users.id = comentars.user_id ')
                                  .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]}).all
+                               
   end
   
   
