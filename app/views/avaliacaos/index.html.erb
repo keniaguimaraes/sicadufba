@@ -1,54 +1,48 @@
- <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-<br><br>
-<h5 class="header center red-text">Manutenção Avaliação</h5>
+<br>
+<h5 class="header center red-text">Minhas Avaliações</h5>
 
 
 <div class="container">
 <table class="striped">
   <thead>
     <tr>
-             <th>User</th>
-             <th>Professor</th>
-             <th>Itemavaliacao</th>
-             <th>Resp positiva</th>
-             <th>Resp negativa</th>
-            <th colspan="2"></th>
+          <th>Professor</th>
+          <th>Itema</th>
+          <th>Resp positiva</th>
+          <th>Resp negativa</th>
+          <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @avaliacaos.each do |avaliacao| %>
       <tr>
-                    <td><%= avaliacao.user_id %></td>
-                    <td><%= avaliacao.professor_id %></td>
-                    <td><%= avaliacao.itemavaliacao_id %></td>
-                    <td><%= avaliacao.resp_positiva %></td>
-                    <td><%= avaliacao.resp_negativa %></td>
-                <td class="actions">
-         <%= link_to 'Editar', edit_avaliacao_path(avaliacao)%>
-         <%= link_to 'Deletar', avaliacao, method: :delete, data: { confirm: 'Você tem Certeza?'}%>
+         <td><%= avaliacao.professor.nome%></td>
+         <td><%= avaliacao.itemavaliacao_id %></td>
+         <td><%= avaliacao.resp_positiva %></td>
+         <td><%= avaliacao.resp_negativa %></td>
+         <td class="actions">
+           <%= link_to 'Editar', edit_avaliacao_path(avaliacao)%>
+           <%= link_to 'Deletar', avaliacao, method: :delete, data: { confirm: 'Você tem Certeza?'}%>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <!-- Paginação -->
-<!--  <div class="text-center">
-
-  <div class="pagination">
-    <table>
-     <tr>
-     <tr>
-    </table>
+<div class="row">
+  <div class="col s12 m6">
+     <%= will_paginate @avaliacaos %>
   </div>
- </div> -->
+</div> 
 <!--Fim Paginação -->
 
 <br>
 
  <%= link_to 'Adicionar', new_avaliacao_path, class: 'btn waves-effect waves-light light-blue darken-3' %>
-   <br>
+ <br>
  </div>
 
 

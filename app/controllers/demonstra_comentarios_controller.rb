@@ -9,7 +9,4 @@ class DemonstraComentariosController < ApplicationController
                                  .order("disciplinas.nome")
                                  .paginate(:page => params[:page], :per_page => 7)
     end                         
-       
- 
-
 end

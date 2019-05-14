@@ -5,7 +5,7 @@ class RestricaosController < ApplicationController
   # GET /restricaos
   # GET /restricaos.json
   def index
-    @restricaos = Restricao.all
+    @restricaos = Restricao.all.paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /restricaos/1

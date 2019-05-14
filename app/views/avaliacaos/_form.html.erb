@@ -15,34 +15,39 @@
 <table class="responsive">
 <tbody>
    
-
-  
-    <div class="field">
-
- <%= f.hidden_field:user_id,:value =>current_user.id %>
-  </div>
-
+ <div class="field">
+   <%= f.hidden_field:user_id,:value =>current_user.id %>
+ </div>
  <tr>
    <th> <%= f.label :professor_id %></th>
    <th> <%= collection_select(:avaliacao, :professor_id, @professor, :id, :nome, {}, { class: 'browser-default' })%></th>
-  </tr> 
+ </tr> 
  
+</tbody>
+</table>
 
- <tr>
-   <th> <%= f.label :itemavaliacao_id %></th>
-   <th> <%= collection_select(:avaliacao, :itemavaliacao_id, @itemavaliacao, :id, :item, { prompt: true }, { class: 'browser-default' })%></th>
+
+<table class="responsive">
+ <thead>
+    <tr>
+      <th>Item</th>
+      <th>Avaliação</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<tbody>
+ <% @item = Itemavaliacao.all 
+ @item.each do |item| %>
+            
+  <tr>
+  <th> <%= item.item %></th>
+  <th> <%= f.label :resp_positiva %></th>
+  <th> <%= f.label :resp_negativa %></th>
+  <th> <%= f.check_box :resp_positiva%></th>
   </tr> 
-
- <tr>
-   <th> <%= f.label :resp_positiva %></th>
-   <th> <%= f.check_box :resp_positiva%></th>
-  </tr> 
-
- <tr>
-   <th> <%= f.label :resp_negativa %></th>
-   <th> <%= f.check_box :resp_negativa %></th>
-  </tr> 
-
+       
+<% end %>
 
  </tbody>
 </table>

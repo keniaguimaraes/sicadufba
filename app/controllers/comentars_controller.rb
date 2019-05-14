@@ -1,6 +1,8 @@
 class ComentarsController < ApplicationController
+  require 'lingua/stemmer'
   before_action :authenticate_user!
   before_action :set_comentar, only: [:show, :edit, :update, :destroy]
+
 
 
   # GET /comentars
@@ -62,9 +64,12 @@ class ComentarsController < ApplicationController
     
     @restricao = []
     @restricao =  @compara.map{|compara| compara.palavra}
+    
   
+    stemmer= Lingua::Stemmer.new(:language => "pt")
+
     @resultado = []
-    @resultado =  @comentario.select{ |comentario| @restricao.include?(comentario)}.map{ |comentario| comentario}
+    @resultado =  @comentario.select{ |comentario| @restricao.include?(stemmer.stem(comentario))}.map{ |comentario| comentario}
     
     @permite = true
     if  @resultado.present? then 
