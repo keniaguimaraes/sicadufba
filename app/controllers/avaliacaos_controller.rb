@@ -5,7 +5,8 @@ class AvaliacaosController < ApplicationController
   # GET /avaliacaos
   # GET /avaliacaos.json
   def index
-    @avaliacaos = Avaliacao.where("user_id =:user_id",{user_id:current_user.id}).all.paginate(:page => params[:page], :per_page => 7)
+    @avaliacaos = Avaliacao.where("user_id =:user_id",{user_id:current_user.id}).all
+                           .paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /avaliacaos/1
@@ -18,7 +19,6 @@ class AvaliacaosController < ApplicationController
     @avaliacao = Avaliacao.new
     @itemavaliacao = Itemavaliacao.all
     @professor = Professor.all.order("nome")
-    
   end
 
   # GET /avaliacaos/1/edit

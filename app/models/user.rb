@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :avaliacaos 
   has_many :comentario
-  has_many :comentar 
+  has_many :comentar
+  has_many :avaliacaoprof
   belongs_to:curso
          
 end

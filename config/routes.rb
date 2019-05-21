@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :avaliacaoprofs
+  resources :comentariotags
+  resources :tags
   resources :coments
   resources :restricaos
   resources :avaliacaos

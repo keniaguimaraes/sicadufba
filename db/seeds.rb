@@ -1,4 +1,5 @@
 
+=begin
 Curso.create(nome:'Teste')
 
 
@@ -20,4 +21,14 @@ Restricao.create(palavra:'idiot')
 Restricao.create(palavra:'idiotinh')
 Restricao.create(palavra:'idiotã')
 
+Tag.create(tag:'respeitoso')
+Tag.create(tag:'inspirador')
+Tag.create(tag:'boa didatica')
+Tag.create(tag:'falta demais')
+=end
+Tag.create(tag:'trabalho extra')
+Tag.create(tag:'faz exercicios')
+Tag.create(tag:'teste1')
+Tag.create(tag:'teste2')
+Tag.create(tag:'teste3')
 

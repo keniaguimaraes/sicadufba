@@ -47,11 +47,8 @@
     
   <th> <%= item.item %></th>
    <div class="input-field">
-    <th><label> <%= f.radio_button :resp_positiva, 1, id:"k"  %> <span> Legal </span></label>
-    <th><label> <%= f.radio_button :resp_positiva, 2, id:"k1"  %> <span> Ruim </span></label>
-  </th>
-  
- 
+    <th><label> <%= f.radio_button :resp_positiva, 1, id:"k", name: item.id.to_s %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </th>
+    <th><label> <%= f.radio_button :resp_positiva, 2, id:"k1",name: item.id.to_s %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label>  </th>
    </div>
   </tr> 
 

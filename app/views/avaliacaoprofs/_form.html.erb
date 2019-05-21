@@ -1,0 +1,106 @@
+<% require 'time'%>
+<%= form_for(avaliacaoprof) do |f| %>
+  <% if avaliacaoprof.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(avaliacaoprof.errors.count, "error") %> prohibited this avaliacaoprof from being saved:</h2>
+
+      <ul>
+      <% avaliacaoprof.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+ 
+  
+
+   
+
+
+   <%= f.hidden_field:user_id,:value =>current_user.id %>
+   <%= f.hidden_field:data_avaliacao,:value =>Time.now %>
+    <%= f.hidden_field:semestre_id,:value =>1 %>  
+
+ 
+    <div class="row">
+    <div class="col s1 offset-s2"><%= f.label :professor_id %></div>
+    <div class="col s5"><%= collection_select(:avaliacaoprof, :professor_id, @professor, :id, :nome, {}, { class: 'browser-default' })%></div>
+    </div> 
+
+
+   <div class="row">       
+    <div class="col s3 offset-s2">Possui dominio do conteudo </div>
+     <div class="col"><label> <%= f.radio_button :dominio_conteudo, "true", id:"1", name:"1" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
+    <div class="col"><label> <%= f.radio_button :dominio_conteudo, "false", id:"2",name:"1" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
+  </div>  
+  
+  
+ 
+   <div class="row">          
+<div class="col s3 offset-s2"> Se relaciona bem com os alunos?</div>
+  <div class="input-field">
+    <div class="col"><label> <%= f.radio_button :relacionamento_alunos, "true", id:"3", name:"2" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
+     <div class="col"><label> <%= f.radio_button :relacionamento_alunos, "false", id:"4",name:"2" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
+   </div>
+  </div > 
+  
+   <div class="row">    
+      <div class="col s3 offset-s2">  Possui boa didatica? ?</div>
+
+    <div class="col"> <label> <%= f.radio_button :possui_didatica, "true", id:"5", name:"3" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label></div>
+     <div class="col"> <label> <%= f.radio_button :possui_didatica, "false", id:"6",name:"3" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label></div>
+
+  </div>  
+  
+   <div class="row">        
+   <div class="col s3 offset-s2"> Gostaria de adicionar alguma tag? </div>
+   <br>
+   <div class="row">    
+     <% @tag = Tag.all 
+       
+      @tag.each do |tag| %>
+        <div class="col 1 offset-s2"> 
+          <div class="chip" id="chip">
+           <%=tag.tag%>
+          <i class="close material-icons">close </i>
+           </div>
+         </div>
+      
+      <%end%>
+   </div>
+  </div>  
+  
+  
+  
+ <div class="row">         
+   <div class="col s3 offset-s2">  Recomendaria esse professor?  </div>
+  <div class="col">  <%= f.range_field(:recomendaria_professor, in: 1..10,  class:'range-field') %> </div>
+  </div>  
+
+<br>
+  
+ <div class="row">         
+   <div class="col s3 offset-s2"> 
+ <%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>  </div>  
+  </div>  
+<% end %>
+
+<script>
+    
+    (document).ready(function() {
+      ('select').material_select();
+    });
+    
+     document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.chip');
+        var instances = M.Chips.init(elems, options);
+      });
+
+</script>
+
+
+
+
+
+

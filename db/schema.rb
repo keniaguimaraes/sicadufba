@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_17_011903) do
+ActiveRecord::Schema.define(version: 2019_05_20_231247) do
+
+  create_table "avaliacaoprofs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "professor_id"
+    t.integer "semestre_id"
+    t.datetime "data_avaliacao"
+    t.boolean "dominio_conteudo"
+    t.boolean "relacionamento_alunos"
+    t.boolean "possui_didatica"
+    t.integer "recomendaria_professor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "avaliacaos", force: :cascade do |t|
     t.integer "user_id"
@@ -19,6 +32,13 @@ ActiveRecord::Schema.define(version: 2019_04_17_011903) do
     t.boolean "resp_positiva"
     t.boolean "resp_negativa"
     t.date "data_avaliacao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "avaliacaotags", force: :cascade do |t|
+    t.integer "avaliacaoprof_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -79,6 +99,12 @@ ActiveRecord::Schema.define(version: 2019_04_17_011903) do
   create_table "semestres", force: :cascade do |t|
     t.integer "ano"
     t.integer "codigo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

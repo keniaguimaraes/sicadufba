@@ -1,0 +1,43 @@
+ <p id="notice"><%= notice %></p>
+
+<br><br>
+<h5 class="header center red-text">Manutenção Avaliacaoprofs</h5>
+
+
+<div class="container">
+<table class="striped">
+  <thead>
+    <tr>
+           
+             <th>Professor</th>
+             <th>Semestre</th>
+             <th>Data avaliacao</th>
+            <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @avaliacaoprofs.each do |avaliacaoprof| %>
+      <tr>
+                
+                   <td><%= avaliacaoprof.professor.nome%></td>
+                     <td><%= avaliacaoprof.semestre.ano %></td>
+                    <td><%= avaliacaoprof.data_avaliacao %></td>
+                  
+                <td class="actions">
+         <%= link_to 'Editar', edit_avaliacaoprof_path(avaliacaoprof), class: 'btn btn-warning btn-xs' %>
+         <%= link_to 'Deletar', avaliacaoprof, method: :delete, data: { confirm: 'Você tem Certeza?'}, class: 'btn btn-danger btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+ <%= link_to 'Adicionar Avaliacaoprof', new_avaliacaoprof_path, class: 'btn waves-effect waves-light light-blue darken-3' %>
+   
+ </div>
+
+

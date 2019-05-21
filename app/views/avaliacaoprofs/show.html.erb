@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<div id="main" class="container-fluid">
+<h5 class="header center red-text">Manutenção</h5>
+
+<p>
+  <strong>User:</strong>
+  <%= @avaliacaoprof.user_id %>
+</p>
+
+<p>
+  <strong>Professor:</strong>
+  <%= @avaliacaoprof.professor_id %>
+</p>
+
+<p>
+  <strong>Semestre:</strong>
+  <%= @avaliacaoprof.semestre_id %>
+</p>
+
+<p>
+  <strong>Data avaliacao:</strong>
+  <%= @avaliacaoprof.data_avaliacao %>
+</p>
+
+<p>
+  <strong>Dominio conteudo:</strong>
+  <%= @avaliacaoprof.dominio_conteudo %>
+</p>
+
+<p>
+  <strong>Relacionamento alunos:</strong>
+  <%= @avaliacaoprof.relacionamento_alunos %>
+</p>
+
+<p>
+  <strong>Possui didatica:</strong>
+  <%= @avaliacaoprof.possui_didatica %>
+</p>
+
+<p>
+  <strong>Recomendaria professor:</strong>
+  <%= @avaliacaoprof.recomendaria_professor %>
+</p>
+
+</div>
+<a class="btn btn-default btn-sm"  <%= link_to 'Voltar', avaliacaoprofs_path %> </a>
