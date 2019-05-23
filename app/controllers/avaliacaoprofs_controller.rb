@@ -16,22 +16,33 @@ class AvaliacaoprofsController < ApplicationController
   def new
     @avaliacaoprof = Avaliacaoprof.new
     @professor = Professor.all.order("nome")
-       
   end
 
   # GET /avaliacaoprofs/1/edit
   def edit
+        @professor = Professor.all.order("nome")
   end
 
   # POST /avaliacaoprofs
   # POST /avaliacaoprofs.json
   def create
     @avaliacaoprof = Avaliacaoprof.new(avaliacaoprof_params)
+    @tagselect =  params[:tags]
+    @ult_avaliacao = Avaliacaoprof.last
+    if @ult_avaliacao.nil? 
+      proximo = 1
+    else proximo = @ult_avaliacao.id + 1
+    end 
+    @tagselect.each do |tagselect|
+      @avaliacaotag = Avaliacaotag.new
+      @avaliacaotag.tag_id = tagselect
+      @avaliacaotag.avaliacaoprof_id = proximo
+      @avaliacaotag.save
+    end  
 
     respond_to do |format|
       if @avaliacaoprof.save
-        format.html { redirect_to '/', notice: 'Avaliacaoprof was successfully created.' }
-      
+        format.html { redirect_to '/', notice: 'A avaliação foi Realizada com Sucesso!'}
       else
         format.html { render :new }
         format.json { render json: @avaliacaoprof.errors, status: :unprocessable_entity }
@@ -45,7 +56,6 @@ class AvaliacaoprofsController < ApplicationController
     respond_to do |format|
       if @avaliacaoprof.update(avaliacaoprof_params)
         format.html { redirect_to  '/', notice: 'Avaliacaoprof was successfully updated.' }
-      
       else
         format.html { render :edit }
         format.json { render json: @avaliacaoprof.errors, status: :unprocessable_entity }
@@ -56,9 +66,14 @@ class AvaliacaoprofsController < ApplicationController
   # DELETE /avaliacaoprofs/1
   # DELETE /avaliacaoprofs/1.json
   def destroy
+=begin
+    id = @avaliacaoprof.id
+    @tagselect = Avaliacaotag.where("avaliacaoprof_id=:avaliacaoprof_id",{avaliacaoprof_id: id})
+    @tagselect.destroy
+=end   
     @avaliacaoprof.destroy
     respond_to do |format|
-      format.html { redirect_to '/', notice: 'Avaliacaoprof was successfully destroyed.' }
+      format.html { redirect_to '/', notice: 'Avaliacaoprof was successfully destroyed.'}
       format.json { head :no_content }
     end
   end
@@ -73,4 +88,6 @@ class AvaliacaoprofsController < ApplicationController
     def avaliacaoprof_params
       params.require(:avaliacaoprof).permit(:user_id, :professor_id, :semestre_id, :data_avaliacao, :dominio_conteudo, :relacionamento_alunos, :possui_didatica, :recomendaria_professor)
     end
+    
+    
 end

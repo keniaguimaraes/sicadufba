@@ -24,9 +24,9 @@
                      <td><%= avaliacaoprof.semestre.ano %></td>
                     <td><%= avaliacaoprof.data_avaliacao %></td>
                   
-                <td class="actions">
-         <%= link_to 'Editar', edit_avaliacaoprof_path(avaliacaoprof), class: 'btn btn-warning btn-xs' %>
-         <%= link_to 'Deletar', avaliacaoprof, method: :delete, data: { confirm: 'Você tem Certeza?'}, class: 'btn btn-danger btn-xs' %>
+        <td class="actions">
+         <%= link_to 'Editar', edit_avaliacaoprof_path(avaliacaoprof), class: 'btn waves-effect waves-light' %>
+         <%= link_to 'Deletar', avaliacaoprof, method: :delete, data: { confirm: 'Você tem Certeza?'}, class: 'btn waves-effect waves-light' %>
         </td>
       </tr>
     <% end %>
@@ -36,7 +36,7 @@
 
 <br>
 
- <%= link_to 'Adicionar Avaliacaoprof', new_avaliacaoprof_path, class: 'btn waves-effect waves-light light-blue darken-3' %>
+ <%= link_to 'Adicionar Avaliacaoprof', new_avaliacaoprof_path, class: 'btn waves-effect waves-light' %>
    
  </div>
 

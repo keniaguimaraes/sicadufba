@@ -21,7 +21,6 @@
  
  <tr>
    <th> <%= f.label :professor_id %></th>
-   
    <th> <%= collection_select(:avaliacao, :professor_id, @professor, :id, :nome, {}, { class: 'browser-default' })%></th>
  </tr> 
  
@@ -59,7 +58,7 @@
 
 <br>
 <br>
- <%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>
+ <%= f.submit class: 'waves-effect waves-light btn' %>
 </div>   
   
 <% end %>

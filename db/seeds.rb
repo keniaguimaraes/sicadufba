@@ -1,5 +1,4 @@
 
-=begin
 Curso.create(nome:'Teste')
 
 
@@ -25,7 +24,6 @@ Tag.create(tag:'respeitoso')
 Tag.create(tag:'inspirador')
 Tag.create(tag:'boa didatica')
 Tag.create(tag:'falta demais')
-=end
 Tag.create(tag:'trabalho extra')
 Tag.create(tag:'faz exercicios')
 Tag.create(tag:'teste1')
