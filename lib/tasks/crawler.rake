@@ -43,7 +43,7 @@ namespace :crawler do
     require 'rubygems'
     require 'mechanize'
 
-    Curso.all.order(:nome).each do |course|
+    Curso.where('codigo in ("186140","196120","195140","112140")').all.order(:nome).each do |course| #cursos de computação
       puts "    Crawling #{course.nome}"
 
       agent = Mechanize.new

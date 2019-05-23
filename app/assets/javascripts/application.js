@@ -16,7 +16,9 @@
 //= require jquery
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
+//= require select2
 //= require_tree .
+
 
 
 
@@ -32,5 +34,4 @@
     ('.tooltipped').tooltip();
     ('.modal').modal();
 }); // end of document ready
-
 

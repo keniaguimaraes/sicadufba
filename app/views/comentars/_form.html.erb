@@ -12,56 +12,64 @@
     </div>
   <% end %>
   
- 
- <div class="container">
-<table class="striped">
-<tbody>
-   
-  
-  <div class="field">
-
    <%= f.hidden_field:user_id,:value =>current_user.id %>
    <%= f.hidden_field:data_comentario,:value =>Time.now %>
-  </div>
+ 
 
-  <div class="field">
-
- <tr>
-   <th> <%= f.label :disciplinacurso_id %></th>
-    <th> <%=collection_select(:comentar, :disciplinacurso_id, @disciplinacurso, :id, :nome, { }, { class: 'browser-default' })%></th>
-  </tr> 
-
-  </div>
-
-  <tr>
-   <th> <%= f.label :professor_id %></th>
- <th>  <%=collection_select(:comentar, :professor_id, @professor, :id, :nome, { }, { class: 'browser-default' })%></th>
-  </tr> 
- <tr>
-   <th> <%= f.label :semestre_id %></th>
-   <th>  <%=collection_select(:comentar, :semestre_id, @semestre, :id, :ano, { }, { class: 'browser-default' })%></th>
-  </tr> 
-
-
-  <tr>
-   <th> <%= f.label :comentario %></th>
-   <th> <%= f.text_area :comentario, placeholder: 'Informe sua experiencia', class: 'materialize-textarea' %></th>
-  </tr> 
+   <div class="row">
+     <div class="col s12 offset-s2"><b><%= f.label :disciplinacurso_id, "Disciplina" %></b></div>
+     </div>
+     <div class="row">
+      <div class="col s5 offset-s2"><%=collection_select(:comentar, :disciplinacurso_id, @disciplinacurso, :id, :nome, { }, { class: 'js-searchable-d' })%></div>
+   </div>
+    
+   <div class="row">
+     <div class="col s12 offset-s2"><b><%= f.label :professor_id, "Professor" %></b></div>
+     </div>
+     <div class="row">
+      <div class="col s5 offset-s2">   <%=collection_select(:comentar, :professor_id, @professor, :id, :nome, { }, { class: 'js-searchable' })%></div>
+   </div>
+    
+   <div class="row">
+     <div class="col s12 offset-s2"><b><%= f.label :semestre_id , "Semestre"%></b></div>
+     </div>
+     <div class="row">
+      <div class="col s5 offset-s2"> <%=collection_select(:comentar, :semestre_id, @semestre, :id, :semestre, { }, { class: 'js-searchable-s' })%></div>
+   </div>
+    
+   <div class="row">
+     <div class="col s12 offset-s2"><b><%= f.label :comentario, "Comentário" %></b></div>
+     </div>
+     <div class="row">
+      <div class="col s5 offset-s2">   <%= f.text_area :comentario, placeholder: 'Informe sua experiencia', class: 'materialize-textarea' %></div>
+   </div>
+    
+   <br>
   
-  </div>
- </tbody>
-</table>
-
-  <div class="actions">
-    <%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>
-  </div>
-
-
-</div>   
+  <div class="row">         
+   <div class="col s3 offset-s2"> <%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>  </div>  
+  </div>  
   
 <% end %>
 
 
-
+<script>
+     $(".js-searchable").select2({
+         placeholder: "Informe o Professor",
+         allowClear: true,
+         width:"100%"
+     });
+ 
+  $(".js-searchable-d").select2({
+         placeholder: "Informe a Disciplina",
+         allowClear: true,
+         width:"100%"
+     });
+      $(".js-searchable-s").select2({
+         placeholder: "Informe o semestre",
+         allowClear: true,
+         width:"100%"
+     });
+</script>
 
 

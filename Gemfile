@@ -41,6 +41,7 @@ gem 'cancancan'
 gem 'railroady'
 gem 'will_paginate','~>3.1.7'
 gem 'ruby-stemmer'
+gem "select2-rails"
 
 group :development do
   gem 'sqlite3', '~> 1.3.6'

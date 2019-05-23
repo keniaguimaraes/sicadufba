@@ -16,15 +16,17 @@
    <%= f.hidden_field:data_avaliacao,:value =>Time.now %>
    <%= f.hidden_field:semestre_id,:value =>1 %>  
 
- 
     <div class="row">
-    <div class="col s1 offset-s2"><%= f.label :professor_id %></div>
-    <div class="col s5"><%= collection_select(:avaliacaoprof, :professor_id, @professor, :id, :nome, {}, { class: 'browser-default' })%></div>
-    </div> 
+     <div class="col s12 offset-s2"><b><%= f.label :professor_id, "Professor" %></b></div>
+     </div>
+     <div class="row">
+      <div class="col s5 offset-s2"><%= collection_select(:avaliacaoprof, :professor_id, @professor, :id, :nome, {},class: 'js-searchable')%></div>
+     </div>
+    
 
 
    <div class="row">       
-    <div class="col s3 offset-s2">Possui dominio do conteudo </div>
+    <div class="col s3 offset-s2"><label><b>Possui dominio do conteudo</b></label> </div>
      <div class="col"><label> <%= f.radio_button :dominio_conteudo, value:true, id:"1", name:"1" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
     <div class="col"><label> <%= f.radio_button :dominio_conteudo, value:false, id:"2",name:"1" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
   </div>  
@@ -32,7 +34,7 @@
   
  
    <div class="row">          
-<div class="col s3 offset-s2"> Se relaciona bem com os alunos?</div>
+<div class="col s3 offset-s2"> <label><b>Se relaciona bem com os alunos?</b></label> </div>
   <div class="input-field">
     <div class="col"><label> <%= f.radio_button :relacionamento_alunos, value:true, id:"3", name:"2" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
      <div class="col"><label> <%= f.radio_button :relacionamento_alunos, value:false, id:"4",name:"2" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
@@ -40,7 +42,7 @@
   </div > 
   
    <div class="row">    
-     <div class="col s3 offset-s2">  Possui boa didatica? ?</div>
+     <div class="col s3 offset-s2">  <label><b>Possui boa didatica? ?</b></label> </div>
 
     <div class="col"> <label> <%= f.radio_button :possui_didatica, value:true, id:"5", name:"3" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label></div>
      <div class="col"> <label> <%= f.radio_button :possui_didatica, value:false, id:"6",name:"3" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label></div>
@@ -48,7 +50,7 @@
   </div>  
   
    <div class="row">        
-   <div class="col s3 offset-s2"> Gostaria de adicionar alguma tag? </div>
+   <div class="col s3 offset-s2"><label><b> Gostaria de adicionar alguma tag?</b></label>  </div>  
    </div>
    <div class="row">    
     <div class="col offset-s2 s7">
@@ -58,7 +60,7 @@
         <div class="col "> 
           <div class="chip" id=<%=tag.id.to_s%> >
            <%=tag.tag%>
-          <i class="close material-icons"> close </i>
+         
            </div>
          </div>
       
@@ -67,10 +69,9 @@
    </div>
   
   
- 
  <div class="row">         
-   <div class="col s3 offset-s2">  Recomendaria esse professor?  </div>
-  <div class="col">  <%= f.range_field(:recomendaria_professor, in: 1..10,  class:'range-field') %> </div>
+   <div class="col s3 offset-s2"> <label><b> Recomendaria esse professor? </b></label>  </div>
+  <div class="col">  <%= f.range_field(:recomendaria_professor, in: 1..5,  class:'range-field') %> </div>
   </div>  
 
 <br>
@@ -90,11 +91,12 @@
         
       });
       
-      $(".close").click(function(e){
-          e.preventDefault()
-          $(this).closest('div').hide()
-      }) ;
-
+     $(".js-searchable").select2({
+         placeholder: "Escolha um Professor",
+         allowClear: true,
+         width:"105%"
+     });
+     
  
 </script>
 

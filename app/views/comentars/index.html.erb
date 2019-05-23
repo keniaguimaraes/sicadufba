@@ -21,12 +21,12 @@
       <div class="actions">
         <div class="col s0">  
             <%= link_to comentar, :confirm => "Você tem ceretza?",method: :delete, class:'waves-effect waves-circle waves-light btn-floating secondary-content'  do %>
-               <i class="material-icons">delete</i> 
+               <i class="material-icons tooltipped"  data-tooltip="Deletar" >delete</i> 
             <%end%>
         </div>
         <div class="col s0">  
             <%= link_to edit_comentar_path(comentar),class:'waves-effect waves-circle waves-light btn-floating secondary-content'  do %>
-               <i class="material-icons">edit</i> 
+               <i class="material-icons tooltipped"  data-tooltip="Editar">edit</i>  
             <%end%>
         </div>
       </div>
@@ -35,5 +35,7 @@
 </div>  
   
    
-<%= link_to 'Adicionar Comentario', new_comentar_path, class: 'btn waves-effect waves-light light-blue darken-3' %>
+<script>
+$('.tooltipped').tooltip();
+</script>
    

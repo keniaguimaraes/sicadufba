@@ -46,10 +46,11 @@ class ComentarsController < ApplicationController
                                        .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
                                        .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")
                                        .where(" disciplinacursos.curso_id =:curso_id",{curso_id:current_user.curso_id}).all
-                                       .order("cursos.nome")
+                                       .order("cursos.nome ")
     @professor = Professor.all.order("nome")
 
-    @semestre   = Semestre.all                                    
+    @semestre   = Semestre.select(" cast(ano as char(4))||'.'||cast(codigo as char(1)) semestre,  * ").all
+                          .order("ano,codigo")
   end
 
   # GET /comentars/1/edit
