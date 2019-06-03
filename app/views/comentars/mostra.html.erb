@@ -4,12 +4,21 @@
         <div class="card">
           <div class="card-content black-text">
             <p><%=  truncate(comentarios_disciplina.comentario, :length => 60)%></p>
-            <a href="#">Ler Mais</a>
+            <a href="<%= comentar_path(comentarios_disciplina.id) %>">Ler Mais</a> 
           </div>
           <div class="card-action">
-            <a href="" class="rodape">Usuario:<%= comentarios_disciplina.email %></a> 
-            <a href=""class="rodape">Curso: <%= comentarios_disciplina.curso %></a>
-        
+            <div class = "row">
+              <div class = "col s12">
+                <% curso = comentarios_disciplina.curso.split('-').first %>
+                  <a href=""class="rodape">Curso: <%=curso %></a>
+              </div>
+              <div class = "col s8">
+             <a href="" class="rodape">Usuario:<%= comentarios_disciplina.email %></a> 
+               </div>
+                <div class = "col s4">
+               <a href=""class="rodape">Data: <%= comentarios_disciplina.data_comentario %></a>
+               </div>
+          </div>
         </div>
       </div>
     </div>
@@ -30,16 +39,31 @@
           </div>
         </div>
       </div>
+
+    <% next if not comentarios_disciplina.nil? %>
+    
+    <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-content black-text">
+              <p><%=  truncate(comentarios_disciplina.comentario, :length => 60)%></p>
+              <a href="#">Ler Mais</a>
+            </div>
+            <div class="card-action">
+              <a href="" class="rodape">Usuario:<%= comentarios_disciplina.email%></a> 
+              <a href=""class="rodape">Curso: <%= comentarios_disciplina.curso%></a>
+          </div>
+        </div>
+      </div>
+ </div>
  
 <%end %>
  
-
-<!-- Paginação -->
-<div class="container">
- <div class="row">
-    <div class="col s12 m6">
-         <%= will_paginate @comentarios_disciplina %>
-    </div>
- </div> 
+<div class="row">
+  <div class="col s12 m6 lg6 offset-m3 offset-m4">
+     <%= will_paginate @comentarios_disciplina %>
+  </div>
 </div> 
-<!--Fim Paginação -->
+
+
+

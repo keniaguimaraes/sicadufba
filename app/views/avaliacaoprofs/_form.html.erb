@@ -1,4 +1,6 @@
+
 <% require 'time'%>
+
 <%= form_for(avaliacaoprof) do |f| %>
   <% if avaliacaoprof.errors.any? %>
     <div id="error_explanation">
@@ -11,49 +13,49 @@
       </ul>
     </div>
   <% end %>
- 
+
+   <div class="row">
+    <div class="col s12 m8 lg8 offset-m2">
+     
+ <div class="card-panel ">
    <%= f.hidden_field:user_id,:value =>current_user.id %>
    <%= f.hidden_field:data_avaliacao,:value =>Time.now %>
    <%= f.hidden_field:semestre_id,:value =>1 %>  
 
+
     <div class="row">
-     <div class="col s12 offset-s2"><b><%= f.label :professor_id, "Professor" %></b></div>
-     </div>
-     <div class="row">
-      <div class="col s5 offset-s2"><%= collection_select(:avaliacaoprof, :professor_id, @professor, :id, :nome, {},class: 'js-searchable')%></div>
-     </div>
+      <div class="col s12 m6 lg6"><b><%= f.label :professor_id, "Professor" %></b></div>
+      <div class="col s12 m12 lg12"><%= collection_select(:avaliacaoprof, :professor_id, @professor, :id, :nome, {},class: 'js-searchable')%></div>
+    </div>
     
 
 
    <div class="row">       
-    <div class="col s3 offset-s2"><label><b>Possui dominio do conteudo</b></label> </div>
-     <div class="col"><label> <%= f.radio_button :dominio_conteudo, value:true, id:"1", name:"1" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
-    <div class="col"><label> <%= f.radio_button :dominio_conteudo, value:false, id:"2",name:"1" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
-  </div>  
+     <div class="col s12 m12 lg12"><label><b>Possui dominio do conteudo</b></label> </div>
+     <div class="col s3 m2 lg2"><label> <%= f.radio_button :dominio_conteudo, value:true, id:"1", name:"1" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
+     <div class="col s3 m2 lg2"><label> <%= f.radio_button :dominio_conteudo, value:false, id:"2",name:"1" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
+   </div>  
   
   
  
    <div class="row">          
-<div class="col s3 offset-s2"> <label><b>Se relaciona bem com os alunos?</b></label> </div>
-  <div class="input-field">
-    <div class="col"><label> <%= f.radio_button :relacionamento_alunos, value:true, id:"3", name:"2" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
-     <div class="col"><label> <%= f.radio_button :relacionamento_alunos, value:false, id:"4",name:"2" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
-   </div>
+     <div class="col s12 m12 lg12"> <label><b>Se relaciona bem com os alunos?</b></label> </div>
+     <div class="col s3 m2 lg2"><label> <%= f.radio_button :relacionamento_alunos, value:true, id:"3", name:"2" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
+     <div class="col s3 m2 lg2"><label> <%= f.radio_button :relacionamento_alunos, value:false, id:"4",name:"2" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
+  
   </div > 
   
    <div class="row">    
-     <div class="col s3 offset-s2">  <label><b>Possui boa didatica? ?</b></label> </div>
-
-    <div class="col"> <label> <%= f.radio_button :possui_didatica, value:true, id:"5", name:"3" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label></div>
-     <div class="col"> <label> <%= f.radio_button :possui_didatica, value:false, id:"6",name:"3" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label></div>
-
+     <div class="col s12 m12 lg12">  <label><b>Possui boa didatica? ?</b></label> </div>
+     <div class="col s3 m2 lg2"> <label> <%= f.radio_button :possui_didatica, value:true, id:"5", name:"3" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label></div>
+     <div class="col s3 m2 lg2"> <label> <%= f.radio_button :possui_didatica, value:false, id:"6",name:"3" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label></div>
   </div>  
   
    <div class="row">        
-   <div class="col s3 offset-s2"><label><b> Gostaria de adicionar alguma tag?</b></label>  </div>  
+   <div class="col s12 m12 lg12"><label><b> Gostaria de adicionar alguma tag?</b></label>  </div>  
    </div>
    <div class="row">    
-    <div class="col offset-s2 s7">
+    <div class="col s12 m12 lg12">
      <% @tag = Tag.all 
        
       @tag.each do |tag| %>
@@ -70,17 +72,20 @@
   
   
  <div class="row">         
-   <div class="col s3 offset-s2"> <label><b> Recomendaria esse professor? </b></label>  </div>
-  <div class="col">  <%= f.range_field(:recomendaria_professor, in: 1..5,  class:'range-field') %> </div>
+   <div class="col s12 m12 lg12"> <label><b> Recomendaria esse professor? </b></label>  </div>
+  <div class="col s12 m12 lg12">  <%= f.range_field(:recomendaria_professor, in: 1..5,  class:'range-field') %> </div>
   </div>  
 
 <br>
   
  <div class="row">         
-   <div class="col s3 offset-s2"> 
- <%= f.submit class: 'btn waves-effect waves-light light-blue darken-3' %>  </div>  
+   <div class="http://sicadufba.keniaguimaraes.c9users.io/avaliacaoprofs/new"> 
+ <%= f.submit "Avaliar", class: 'btn waves-effect waves-light light-blue'%>  </div>  
   </div>  
 <% end %>
+</div>
+</div>
+</div>
 
 <script>
    

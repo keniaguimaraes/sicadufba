@@ -1,26 +1,48 @@
 <p id="notice"><%= notice %></p>
 <div id="main" class="container-fluid">
-<h5 class="header center red-text">Manutenção</h5>
 
-<p>
-  <strong>User:</strong>
-  <%= @comentar.user_id %>
-</p>
+   <div class="row">
+    <div class="col s12 m8 lg8 offset-m2">
+     
+ <div class="card-panel ">
 
-<p>
-  <strong>Disciplinacurso:</strong>
-  <%= @comentar.disciplinacurso_id %>
-</p>
+   <div class="row">
+    <div class="col">
+       <%= @comentar.disciplinacurso.disciplina.nome%>
+    </div>
+    
+    </div>
+       <div class="row">
+    <div class="col">
+       <%= @comentar.professor.nome %>
+    </div>
+    </div>
+    
+   <div class="row">
+    <div class="col">
+       <%= @comentar.user.email %>
+    </div>
+    </div>
+   <div class="row">
+    <div class="col">
+       <%= @comentar.comentario %>
+    </div>
+    </div>
+  
+ 
 
-<p>
-  <strong>Professor:</strong>
-  <%= @comentar.professor_id %>
-</p>
-
-<p>
-  <strong>Semestre:</strong>
-  <%= @comentar.semestre_id %>
-</p>
+   <div class="row">
+    <div class="col">
+        <%= @comentar.semestre.ano %>
+    </div>
+        <div class="col">
+        <%= @comentar.data_comentario %>
+    </div>
+    </div>
 
 </div>
+</div>
+</div>
+</div>
+
 <a class="btn btn-default btn-sm"  <%= link_to 'Voltar', comentars_path %> </a>

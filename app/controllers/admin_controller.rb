@@ -22,6 +22,13 @@ class AdminController < ApplicationController
     end
   end
   
+  def crawltitle 
+    call_rake 'crawler:titleize'
+     respond_to do |format|
+       format.html { redirect_to '/', notice: 'Done title.' }
+    end
+  end
+  
   def clear
       Disciplinacurso.destroy_all
       Disciplina.destroy_all

@@ -1,8 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <br>
-<h6 class="header center red-text">Palavras Restritivas</h6>
-
 
 <div class="container">
 <table class="striped">
@@ -17,21 +15,35 @@
     <% @restricaos.each do |restricao| %>
       <tr>
          <td><%= restricao.palavra %></td>
-         <td class="actions">
-           <%= link_to 'Editar', edit_restricao_path(restricao) %>
-           <%= link_to 'Deletar', restricao, method: :delete, data: { confirm: 'Você tem Certeza?'}%>
+         <td class="rigth actions">
+      
+             <%= link_to restricao,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
+                <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
+             <%end%>
+             <%= link_to edit_restricao_path(restricao),class:'' do %>
+                <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
+             <%end%>
+       
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 <div class="row">
-  <div class="col s12 m6">
+  <div class="col s12 m6 lg6 offset-m3 offset-m4">
      <%= will_paginate @restricaos %>
   </div>
 </div> 
+
+
+
 <br>
- <%= link_to 'Adicionar Restricao', new_restricao_path, class: 'btn waves-effect waves-light light-blue darken-3' %>
+ <%= link_to 'Adicionar', new_restricao_path, class: 'btn waves-effect waves-light light-blue' %>
 </div>
+<br>
 
-
+   
+<script>
+$('.tooltipped').tooltip();
+</script>

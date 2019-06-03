@@ -22,13 +22,12 @@ class ComentarsController < ApplicationController
                                  .joins('JOIN semestres on semestres.id = comentars.semestre_id')
                                  .joins('join professors on professors.id = comentars.professor_id')
                                  .joins('JOIN users ON users.id = comentars.user_id ')
-                                 .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]}).all
-                               
+                                 .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
   end
   
   
   def mostra
-       @comentarios_disciplina = Comentar.select('users.email as email, cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario') 
+       @comentarios_disciplina = Comentar.select('users.email as email, cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id') 
                                  .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
                                  .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
                                  .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
@@ -42,7 +41,7 @@ class ComentarsController < ApplicationController
   # GET /comentars/new
   def new
     @comentar = Comentar.new
-    @disciplinacurso = Disciplinacurso.select("disciplinas.nome||' - ' || disciplinacursos.semestre as nome, disciplinacursos.* ")
+    @disciplinacurso = Disciplinacurso.select(" ' ( ' ||disciplinacursos.semestre||' )  ' || disciplinas.nome as nome, disciplinacursos.* ")
                                        .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
                                        .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")
                                        .where(" disciplinacursos.curso_id =:curso_id",{curso_id:current_user.curso_id}).all

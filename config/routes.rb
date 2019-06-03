@@ -36,6 +36,7 @@ resources :admin do
        get 'crawl'=> 'admin#crawl'
        get 'crawldisc'=> 'admin#crawldisc'
        get 'crawlprof'=> 'admin#crawlprof'
+       get 'crawltitle' => 'admin#crawltitle'
        get 'clear'=> 'admin#clear'
     end
  end

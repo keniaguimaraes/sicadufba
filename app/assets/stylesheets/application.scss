@@ -226,7 +226,7 @@ body {
 
 .select2-results__options li{
     color: #26a69a !important;
-    font-size: larger;
+    font-size: small;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -759,3 +759,33 @@ body {
     background-color: #eeeeee
 }
 
+#container {
+  padding-left: 300px;
+}
+
+#content {
+  padding: 20px;
+}
+
+.padding-collapsible{
+  padding: 0 16px !important;
+}
+.padding-collapsible>a{
+  padding: 0 !important;
+}
+a.subheader>i.material-icons.left{
+  height: auto;
+  line-height: inherit;
+}
+.collapsible li .collapsible-header i.right {
+  transition: transform .2s linear;
+}
+.collapsible li.active .collapsible-header i.right {
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.pagination li.active a {
+  color: #fff;
+}

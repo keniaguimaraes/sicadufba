@@ -1,36 +1,33 @@
-
+<br><br>
 <section class="section">
   <div class="row">
-    <div class="col m6 offset-m3 s12">
-      <div class="card-panel">
+    <div class="col s12 lg6 m6 offset-m3">
         <div class="row">
-          <div class="col s12">
-           <h4 class="header center red-text">Autenticação</h4>
-
+          <div class="col  s12 lg12 m12">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-              <div class="input-field col s12">
+              <div class="input-field  s12 lg12 m12">
                  <i class="material-icons prefix">email</i> 
                 <%= f.email_field :email, autofocus: true %>
                 <%= f.label :email %>
               </div>
-
-              <div class="input-field col s12">
+              <br>
+              <div class="input-field  s12 lg12 m12">
                    <i class="material-icons prefix">lock</i> 
                 <%= f.password_field :password, autocomplete: "off" %>
                 <%= f.label :password %>
               </div>
 
-              <div class="input-field col s12">
+              <div class="input-field  s12 lg12 m12">
                 <%= f.submit "Entrar", class: "waves-effect waves-light btn" %>
               </div>
 
-              <div class="input-field col s12">
+              <div class="input-field  s12 lg12 m12">
                 <%= render "devise/shared/links" %>
               </div>
             <% end %>
           </div>
         </div>
-      </div>
+      
     </div>
   </div>
 </section>
