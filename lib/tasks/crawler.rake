@@ -190,7 +190,7 @@ desc 'Downcase and capitalize discipline names and upcase roman numbers'
       name.gsub!(/[\p{L}]+/) { |match| uncapitalized.include?(match) ? match : match.mb_chars.capitalize.to_s }
       name.gsub!(/(\b)(i|ii|iii|iv|v|vi|vii|viii|ix|x|b|c|d|f|g|h)(\b)|((\b)(a|e)$)/i) { |match| match.upcase }
 
-      course.name = name
+      course.nome = name
       course.save
     end
     puts '-> Finished'

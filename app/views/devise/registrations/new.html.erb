@@ -36,7 +36,8 @@
               
                <div class="input-field col s12">
                 <%= f.label :curso_id %>
-               <%=collection_select(:user, :curso_id, Curso.where('codigo in ("186140","196120","195140","112140")').all.order(:nome), :id, :nome, { }, { class: 'js-searchable' })%>
+                <%@curso = Curso.where('codigo in ("186140","196120","195140","112140")').all.order(:nome)%>
+               <%=collection_select(:user, :curso_id,@curso , :id, :nome, { }, { class: 'js-searchable' })%>
               </div> 
               
               <div class="input-field col s12">
