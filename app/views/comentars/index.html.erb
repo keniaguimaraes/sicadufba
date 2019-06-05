@@ -1,36 +1,32 @@
-
 <p id="notice"><%= notice %></p>
-<br><br>
-<h5 class="header center red-text">Meus Comentários</h5>
-<br><br>
 <div class="container">
-    
-    <div class="row">
-      <div class="col s12"></div>
-      <div class="col s3"><b>Disciplina</b></div>
-      <div class="col s4"><b>Professor</b></div>
-        <div class="col s2"><b>Semestre</b></div>
-    </div>
-    
-     <% @comentars.each do |comentar| %>
-    <div class="row">
-      <div class="col s12"></div>
-      <div class="col s3"><%= comentar.disciplinacurso.disciplina.nome %> </div>
-      <div class="col s4"><%= comentar.professor.nome %> </div>
-      <div class="col s2"><%= comentar.semestre.ano %> </div>
-      <div class="actions">
-        <div class="col s0">  
-            <%= link_to comentar, :confirm => "Você tem ceretza?",method: :delete, class:'waves-effect waves-circle waves-light btn-floating secondary-content'  do %>
-               <i class="material-icons tooltipped"  data-tooltip="Deletar" >delete</i> 
-            <%end%>
-        </div>
-        <div class="col s0">  
-            <%= link_to edit_comentar_path(comentar),class:'waves-effect waves-circle waves-light btn-floating secondary-content'  do %>
-               <i class="material-icons tooltipped"  data-tooltip="Editar">edit</i>  
-            <%end%>
+
+   <% @comentars.each do |comentar| %>
+   
+   <div class= "card">
+      
+      <div class="row">
+        <br>
+        <div class="col s12 m12 lg12 "><b><%= comentar.disciplinacurso.disciplina.nome %> </b></div>
+      </div>
+      
+      <div class="row">
+        <div class="col s6 m6 lg6"><b>Professor</b> <%= comentar.professor.nome  %></div>
+         <div class="col s6 m6 lg6"><b>Data:</b><%=comentar.data_comentario  %> </div> 
+       
+           <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
+                <div>  
+                    <%= link_to comentar,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
+                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
+                    <%end%>
+                     <%= link_to edit_comentar_path(comentar),class:'' do %>
+                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
+                    <%end%>
+           </div>
         </div>
       </div>
-    </div>
+      
+   </div>
    <% end %>
 </div>  
   
@@ -38,4 +34,3 @@
 <script>
 $('.tooltipped').tooltip();
 </script>
-   

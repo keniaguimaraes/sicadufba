@@ -7,21 +7,21 @@
 <table class="striped">
   <thead>
     <tr>
-      <th>Palavra</th>
+      <th>Tag</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @restricaos.each do |restricao| %>
+    <% @tags.each do |tag| %>
       <tr>
-         <td><%= restricao.palavra %></td>
+         <td><%= tag.tag %></td>
          <td class="rigth actions">
       
-             <%= link_to restricao,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
+             <%= link_to tag,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
                 <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
              <%end%>
-             <%= link_to edit_restricao_path(restricao),class:'' do %>
+             <%= link_to edit_tag_path(tag),class:'' do %>
                 <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
              <%end%>
        
@@ -33,14 +33,14 @@
 
 <div class="row">
   <div class="col s12 m6 lg6 offset-m3 offset-m4">
-     <%= will_paginate @restricaos %>
+     <%= will_paginate @tags %>
   </div>
 </div> 
 
   
   <div class="row">         
    <div class="col s12 m6 lg6"> 
- <%= link_to 'Adicionar', new_restricao_path,  class: 'btn waves-effect waves-light light-blue' %>
+ <%= link_to 'Adicionar', new_tag_path,  class: 'btn waves-effect waves-light light-blue' %>
 
 </div>
 </div>

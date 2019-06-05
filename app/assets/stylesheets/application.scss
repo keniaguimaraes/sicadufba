@@ -789,3 +789,13 @@ a.subheader>i.material-icons.left{
 .pagination li.active a {
   color: #fff;
 }
+
+
+// Breadcrumbs
+.breadcrumbs {
+   line-height: 1.5;  padding-left: 0;
+  li { display: inline; list-style-type: none; margin-left: 0; }
+  li:before { padding-right: 3px; }
+  li:first-child:before { content: ""; padding-right: 0;   }
+  li:last-child {font-weight: bold;font-size:15px; color: #64b5f6;}
+} //.wvu-breadcrumbs

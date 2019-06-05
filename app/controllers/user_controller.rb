@@ -2,6 +2,7 @@ class UserController < ApplicationController
    
    
   def index
+     add_breadcrumb "Usuario", "/user", :title => "Voltar para a Página principal"
      @users = User.order(:username)
   end
   
@@ -20,6 +21,8 @@ class UserController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    add_breadcrumb "Usuários", "/user", :title => "Voltar para Anterior"
+    add_breadcrumb "Editando Usuário" 
   end
   
   
@@ -27,7 +30,7 @@ class UserController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
     #flash[:notice] = "O usuário foi atualizado com sucesso."
-      redirect_to "/user",notice: 'O Usuário foi atualizado com sucesso.!' 
+      redirect_to "/user",notice: 'O Usuário foi atualizado com sucesso!' 
     #  redirect_to root_path
     else
       render :action => 'edit'

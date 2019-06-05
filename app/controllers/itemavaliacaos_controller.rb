@@ -5,6 +5,7 @@ class ItemavaliacaosController < ApplicationController
   # GET /itemavaliacaos
   # GET /itemavaliacaos.json
   def index
+
     @itemavaliacaos = Itemavaliacao.all
   end
 

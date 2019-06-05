@@ -1,43 +1,38 @@
- <p id="notice"><%= notice %></p>
 
-<br><br>
-<h5 class="header center red-text">Manutenção Avaliacaoprofs</h5>
-
+<p id="notice"><%= notice %></p>
 
 <div class="container">
-<table class="striped">
-  <thead>
-    <tr>
-           
-             <th>Professor</th>
-             <th>Semestre</th>
-             <th>Data avaliacao</th>
-            <th colspan="2"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @avaliacaoprofs.each do |avaliacaoprof| %>
-      <tr>
-                
-                   <td><%= avaliacaoprof.professor.nome%></td>
-                     <td><%= avaliacaoprof.semestre.ano %></td>
-                    <td><%= avaliacaoprof.data_avaliacao %></td>
-                  
-        <td class="actions">
-         <%= link_to 'Editar', edit_avaliacaoprof_path(avaliacaoprof), class: 'btn waves-effect waves-light' %>
-         <%= link_to 'Deletar', avaliacaoprof, method: :delete, data: { confirm: 'Você tem Certeza?'}, class: 'btn waves-effect waves-light' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<br>
-
- <%= link_to 'Adicionar Avaliacaoprof', new_avaliacaoprof_path, class: 'btn waves-effect waves-light' %>
+   <% @avaliacaoprofs.each do |avaliacaoprof| %>
    
- </div>
-
-
+   <div class= "card">
+      
+      <div class="row">
+        <br>
+        <div class="col s10 m10 lg10 "><b>Professor:</b> <%= avaliacaoprof.professor.nome %> </div>
+        <div class="col s2 m2 lg2 "> <b>Ano:</b> <%=avaliacaoprof.semestre.ano %>.<%=avaliacaoprof.semestre.codigo %> </div>
+      </div>
+      
+      <div class="row">
+        <div class="col s6 m6 lg6"><b>Data:</b> <%= avaliacaoprof.data_avaliacao  %></b> </div>
+       
+           <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
+                <div>  
+                    <%= link_to avaliacaoprof,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
+                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
+                    <%end%>
+                     <%= link_to edit_avaliacaoprof_path(avaliacaoprof),class:'' do %>
+                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
+                    <%end%>
+           </div>
+        </div>
+      </div>
+      
+   </div>
+   <% end %>
+</div>  
+  
+   
+<script>
+$('.tooltipped').tooltip();
+</script>

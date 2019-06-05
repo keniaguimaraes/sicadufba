@@ -5,6 +5,7 @@ class AvaliacaosController < ApplicationController
   # GET /avaliacaos
   # GET /avaliacaos.json
   def index
+        add_breadcrumb "Avaliacao", avaliacaos_path, :title => "Voltar para a Página principal"
     @avaliacaos = Avaliacao.where("user_id =:user_id",{user_id:current_user.id}).all
                            .paginate(:page => params[:page], :per_page => 7)
   end

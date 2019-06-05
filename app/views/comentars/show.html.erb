@@ -1,42 +1,36 @@
 <p id="notice"><%= notice %></p>
 <div id="main" class="container-fluid">
 
-   <div class="row">
-    <div class="col s12 m8 lg8 offset-m2">
-     
- <div class="card-panel ">
+ <div class="row">
+ <div class="col s12 m8 lg8 offset-m2">
+  <div class="card-panel ">
 
    <div class="row">
     <div class="col">
-       <%= @comentar.disciplinacurso.disciplina.nome%>
+       <b><%= @comentar.disciplinacurso.disciplina.nome%></b>
     </div>
     
     </div>
        <div class="row">
     <div class="col">
-       <%= @comentar.professor.nome %>
+       <b> Professor:</b> <%= @comentar.professor.nome %>
     </div>
     </div>
     
    <div class="row">
     <div class="col">
-       <%= @comentar.user.email %>
+       <b>Usuário: </b><%= @comentar.user.email %>
     </div>
     </div>
    <div class="row">
     <div class="col">
-       <%= @comentar.comentario %>
+       <b>Comentário:</b> <%= @comentar.comentario %>
     </div>
     </div>
   
- 
-
-   <div class="row">
-    <div class="col">
-        <%= @comentar.semestre.ano %>
-    </div>
-        <div class="col">
-        <%= @comentar.data_comentario %>
+    <div class="row">
+      <div class="col">
+     <b> Data:</b> <%= @comentar.data_comentario %>
     </div>
     </div>
 
@@ -45,4 +39,3 @@
 </div>
 </div>
 
-<a class="btn btn-default btn-sm"  <%= link_to 'Voltar', comentars_path %> </a>

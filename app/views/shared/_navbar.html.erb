@@ -62,13 +62,15 @@
           <li><a  href="<%= crawl_admin_path(0) %>">Cursos</a></li>
           <li><a href="<%= crawldisc_admin_path(0) %>" >Disciplinas</a></li>
           <li><a href="<%= crawlprof_admin_path(0) %>" >Professor</a></li>
-          <li><a href="<%= crawltitle_admin_path(0) %>" >Titulos</a></li>
+          <li><a href="<%= crawltitle_admin_path(0) %>" >Titulo</a></li>
           <li class="divider"></li>
           <li><a href="<%= clear_admin_path(0) %>">Limpar</a></li>
      </ul>
      
      <ul id="dropdown1" class="dropdown-content">
           <li> <%= link_to 'Restrição ', restricaos_path, :class => 'navbar-link' %> </li>
+          <li> <%= link_to 'Tag ', tags_path, :class => 'navbar-link' %> </li>
+        <!--  <li> <%= link_to 'Avaliação Docente ', tags_path, :class => 'navbar-link' %> </li>-->
      </ul>
      
      <ul id="dropdown4" class="dropdown-content">
@@ -88,15 +90,16 @@
 
  <% if user_signed_in? %>
   <div class="row container">
-      
-            <% @curso = Curso.where("id =:curso_id",{curso_id:current_user.curso_id}).all 
-             @curso.each do |curso| %>
-              <br>
-               <b>Curso: <%= curso.nome %> </b> 
-             <% end %>
-            <br>    <br> 
-            
-             <%= link_to 'Incluir Comentario', new_comentar_path %> 
+   
+    <% @curso = Curso.where("id =:curso_id",{curso_id:current_user.curso_id}).all 
+    @curso.each do |curso| %>
+       <br> <b>Curso: <%= curso.nome %> </b> 
+    <% end %>
+  
+    <ul class="breadcrumbs">
+     <%= render_breadcrumbs :tag=> :li, :separator => " > " %>
+    </ul>
+             
   </div>  
  <%end%> 
   

@@ -5,6 +5,7 @@ class RestricaosController < ApplicationController
   # GET /restricaos
   # GET /restricaos.json
   def index
+    add_breadcrumb "Restrição", restricaos_path, :title => "Voltar para a Página principal"
     @restricaos = Restricao.all.paginate(:page => params[:page], :per_page => 8)
   end
 
@@ -16,10 +17,15 @@ class RestricaosController < ApplicationController
   # GET /restricaos/new
   def new
     @restricao = Restricao.new
+    add_breadcrumb "Restrição", restricaos_path, :title => "Voltar para Anterior"
+    add_breadcrumb "Incluir Restrição"
   end
 
   # GET /restricaos/1/edit
   def edit
+    
+     add_breadcrumb "Restrição", restricaos_path, :title => "Voltar para Anterior"
+     add_breadcrumb "Editando Palavra: " +  @restricao.palavra
   end
 
   # POST /restricaos

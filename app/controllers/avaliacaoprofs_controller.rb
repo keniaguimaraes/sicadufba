@@ -4,6 +4,7 @@ class AvaliacaoprofsController < ApplicationController
   # GET /avaliacaoprofs
   # GET /avaliacaoprofs.json
   def index
+    add_breadcrumb "Minhas Avaliações Docente", avaliacaoprofs_path, :title => "Voltar para a Página principal"
     @avaliacaoprofs = Avaliacaoprof.all
   end
 
@@ -16,6 +17,8 @@ class AvaliacaoprofsController < ApplicationController
   def new
     @avaliacaoprof = Avaliacaoprof.new
     @professor = Professor.all.order("nome")
+    add_breadcrumb "Avaliação Docente", restricaos_path, :title => "Voltar para Anterior"
+    add_breadcrumb "Incluir Avaliação Docente"
   end
 
   # GET /avaliacaoprofs/1/edit
