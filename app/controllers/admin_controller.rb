@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
     
-  def crawl
+  def crawlcurso
      call_rake 'crawler:courses'
      respond_to do |format|
        format.html { redirect_to '/', notice: 'Done cursos' }

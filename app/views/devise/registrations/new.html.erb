@@ -47,8 +47,8 @@
                <div class="row">
                  <div class ="col s12 m12 lg12">
                 <%= f.label :curso_id %>
-                <%@curso = Curso.where('codigo in ("186140","196120","195140","112140")').all.order(:nome)%>
-               <%=collection_select(:user, :curso_id,@curso , :id, :nome, { }, { class: 'js-searchable' })%>
+                <% @curso = Curso.where(" codigo in ('186140','196120','195140','112140')").all %>
+               <%= collection_select(:user, :curso_id, @curso, :id, :nome, { }, { class: 'js-searchable' })%>
               </div> 
                   </div> 
               

@@ -59,10 +59,10 @@
     <%if can? :admin, User %>
     <div class="nav-content container">
      <ul id="dropdown2" class="dropdown-content">
-          <li><a  href="<%= crawl_admin_path(0) %>">Cursos</a></li>
+          <li><a href="<%= crawlcurso_admin_path(0) %>">Cursos</a></li>
           <li><a href="<%= crawldisc_admin_path(0) %>" >Disciplinas</a></li>
           <li><a href="<%= crawlprof_admin_path(0) %>" >Professor</a></li>
-          <li><a href="<%= crawltitle_admin_path(0) %>" >Titulo</a></li>
+          <li><a href="<%= crawltitle_admin_path(0) %>" >Título</a></li>
           <li class="divider"></li>
           <li><a href="<%= clear_admin_path(0) %>">Limpar</a></li>
      </ul>
@@ -74,7 +74,7 @@
      </ul>
      
      <ul id="dropdown4" class="dropdown-content">
-          <li><a  href="">Comentarios</a></li>
+          <li><a  href="/comentars/0/kenia">Comentarios</a></li>
           <li><a  href="/user">Usuários</a></li>
      </ul>
      

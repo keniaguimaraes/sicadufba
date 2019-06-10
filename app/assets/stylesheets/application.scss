@@ -799,3 +799,21 @@ a.subheader>i.material-icons.left{
   li:first-child:before { content: ""; padding-right: 0;   }
   li:last-child {font-weight: bold;font-size:15px; color: #64b5f6;}
 } //.wvu-breadcrumbs
+
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 32px;
+    width: 32px;
+    background: goldenrod;
+    background: url('http://iconizer.net/files/Duesseldorf/orig/heart.png') no-repeat;
+    margin-top: -15px;
+    border-radius: 0 !important;
+}
+input[type=range]+.thumb {
+    background-color: #FF8A80 !important;
+}
+input[type=range]+.thumb.active{
+  top: -35px !important;
+}

@@ -13,10 +13,13 @@ class ComentarsController < ApplicationController
                          .paginate(:page => params[:page], :per_page => 7)
   end
   
-  def comentarios
-    @comentars = Comentar.all.order("data_comentario")
+  
+  def all
+     add_breadcrumb "Todos Comentários", comentars_path, :title => "Voltar para a Página principal"
+     @comentars = Comentar.all.order("data_comentario")
                          .paginate(:page => params[:page], :per_page => 7)
   end
+
 
   # GET /comentars/1
   # GET /comentars/1.json

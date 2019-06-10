@@ -26,14 +26,14 @@ Rails.application.routes.draw do
  resources :comentars do
      member do
        get 'mostra'=> 'comentars#mostra'
-      
+       get 'all'=> 'comentars#all'
     end
  end
  
  
 resources :admin do
      member do
-       get 'crawl'=> 'admin#crawl'
+       get 'crawlcurso'=> 'admin#crawlcurso'
        get 'crawldisc'=> 'admin#crawldisc'
        get 'crawlprof'=> 'admin#crawlprof'
        get 'crawltitle' => 'admin#crawltitle'
