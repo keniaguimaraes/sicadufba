@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+ <div class="col s12 m8 lg9 offset-m2">
+   <div class="card-panel ">
+        <table class="striped">
+          <thead>
+            <tr>
+               <th>Perfil</th>
+               <th colspan="2"></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @tipoperfils.each do |tipoperfil| %>
+              <tr>
+                 <td><%= tipoperfil.perfil %></td>
+                  <td class="actions">
+                     <%= link_to edit_tipoperfil_path(tipoperfil), class: '' do %>
+                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
+                      <% end%>
+                     <%= link_to tipoperfil, method: :delete, data: { confirm: 'Você tem Certeza?'}, class: '' do %>
+                        <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
+                     <%end%>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        
+          <div class="row">         
+           <div class="col s12 m6 lg6"> 
+             <%= link_to 'Adicionar', new_tipoperfil_path, class: 'btn waves-effect waves-light light-blue'  %>
+           </div>
+          </div>
+ 
+    </div>
+  </div>
+</div>
+   
+<script>
+$('.tooltipped').tooltip();
+</script>

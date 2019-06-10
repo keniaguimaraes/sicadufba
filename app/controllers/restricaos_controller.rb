@@ -1,7 +1,7 @@
 class RestricaosController < ApplicationController
     before_action :authenticate_user!
   before_action :set_restricao, only: [:show, :edit, :update, :destroy]
-
+ $home ="home"
   # GET /restricaos
   # GET /restricaos.json
   def index

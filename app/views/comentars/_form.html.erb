@@ -22,7 +22,7 @@
    <div class="row">
       <div class="col s12 m12 lg12">
           <b><%= f.label :disciplinacurso_id, "Disciplina" %></b>
-          <%=collection_select(:comentar, :disciplinacurso_id, @disciplinacurso, :id, :nome, { }, { class: 'js-searchable-d' })%>
+          <%=collection_select(:comentar, :disciplinacurso_id, @disciplinacurso, :id, :nome, { :prompt => ''}, { class: 'js-searchable-d' })%>
       </div>
    </div>
     
@@ -30,7 +30,7 @@
    <div class="row">
       <div class="col s12 m12 lg12"> 
        <b><%= f.label :professor_id, "Professor" %></b>
-       <%=collection_select(:comentar, :professor_id, @professor, :id, :nome, { }, { class: 'js-searchable' })%>
+       <%=collection_select(:comentar, :professor_id, @professor, :id, :nome, { :prompt => ''}, { class: 'js-searchable' })%>
       </div>
    </div>
     
@@ -38,7 +38,7 @@
    <div class="row">
       <div class="col s12 m12 lg12"> 
           <b><%= f.label :semestre_id , "Semestre"%></b>
-          <%=collection_select(:comentar, :semestre_id, @semestre, :id, :semestre, { }, { class: 'js-searchable-s' })%>
+          <%=collection_select(:comentar, :semestre_id, @semestre, :id, :semestre, {:prompt => '' }, { class: 'js-searchable-s' })%>
       </div>
    </div>
     

@@ -16,12 +16,16 @@
        
            <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
                 <div>  
-                    <%= link_to user,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
-                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
-                    <%end%>
                      <%= link_to edit_user_path(user),class:'' do %>
                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
                     <%end%>
+                      <%= link_to edit_user_path(user),class:'' do %>
+                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Bloquear">block</i>  
+                    <%end%>
+                    <!--
+                     <%= link_to user,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
+                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
+                    <%end%>-->
            </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ class ComentarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comentar, only: [:show, :edit, :update, :destroy]
 
-
+ $home ="home"
 
   # GET /comentars
   # GET /comentars.json
@@ -11,11 +11,12 @@ class ComentarsController < ApplicationController
     add_breadcrumb "Meus Comentários", comentars_path, :title => "Voltar para a Página principal"
     @comentars = Comentar.where("user_id =:user_id",{user_id:current_user.id}).all
                          .paginate(:page => params[:page], :per_page => 7)
+    $local == "index"
   end
   
   
   def all
-     add_breadcrumb "Todos Comentários", comentars_path, :title => "Voltar para a Página principal"
+     add_breadcrumb "Todos Comentários", "comentars/0/all", :title => "Voltar para a Página principal"
      @comentars = Comentar.all.order("data_comentario")
                          .paginate(:page => params[:page], :per_page => 7)
   end
@@ -35,14 +36,19 @@ class ComentarsController < ApplicationController
                                                
                                                
                                                
-    id= params[:disciplina_id]                                         
-    add_breadcrumb "Comentários",mostra_comentar_path(0,:disciplina_id =>id), :title => "Voltar para Anterior"
-    add_breadcrumb "Exibindo Comentário" 
+    id= params[:disciplina_id]      
+    
+   if $local == "mostra" then 
+        add_breadcrumb "Todos Comentários", "/comentars/0/all", :title => "Voltar para Anterior"
+       add_breadcrumb "Exibindo Comentário"        
+   else 
+      add_breadcrumb "Comentários",mostra_comentar_path(0,:disciplina_id =>id), :title => "Voltar para Anterior"
+      add_breadcrumb "Exibindo Comentário"  
+   end
   end
   
   
   def mostra
-
        @comentarios_disciplina = Comentar.select('users.email as email, cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id') 
                                  .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
                                  .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
@@ -52,8 +58,8 @@ class ComentarsController < ApplicationController
                                  .joins('JOIN users ON users.id = comentars.user_id ')
                                  .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
                                  .paginate(:page => params[:page], :per_page => 4)
-   
-    add_breadcrumb "Exibindo Todos Comentários" 
+
+    $local = "mostra"
   end  
 
   # GET /comentars/new
@@ -73,8 +79,18 @@ class ComentarsController < ApplicationController
     add_breadcrumb "Incluir Comentário"                       
   end
 
+  def bloquear 
+    
+  end  
+  
+  def denunciar
+    
+    
+  end  
+  
   # GET /comentars/1/edit
   def edit
+    
     @disciplinacurso = Disciplinacurso.select("disciplinas.nome||' - ' || disciplinacursos.semestre as nome, disciplinacursos.* ")
                                        .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
                                        .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")
@@ -82,7 +98,8 @@ class ComentarsController < ApplicationController
                                        .order("cursos.nome")
     @professor = Professor.all.order("nome")
 
-    @semestre   = Semestre.all  
+    @semestre   = Semestre.select(" cast(ano as char(4))||'.'||cast(codigo as char(1)) semestre,  * ").all
+                          .order("ano,codigo") 
   end
 
   # POST /comentars

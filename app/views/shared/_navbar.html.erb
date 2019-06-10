@@ -70,12 +70,17 @@
      <ul id="dropdown1" class="dropdown-content">
           <li> <%= link_to 'Restrição ', restricaos_path, :class => 'navbar-link' %> </li>
           <li> <%= link_to 'Tag ', tags_path, :class => 'navbar-link' %> </li>
+          <li> <%= link_to 'Perfil ', tipoperfils_path, :class => 'navbar-link' %> </li>
         <!--  <li> <%= link_to 'Avaliação Docente ', tags_path, :class => 'navbar-link' %> </li>-->
      </ul>
      
      <ul id="dropdown4" class="dropdown-content">
-          <li><a  href="/comentars/0/kenia">Comentarios</a></li>
+          <li><a  href="/comentars/0/all">Comentarios</a></li>
           <li><a  href="/user">Usuários</a></li>
+          <li class="divider"></li>     
+          <li><a  href="/">Resultados</a></li>
+          <li class="divider"></li>
+          <li><a  href="/">Relatórios</a></li>
      </ul>
      
      <ul class="tabs tabs-transparent">
@@ -95,7 +100,7 @@
     @curso.each do |curso| %>
        <br> <b>Curso: <%= curso.nome %> </b> 
     <% end %>
-  
+
     <ul class="breadcrumbs">
      <%= render_breadcrumbs :tag=> :li, :separator => " > " %>
     </ul>

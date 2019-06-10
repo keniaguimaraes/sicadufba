@@ -16,11 +16,14 @@
        
            <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
                 <div>  
+                    <%= link_to comentar_path(comentar),class:'' do %>
+                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Mostrar">details</i>  
+                    <%end%>
+                    <%= link_to edit_comentar_path(comentar),class:'' do %>
+                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
+                    <%end%>
                     <%= link_to comentar,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
                        <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
-                    <%end%>
-                     <%= link_to edit_comentar_path(comentar),class:'' do %>
-                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
                     <%end%>
            </div>
         </div>

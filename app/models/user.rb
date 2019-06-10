@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :comentario
   has_many :comentar
   has_many :avaliacaoprof
+  belongs_to:tipoperfil
   belongs_to:curso
   
   validates :email, length: {minimum: 10, message: 'Deve ter Pelo Menos 10 Caracteres'}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_10_135926) do
+ActiveRecord::Schema.define(version: 2019_06_10_202709) do
 
   create_table "avaliacaoprofs", force: :cascade do |t|
     t.integer "user_id"
@@ -108,6 +108,12 @@ ActiveRecord::Schema.define(version: 2019_06_10_135926) do
 
   create_table "tags", force: :cascade do |t|
     t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tipoperfils", force: :cascade do |t|
+    t.string "perfil"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

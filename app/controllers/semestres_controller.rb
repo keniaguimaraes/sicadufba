@@ -1,7 +1,7 @@
 class SemestresController < ApplicationController
   before_action :authenticate_user!
   before_action :set_semestre, only: [:show, :edit, :update, :destroy]
-
+ $home ="home"
   # GET /semestres
   # GET /semestres.json
   def index

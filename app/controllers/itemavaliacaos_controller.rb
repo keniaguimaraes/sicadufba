@@ -1,7 +1,7 @@
 class ItemavaliacaosController < ApplicationController
    before_action :authenticate_user!
   before_action :set_itemavaliacao, only: [:show, :edit, :update, :destroy]
-
+ $home ="home"
   # GET /itemavaliacaos
   # GET /itemavaliacaos.json
   def index

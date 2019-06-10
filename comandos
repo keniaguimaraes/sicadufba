@@ -1,0 +1,3 @@
+heroku pg:reset DATABASE
+
+heroku pg:reset DATABASE --confirm sicadufba

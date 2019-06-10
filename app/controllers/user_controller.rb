@@ -1,9 +1,9 @@
 class UserController < ApplicationController
    
-   
+   $home ="home"
   def index
      add_breadcrumb "Usuario", "/user", :title => "Voltar para a Página principal"
-     @users = User.order(:username)
+     @users = User.order(:email)
   end
   
   def new
@@ -25,6 +25,9 @@ class UserController < ApplicationController
     add_breadcrumb "Editando Usuário" 
   end
   
+  def bloquear
+    
+  end
   
   def update
     @user = User.find(params[:id])

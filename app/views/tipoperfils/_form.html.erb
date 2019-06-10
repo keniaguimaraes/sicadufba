@@ -1,0 +1,43 @@
+<%= form_for(tipoperfil) do |f| %>
+  <% if tipoperfil.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tipoperfil.errors.count, "error") %> prohibited this tipoperfil from being saved:</h2>
+
+      <ul>
+      <% tipoperfil.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="row">
+    <div class="col s12 m8 lg8 offset-m2">
+       <div class="card-panel ">
+  
+          <div class="row">
+              <div class="col s12 m2 lg2"><%= f.label :perfil %>  </div>
+              <div class="col s12 m10 lg10"> <%= f.text_field :perfil %>  </div>
+          </div> 
+            
+            <br>
+             <div class="row">         
+               <div class="col s12 m12 lg12"></div> <%= f.submit "OK", class: 'btn waves-effect waves-light light-blue' %> </div>
+             </div>  
+             
+       </div>
+     </div>
+   </div>
+
+         
+<% end %>
+
+
+
+
+
+
+
+
+
+

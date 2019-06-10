@@ -23,13 +23,11 @@
    <%= f.hidden_field:semestre_id,:value =>1 %>  
 
 
-    <div class="row">
-      <div class="col s12 m6 lg6"><b><%= f.label :professor_id, "Professor" %></b></div>
-      <div class="col s12 m12 lg12"><%= collection_select(:avaliacaoprof, :professor_id, @professor, :id, :nome, {},class: 'js-searchable')%></div>
-    </div>
+   <div class="row">
+     <div class="col s12 m6 lg6"><b><%= f.label :professor_id, "Professor" %></b></div>
+     <div class="col s12 m12 lg12"> <%=collection_select(:avaliacaoprof, :professor_id, @professor, :id, :nome, {:prompt => '' }, { class: 'js-searchable' })%></div>
+   </div>
     
-
-
    <div class="row">       
      <div class="col s12 m12 lg12"><label><b>Possui domínio do conteúdo?</b></label> </div>
      <div class="col s3 m2 lg2"><label> <%= f.radio_button :dominio_conteudo, value:true, id:"1", name:"1" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
@@ -88,36 +86,18 @@
 </div>
 
 <script>
-   
       $(".chip").click(function(e){
         e.preventDefault()
         $(this).css({"background":"green"})
         $(this).append('<input type="hidden" name="tags[]" value="'+$(this).attr('id')+'">')
-        
       });
       
-     $(".js-searchable").select2({
-         placeholder: "Escolha um Professor",
+      $(".js-searchable").select2({
+         placeholder: 'Informe o Professor',
          allowClear: true,
-         width:"105%"
+         width:'100%',
+         tags: "true"
      });
-     
-var slider = document.getElementById('test5');
-  noUiSlider.create(slider, {
-   start: [20, 80],
-   connect: true,
-   step: 1,
-   range: {
-     'min': 0,
-     'max': 100
-   },
-   format: wNumb({
-     decimals: 0
-   })
-  });
-};
-     
- 
 </script>
 
 

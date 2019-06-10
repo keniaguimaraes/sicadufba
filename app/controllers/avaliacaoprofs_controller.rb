@@ -17,7 +17,7 @@ class AvaliacaoprofsController < ApplicationController
   def new
     @avaliacaoprof = Avaliacaoprof.new
     @professor = Professor.all.order("nome")
-    add_breadcrumb "Avaliação Docente", restricaos_path, :title => "Voltar para Anterior"
+    add_breadcrumb "Avaliação Docente", avaliacaoprofs_path, :title => "Voltar para Anterior"
     add_breadcrumb "Incluir Avaliação Docente"
   end
 

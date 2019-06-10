@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-
+ $home ="home"
     
   def crawlcurso
      call_rake 'crawler:courses'

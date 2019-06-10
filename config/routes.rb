@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tipoperfils
   resources :avaliacaoprofs
   resources :comentariotags
   resources :tags

@@ -1,5 +1,6 @@
 class DemonstraComentariosController < ApplicationController
    before_action :authenticate_user!     
+ $home ="home"
     def index
             add_breadcrumb "Veja o que estão Comentando", demonstra_comentarios_path, :title => "Voltar para a Página principal"
       
