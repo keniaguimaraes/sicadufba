@@ -190,6 +190,6 @@ class ComentarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comentar_params
-      params.require(:comentar).permit(:user_id, :disciplinacurso_id, :professor_id, :semestre_id,:comentario, :data_comentario)
+      params.require(:comentar).permit(:user_id, :disciplinacurso_id, :professor_id, :semestre_id,:comentario, :data_comentario,:denuncia,:bloqueio, :data_bloqueio)
     end
 end

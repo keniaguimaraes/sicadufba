@@ -19,22 +19,33 @@ class UserController < ApplicationController
     end
   end
   
+  def bloquear 
+     @user = User.find(params[:id])
+    
+        @user.update(bloqueio: true)
+        menssagem= 'Usuário Bloqueado!'  
+        redirect_to "/user", notice:menssagem
+  end  
+  
+   def desbloquear 
+     @user = User.find(params[:id])
+    
+        @user.update(bloqueio: false)
+        menssagem= 'Usuário Desbloqueado!'  
+        redirect_to "/user", notice:menssagem
+  end  
+  
   def edit
     @user = User.find(params[:id])
     add_breadcrumb "Usuários", "/user", :title => "Voltar para Anterior"
     add_breadcrumb "Editando Usuário" 
   end
   
-  def bloquear
-    
-  end
   
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-    #flash[:notice] = "O usuário foi atualizado com sucesso."
       redirect_to "/user",notice: 'O Usuário foi atualizado com sucesso!' 
-    #  redirect_to root_path
     else
       render :action => 'edit'
     end
@@ -59,7 +70,7 @@ class UserController < ApplicationController
    
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-     params.require(:user).permit(:email,:username,:curso_id,:tipoperfil_id)
+     params.require(:user).permit(:email,:username,:curso_id,:tipoperfil_id,:bloqueio, :administrador)
     end
    
 end

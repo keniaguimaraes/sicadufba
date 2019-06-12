@@ -51,6 +51,12 @@ resources :admin do
     get '/logout' => 'devise/sessions#destroy'
     get '/perfil' => 'devise/registrations#edit'
     get '/user' => 'user#index'
-  end
+ end
+ resources :user do
+     member do
+        get 'bloquear' => 'user#bloquear'
+        get 'desbloquear' => 'user#desbloquear'
+    end
+ end
   
 end

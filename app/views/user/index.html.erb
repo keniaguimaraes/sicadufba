@@ -3,24 +3,33 @@
 <div class="container">
 
    <% @users.each do |user| %>
-   
-   <div class= "card">
+    <% if user.bloqueio == true then 
+        status = "Usuário Bloqueado"
+      else
+        status = "Usuário Habilitado"
+      end  
+    %>
+    <div class= "card">
       
       <div class="row">
         <br>
-        <div class="col s12 m12 lg12 "><%= user.curso.nome %> </div>
+        <div class="col s12 m12 lg12 "><b>Curso: </b><%= user.curso.nome.split('-').first %> </div>
       </div>
       
       <div class="row">
-        <div class="col s6 m6 lg6"><b><%= user.email %></b> </div>
+        <div class="col s8 m6 lg6"><b>Usuário: </b><%= user.email %></div>
+        <div class="col s4 m4 lg4"><b>Status: </b><%= status %> </div>
        
            <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
                 <div>  
                      <%= link_to edit_user_path(user),class:'' do %>
                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
                     <%end%>
-                      <%= link_to edit_user_path(user),class:'' do %>
-                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Bloquear">block</i>  
+                    <%= link_to bloquear_user_path(user),class:'' do %>
+                     <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Bloquear">block</i>  
+                    <%end%>
+                    <%= link_to desbloquear_user_path(user),class:'' do %>
+                     <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Desbloquear">check</i>  
                     <%end%>
                     <!--
                      <%= link_to user,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>

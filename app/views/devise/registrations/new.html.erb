@@ -10,7 +10,9 @@
               <%= devise_error_messages! %>
                     
                 <%= f.hidden_field:tipoperfil_id,:value =>1 %> 
-                    
+                <%= f.hidden_field:administrador,:value =>false %> 
+                <%= f.hidden_field:bloqueio,:value =>false %> 
+                
                  <div class="row">
                  <div class ="col s12 m12 lg12">
                 <!-- <i class="material-icons prefix">email</i> -->
