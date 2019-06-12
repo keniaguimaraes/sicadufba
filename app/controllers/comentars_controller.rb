@@ -79,7 +79,6 @@ class ComentarsController < ApplicationController
         @comentar.update(bloqueio: true)
         @comentar.update(data_bloqueio: Time.now)
         menssagem= 'Comentário Bloqueado!!'  
-   
        format.html { redirect_to "/comentars/0/all", notice:menssagem }
      end  
   end  

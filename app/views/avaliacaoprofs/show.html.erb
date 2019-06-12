@@ -1,46 +1,77 @@
 <p id="notice"><%= notice %></p>
 <div id="main" class="container-fluid">
-<h5 class="header center red-text">Manutenção</h5>
+
+ <div class="row">
+ <div class="col s12 m8 lg8 offset-m2">
+  <div class="card-panel ">
+
 
 <p>
-  <strong>User:</strong>
-  <%= @avaliacaoprof.user.email %>
-</p>
-
-<p>
-  <strong>Professor:</strong>
+  <strong><b>Professor: </b></strong>
   <%= @avaliacaoprof.professor.nome %>
 </p>
 
 <p>
-  <strong>Semestre:</strong>
+  <strong><b>Semestre: </b></strong>
   <%= @avaliacaoprof.semestre.ano %>
 </p>
 
 <p>
-  <strong>Data avaliacao:</strong>
-  <%= @avaliacaoprof.data_avaliacao %>
+  <strong><b>Data Avaliação:</b></strong>
+  <%= formato_data_hora(@avaliacaoprof.data_avaliacao) %>
 </p>
 
 <p>
-  <strong>Dominio conteudo:</strong>
-  <%= @avaliacaoprof.dominio_conteudo %>
+  <strong><b>Domínio conteúdo?</b></strong>
+   <% if  @avaliacaoprof.dominio_conteudo == true then  %>
+       <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+   <%else%>
+       <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
+   <%end%>
+
 </p>
 
 <p>
-  <strong>Relacionamento alunos:</strong>
-  <%= @avaliacaoprof.relacionamento_alunos %>
+  <strong><b>Possui Relacionamento com alunos?</b></strong>
+
+  <% if  @avaliacaoprof.relacionamento_alunos == true then  %>
+       <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+   <%else%>
+       <span> <i class="fas fa-thumbs-down fa-2x red-tex"></i> </span> 
+   <%end%>
 </p>
 
 <p>
-  <strong>Possui didatica:</strong>
-  <%= @avaliacaoprof.possui_didatica %>
+  <strong><b>Possui didática?</b></strong>
+  
+  <% if  @avaliacaoprof.possui_didatica == true then  %>
+       <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+   <%else%>
+       <span> <i class="fas fa-thumbs-down fa-2x red-tex"></i> </span> 
+   <%end%>
 </p>
 
 <p>
-  <strong>Recomendaria professor:</strong>
-  <%= @avaliacaoprof.recomendaria_professor %>
+  <strong><b>Nível de Recomendação: </b></strong>
+  <% if @avaliacaoprof.recomendaria_professor == 1 then %>
+         <i class="fas fa-star fa-2x blue-text"></i> 
+  <%else if @avaliacaoprof.recomendaria_professor == 2 then%>
+           <i class="fas fa-star fa-2x blue-text"></i>  <i class="fas fa-star fa-2x blue-text"></i> 
+ <% else if @avaliacaoprof.recomendaria_professor == 3 then%>
+                 <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i><i class="fas fa-star fa-2x blue-text"></i>  
+ <% else if @avaliacaoprof.recomendaria_professor == 4 then%>
+        <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i><i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i>  
+ <% else %>
+        <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i><i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star blue-textfa-2x"></i>                  
+ <%end%>                         
+ <%end%>        
+ <%end%>     
+ <%end%>   
+ 
 </p>
 
 </div>
-<a class="btn btn-default btn-sm"  <%= link_to 'Voltar', avaliacaoprofs_path %> </a>
+</div>
+</div>
+
+
