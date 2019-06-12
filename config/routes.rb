@@ -28,6 +28,9 @@ Rails.application.routes.draw do
      member do
        get 'mostra'=> 'comentars#mostra'
        get 'all'=> 'comentars#all'
+       get 'bloquear'=> 'comentars#bloquear'
+       get 'desbloquear'=> 'comentars#desbloquear'
+       get 'denunciar'=> 'comentars#denunciar'
     end
  end
  

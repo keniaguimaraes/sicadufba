@@ -14,15 +14,19 @@
       </div>
       
       <div class="row">
-        <div class="col s6 m6 lg6"><b>Data:</b> <%= avaliacaoprof.data_avaliacao  %></b> </div>
+        <div class="col s6 m6 lg6"><b>Data:</b> <%= formato_data_hora(avaliacaoprof.data_avaliacao)%></b> </div>
        
            <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
                 <div>  
-                    <%= link_to avaliacaoprof,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
+                    <!-- <%= link_to avaliacaoprof,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
                        <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
                     <%end%>
                      <%= link_to edit_avaliacaoprof_path(avaliacaoprof),class:'' do %>
                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
+                    <%end%> -->
+                    
+                     <%= link_to avaliacaoprof_path(avaliacaoprof),class:'' do %>
+                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Mostrar">details</i>  
                     <%end%>
            </div>
         </div>

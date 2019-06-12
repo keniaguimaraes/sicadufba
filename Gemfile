@@ -45,6 +45,7 @@ gem 'ruby-stemmer'
 gem "select2-rails"
 gem "breadcrumbs_on_rails"
 gem 'rubocop-rails'
+gem 'nouislider-rails'
 
 group :development do
   gem 'sqlite3', '~> 1.3.6'

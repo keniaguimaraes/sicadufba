@@ -6,7 +6,8 @@ class CreateComentars < ActiveRecord::Migration[5.2]
       t.integer :professor_id
       t.integer :semestre_id
       t.text    :comentario
-      t.datetime:data_comentario
+      t.datetime :data_comentario
+      
       t.timestamps
     end
   end

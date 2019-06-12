@@ -152,6 +152,8 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogumbo (2.0.1)
       nokogiri (~> 1.8, >= 1.8.4)
+    nouislider-rails (8.2.1)
+      railties (>= 3.1)
     ntlm-http (0.1.1)
     orm_adapter (0.5.0)
     parallel (1.17.0)
@@ -301,6 +303,7 @@ DEPENDENCIES
   mechanize
   newrelic_rpm
   nokogumbo
+  nouislider-rails
   pg
   puma (~> 3.11)
   railroady

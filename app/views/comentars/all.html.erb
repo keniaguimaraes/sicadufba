@@ -3,29 +3,39 @@
 
    <% @comentars.each do |comentar| %>
    
+     
+   <% if comentar.bloqueio == true then 
+        status = "Comentário Bloqueado"
+      else
+        status = "Comentário Habilitado"
+      end  
+   %>
    <div class= "card">
       
       <div class="row">
         <br>
         <div class="col s12 m12 lg12 "><b><%= comentar.disciplinacurso.disciplina.nome %> </b></div>
       </div>
-      
+    
       <div class="row">
         <div class="col s6 m6 lg6"><b>Professor</b> <%= comentar.professor.nome  %></div>
-         <div class="col s6 m6 lg6"><b>Data:</b><%=comentar.user.email  %> </div> 
+         <div class="col s6 m6 lg6"><b>Data:</b><%=formato_data_hora(comentar.data_comentario)  %> </div> 
          <div class="row">
                 <div class="col s12 m12 lg12"><b>Usuário:</b><%=comentar.user.email  %> </div> 
-         </div>        
-       
-           <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
+                <div class="col s12 m6 lg6"><b>Status: </b><%=status%> </div> 
+                <div class="col s12 m6 lg6"><b>Denuncias: </b><%=comentar.denuncia%> </div> 
+         </div> 
+         <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
                 <div>  
                     <%= link_to comentar_path(comentar),class:'' do %>
                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Mostrar">details</i>  
                     <%end%>
              
-                      <%= link_to edit_comentar_path(comentar),class:'' do %>
-                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Bloquear">block</i>
-                
+                    <%= link_to bloquear_comentar_path(comentar),class:'' do %>
+                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Bloquear">block</i>
+                    <%end%>
+                    <%= link_to desbloquear_comentar_path(comentar),class:'' do %>
+                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Desbloquear">check</i>
                     <%end%>
            </div>
 

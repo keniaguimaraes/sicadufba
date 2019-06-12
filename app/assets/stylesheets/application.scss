@@ -11,12 +11,14 @@
  * It is generally better to create a new file per style scope.
  *
  *= require select2
+ 
  *= require_tree .
  *= require_self
  
  */
 @import "materialize";
 @import "material_icons";
+@import "materialize/extras/nouislider";
 
 body {
     display: flex;

@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_202709) do
     t.string "email", default: "", null: false
     t.integer "curso_id", default: 0, null: false
     t.boolean "administrador", default: false, null: false
-    t.integer "perfil"
+    t.integer "tipoperfil_id", default: 0, null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

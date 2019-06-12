@@ -33,11 +33,6 @@ class ComentarsController < ApplicationController
                                                .joins('join professors on professors.id = comentars.professor_id')
                                                .joins('JOIN users ON users.id = comentars.user_id ')
                                                .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
-                                               
-                                               
-                                               
-    id= params[:disciplina_id]      
-    
    if $local == "mostra" then 
         add_breadcrumb "Todos Comentários", "/comentars/0/all", :title => "Voltar para Anterior"
        add_breadcrumb "Exibindo Comentário"        
@@ -49,16 +44,15 @@ class ComentarsController < ApplicationController
   
   
   def mostra
-       @comentarios_disciplina = Comentar.select('users.email as email, cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id') 
+       @comentarios_disciplina = Comentar.select('users.email as email, cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id, disciplinacursos.disciplina_id as disciplina_id') 
                                  .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
                                  .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
                                  .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
                                  .joins('JOIN semestres on semestres.id = comentars.semestre_id')
                                  .joins('join professors on professors.id = comentars.professor_id')
                                  .joins('JOIN users ON users.id = comentars.user_id ')
-                                 .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
+                                 .where("disciplinacursos.disciplina_id=:disciplina_id and comentars.bloqueio = '0' ",{disciplina_id: params[:disciplina_id]})
                                  .paginate(:page => params[:page], :per_page => 4)
-
     $local = "mostra"
   end  
 
@@ -80,12 +74,37 @@ class ComentarsController < ApplicationController
   end
 
   def bloquear 
-    
+     @comentar = Comentar.find(params[:id])
+     respond_to do |format|
+        @comentar.update(bloqueio: true)
+        @comentar.update(data_bloqueio: Time.now)
+        menssagem= 'Comentário Bloqueado!!'  
+   
+       format.html { redirect_to "/comentars/0/all", notice:menssagem }
+     end  
   end  
   
+  def desbloquear 
+      @comentar = Comentar.find(params[:id])
+      respond_to do |format|
+        @comentar.update(bloqueio: false)
+        menssagem= 'Comentário Desbloqueado!!'  
+        format.html { redirect_to "/comentars/0/all", notice:menssagem }
+      end  
+  end  
+
   def denunciar
-    
-    
+      @comentar = Comentar.find(params[:id])
+      contabiliza_denuncia = 0
+      numero_denuncia = 0
+      numero_denuncia = @comentar.denuncia
+      contabiliza_denuncia = numero_denuncia + 1
+      respond_to do |format|
+        @comentar.update(denuncia: contabiliza_denuncia)
+        menssagem = 'Comentário Denunciado!'  
+        format.html { redirect_to "/comentars/0/mostra?disciplina_id="+@comentar.disciplinacurso.disciplina_id.to_s, notice:menssagem}
+     
+      end  
   end  
   
   # GET /comentars/1/edit
@@ -171,6 +190,6 @@ class ComentarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comentar_params
-      params.require(:comentar).permit(:user_id, :disciplinacurso_id, :professor_id, :semestre_id,:comentario)
+      params.require(:comentar).permit(:user_id, :disciplinacurso_id, :professor_id, :semestre_id,:comentario, :data_comentario)
     end
 end

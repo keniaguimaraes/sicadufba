@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <% @comentarios_disciplina.each do |comentarios_disciplina| %>
   <div class="row">
       <div class="col s12 m6 lg6">
@@ -16,13 +17,11 @@
                  <a href="" class="rodape">Usuario:<%= comentarios_disciplina.email %></a> 
               </div>
               <div class = "col s12  m6 lg6">
-                 <a href=""class="rodape">Data: <%= comentarios_disciplina.data_comentario %></a>
+                 <a href=""class="rodape">Data: <%= formato_data_hora(comentarios_disciplina.data_comentario) %></a>
                </div>
                <div class = "col s12  m12 lg12">
-                 <a href="" class="rodape blue-text text-lighten-2"><b> Denunciar</b>  </a>
+              <a href="<%= denunciar_comentar_path(comentarios_disciplina)%>" class="rodape blue-text text-lighten-2"> <b> Denunciar</b>  </a>
                </div>
-                 
-               
           </div>
         </div>
       </div>
@@ -47,10 +46,10 @@
                  <a href="" class="rodape">Usuario:<%= comentarios_disciplina.email %></a> 
               </div>
               <div class = "col s12  m6 lg6">
-                 <a href=""class="rodape">Data: <%= comentarios_disciplina.data_comentario %></a>
+                 <a href=""class="rodape">Data: <%= formato_data_hora(comentarios_disciplina.data_comentario) %></a>
                </div>
                <div class = "col s12  m12 lg12">
-                 <a href="" class="rodape blue-text text-lighten-2"><b> Denunciar</b>  </a>
+               <a href="<%= denunciar_comentar_path(comentarios_disciplina)%>" class="rodape blue-text text-lighten-2"> <b> Denunciar</b>  </a>
                </div>
           </div>
         </div>
@@ -77,19 +76,15 @@
                  <a href="" class="rodape">Usuario:<%= comentarios_disciplina.email %></a> 
               </div>
               <div class = "col s12  m6 lg6">
-                 <a href=""class="rodape">Data: <%= comentarios_disciplina.data_comentario %></a>
+                 <a href=""class="rodape">Data: <%= formato_data_hora(comentarios_disciplina.data_comentario) %></a>
                </div>
                <div class = "col s12  m12 lg12">
-                 <a href="" class="rodape blue-text text-lighten-2"><b> Denunciar</b>  </a>
+                 <a href="<%= denunciar_comentar_path(comentarios_disciplina)%>" class="rodape blue-text text-lighten-2"> <b> Denunciar</b>  </a>
                </div>
-                 
-               
           </div>
         </div>
       </div>
     </div>
-   
- 
 <%end %>
  
 <div class="row">

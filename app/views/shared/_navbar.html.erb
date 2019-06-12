@@ -1,9 +1,7 @@
-
 <nav class="nav-extended light-blue darken-4">
     <div class="nav-wrapper container">
    <a href="/" class="brand-logo"> <%= image_tag "logo.png"%></a>
 
-     
       <ul class="right hide-on-med-and-down">
          <% if user_signed_in? %>
           <ul id="dropdown3" class="dropdown-content">
@@ -21,8 +19,6 @@
            <a href="/login" ><i class="material-icons white-text">person_pin</i></a>
          <%end%>  
        </ul>    
-       
-       
        
         <!-- MENU MOBILE -->
         <ul id="nav-mobile" class="sidenav">
@@ -43,59 +39,52 @@
                     <li class="padding-collapsible"><a href="#!">Fornecedores</a></li>
                     <li class="padding-collapsible"><a href="#!">Clientes</a></li>
                     <li class="padding-collapsible"><a href="#!">Transportadores</a></li>
-                
-                                
                 </ul>
             </li>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons  white-text">menu</i></a>
-    
-       
-       
     </div>
-
 
     <% if user_signed_in? %> 
-    <%if can? :admin, User %>
-    <div class="nav-content container">
-     <ul id="dropdown2" class="dropdown-content">
-          <li><a href="<%= crawlcurso_admin_path(0) %>">Cursos</a></li>
-          <li><a href="<%= crawldisc_admin_path(0) %>" >Disciplinas</a></li>
-          <li><a href="<%= crawlprof_admin_path(0) %>" >Professor</a></li>
-          <li><a href="<%= crawltitle_admin_path(0) %>" >Título</a></li>
-          <li class="divider"></li>
-          <li><a href="<%= clear_admin_path(0) %>">Limpar</a></li>
-     </ul>
-     
-     <ul id="dropdown1" class="dropdown-content">
-          <li> <%= link_to 'Restrição ', restricaos_path, :class => 'navbar-link' %> </li>
-          <li> <%= link_to 'Tag ', tags_path, :class => 'navbar-link' %> </li>
-          <li> <%= link_to 'Perfil ', tipoperfils_path, :class => 'navbar-link' %> </li>
-        <!--  <li> <%= link_to 'Avaliação Docente ', tags_path, :class => 'navbar-link' %> </li>-->
-     </ul>
-     
-     <ul id="dropdown4" class="dropdown-content">
-          <li><a  href="/comentars/0/all">Comentarios</a></li>
-          <li><a  href="/user">Usuários</a></li>
-          <li class="divider"></li>     
-          <li><a  href="/">Resultados</a></li>
-          <li class="divider"></li>
-          <li><a  href="/">Relatórios</a></li>
-     </ul>
-     
-     <ul class="tabs tabs-transparent">
-           <li class="right tab"><a href="" class="dropdown-button" data-target="dropdown1">Configurações<i class="material-icons right">arrow_drop_down</i></a></li>
-           <li class="right tab"><a href="" class="dropdown-button" data-target="dropdown4">Moderação<i class="material-icons right">arrow_drop_down</i></a></li>
-           <li class="right tab"><a href="" class="dropdown-button" data-target="dropdown2">Carga<i class="material-icons right">arrow_drop_down</i></a></li> 
-     </ul>
-    </div>
-    <%end%>
+      <%if can? :admin, User %>
+        <div class="nav-content container">
+         <ul id="dropdown2" class="dropdown-content">
+              <li><a href="<%= crawlcurso_admin_path(0) %>">Cursos</a></li>
+              <li><a href="<%= crawldisc_admin_path(0) %>" >Disciplinas</a></li>
+              <li><a href="<%= crawlprof_admin_path(0) %>" >Professor</a></li>
+              <li><a href="<%= crawltitle_admin_path(0) %>" >Título</a></li>
+              <li class="divider"></li>
+              <li><a href="<%= clear_admin_path(0) %>">Limpar</a></li>
+         </ul>
+         
+         <ul id="dropdown1" class="dropdown-content">
+              <li> <%= link_to 'Restrição ', restricaos_path, :class => 'navbar-link' %> </li>
+              <li> <%= link_to 'Tag ', tags_path, :class => 'navbar-link' %> </li>
+              <li> <%= link_to 'Perfil ', tipoperfils_path, :class => 'navbar-link' %> </li>
+            <!--  <li> <%= link_to 'Avaliação Docente ', tags_path, :class => 'navbar-link' %> </li>-->
+         </ul>
+         
+         <ul id="dropdown4" class="dropdown-content">
+              <li><a  href="/comentars/0/all">Comentarios</a></li>
+              <li><a  href="/user">Usuários</a></li>
+              <li class="divider"></li>     
+              <li><a  href="/">Resultados</a></li>
+              <li class="divider"></li>
+              <li><a  href="/">Relatórios</a></li>
+         </ul>
+         
+         <ul class="tabs tabs-transparent">
+               <li class="right tab"><a href="" class="dropdown-button" data-target="dropdown1">Configurações<i class="material-icons right">arrow_drop_down</i></a></li>
+               <li class="right tab"><a href="" class="dropdown-button" data-target="dropdown4">Moderação<i class="material-icons right">arrow_drop_down</i></a></li>
+               <li class="right tab"><a href="" class="dropdown-button" data-target="dropdown2">Carga<i class="material-icons right">arrow_drop_down</i></a></li> 
+         </ul>
+        </div>
+      <%end%>
     <%end%>
 </nav>
 
  <% if user_signed_in? %>
   <div class="row container">
-   
     <% @curso = Curso.where("id =:curso_id",{curso_id:current_user.curso_id}).all 
     @curso.each do |curso| %>
        <br> <b>Curso: <%= curso.nome %> </b> 
@@ -104,7 +93,6 @@
     <ul class="breadcrumbs">
      <%= render_breadcrumbs :tag=> :li, :separator => " > " %>
     </ul>
-             
   </div>  
  <%end%> 
   
@@ -122,7 +110,5 @@
     $('.tooltipped').tooltip();
     $('.modal').modal();
      }); // end of document ready
- 
-
 </script>
 
