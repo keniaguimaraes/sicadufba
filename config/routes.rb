@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :home
   resources :admin
   resources :user
+  resources :resultados
   
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -58,5 +59,14 @@ resources :admin do
         get 'desbloquear' => 'user#desbloquear'
     end
  end
+  resources :resultados do
+     member do
+        get 'apurarcoment' => 'resultados#apurarcoment'
+        get 'apuraravalia' => 'resultados#apuraravalia'
+        get 'gerarelcoment' => 'resultados#gerarelcoment'
+        get 'gerarelavalia' => 'resultados#gerarelavalia'
+    end
+ end
+
   
 end

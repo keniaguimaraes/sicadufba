@@ -5,9 +5,9 @@ class CreateAvaliacaoprofs < ActiveRecord::Migration[5.2]
       t.integer :professor_id
       t.integer :semestre_id
       t.datetime :data_avaliacao
-      t.boolean :dominio_conteudo
-      t.boolean :relacionamento_alunos
-      t.boolean :possui_didatica
+      t.integer :dominio_conteudo
+      t.integer :relacionamento_alunos
+      t.integer :possui_didatica
       t.integer :recomendaria_professor
 
       t.timestamps

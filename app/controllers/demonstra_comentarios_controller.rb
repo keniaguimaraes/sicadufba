@@ -10,5 +10,6 @@ class DemonstraComentariosController < ApplicationController
                                  .group('disciplinas.nome, disciplinacursos.disciplina_id')
                                  .order("disciplinas.nome")
                                  .paginate(:page => params[:page], :per_page => 7)
+      $aux="a"   
     end                         
 end

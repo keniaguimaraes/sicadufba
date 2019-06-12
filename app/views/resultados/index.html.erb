@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col s12 m8 lg9 offset-m2">
+   <div class="card-panel ">
+
+        <table class="striped">
+          <thead>
+            <tr>
+              <th><b>Módulos</b></th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+              <tr>
+                 <td>Apuração Comentários</td>
+                 <td class="rigth actions">
+                    <!--
+                     <%= link_to apurarcoment_resultado_path(0),class:'' do %>
+                        <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Apurar Comentários ">edit</i>  
+                     <%end%>-->
+                     <%= link_to "Apurar", apurarcoment_resultado_path(0),  class:'btn waves-effect waves-light light-blue btn-small' %>
+                     <%= link_to "Relatórios", gerarelcoment_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small' %>
+                    
+                </td>
+              </tr>
+              <tr>
+                 <td>Apuração Avalições</td>
+                 <td class="rigth actions">
+                     <%= link_to "Apurar", apuraravalia_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small' %>
+                     <%= link_to "Relatórios", gerarelavalia_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small' %>
+                </td>
+              </tr>
+        
+          </tbody>
+        </table>
+
+    </div>
+  </div>
+</div>
+   
+<script>
+$('.tooltipped').tooltip();
+</script>

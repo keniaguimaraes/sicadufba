@@ -5,4 +5,5 @@ require_relative 'application'
 Rails.application.initialize!
 
 $local='' 
-$home =''
+$aux =''
+$disciplina_id = ''

@@ -2,76 +2,84 @@
 <div id="main" class="container-fluid">
 
  <div class="row">
- <div class="col s12 m8 lg8 offset-m2">
-  <div class="card-panel ">
-
-
-<p>
-  <strong><b>Professor: </b></strong>
-  <%= @avaliacaoprof.professor.nome %>
-</p>
-
-<p>
-  <strong><b>Semestre: </b></strong>
-  <%= @avaliacaoprof.semestre.ano %>
-</p>
-
-<p>
-  <strong><b>Data Avaliação:</b></strong>
-  <%= formato_data_hora(@avaliacaoprof.data_avaliacao) %>
-</p>
-
-<p>
-  <strong><b>Domínio conteúdo?</b></strong>
-   <% if  @avaliacaoprof.dominio_conteudo == true then  %>
-       <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
-   <%else%>
-       <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
-   <%end%>
-
-</p>
-
-<p>
-  <strong><b>Possui Relacionamento com alunos?</b></strong>
-
-  <% if  @avaliacaoprof.relacionamento_alunos == true then  %>
-       <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
-   <%else%>
-       <span> <i class="fas fa-thumbs-down fa-2x red-tex"></i> </span> 
-   <%end%>
-</p>
-
-<p>
-  <strong><b>Possui didática?</b></strong>
-  
-  <% if  @avaliacaoprof.possui_didatica == true then  %>
-       <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
-   <%else%>
-       <span> <i class="fas fa-thumbs-down fa-2x red-tex"></i> </span> 
-   <%end%>
-</p>
-
-<p>
-  <strong><b>Nível de Recomendação: </b></strong>
-  <% if @avaliacaoprof.recomendaria_professor == 1 then %>
-         <i class="fas fa-star fa-2x blue-text"></i> 
-  <%else if @avaliacaoprof.recomendaria_professor == 2 then%>
-           <i class="fas fa-star fa-2x blue-text"></i>  <i class="fas fa-star fa-2x blue-text"></i> 
- <% else if @avaliacaoprof.recomendaria_professor == 3 then%>
-                 <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i><i class="fas fa-star fa-2x blue-text"></i>  
- <% else if @avaliacaoprof.recomendaria_professor == 4 then%>
-        <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i><i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i>  
- <% else %>
-        <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i><i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star blue-textfa-2x"></i>                  
- <%end%>                         
- <%end%>        
- <%end%>     
- <%end%>   
- 
-</p>
-
-</div>
-</div>
-</div>
+   <div class="col s12 m8 lg8 offset-m2">
+      <div class="card-panel ">
+        
+        <p>
+          <strong><b>Professor: </b></strong>
+          <%= @avaliacaoprof.professor.nome %>
+        </p>
+        
+        <p>
+          <strong><b>Semestre: </b></strong>
+          <%= @avaliacaoprof.semestre.ano %>
+        </p>
+        
+        <p>
+          <strong><b>Data Avaliação:</b></strong>
+          <%= formato_data_hora(@avaliacaoprof.data_avaliacao) %>
+        </p>
+        
+        <p>
+          <strong><b>Domínio de conteúdo?</b></strong>
+           <% if  @avaliacaoprof.dominio_conteudo == true then  %>
+               <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+           <%else%>
+               <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
+           <%end%>
+        
+        </p>
+        
+        <p>
+          <strong><b>Possui um bom relacionamento com alunos?</b></strong>
+        
+          <% if  @avaliacaoprof.relacionamento_alunos == true then  %>
+               <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+           <%else%>
+               <span> <i class="fas fa-thumbs-down fa-2x red-tex"></i> </span> 
+           <%end%>
+        </p>
+        
+        <p>
+          <strong><b>Possui didática?</b></strong>
+          
+          <% if  @avaliacaoprof.possui_didatica == true then  %>
+               <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+           <%else%>
+               <span> <i class="fas fa-thumbs-down fa-2x red-tex"></i> </span> 
+           <%end%>
+        </p>
+        
+        <p>  <strong><b>Tags relacionadas</b></strong>
+            <% @tags = Avaliacaotag.where("avaliacaoprof_id =:avaliacaoprof_id",{avaliacaoprof_id:@avaliacaoprof.id}).all
+              @tags.each do |tags| %>
+                <div class="col"> 
+                  <div class="chip"><%=tags.tag.tag%></div>
+                </div>
+              <%end%>
+              
+        </p><br><br>
+           <div class="row"> 
+            <div class="col">  
+                  <strong><b>Nível de Recomendação: </b></strong>
+                  <% if @avaliacaoprof.recomendaria_professor == 1 then %>
+                         <i class="fas fa-star fa-2x blue-text"></i> 
+                  <%else if @avaliacaoprof.recomendaria_professor == 2 then%>
+                           <i class="fas fa-star fa-2x blue-text"></i>  <i class="fas fa-star fa-2x blue-text"></i> 
+                 <% else if @avaliacaoprof.recomendaria_professor == 3 then%>
+                                 <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i>  
+                 <% else if @avaliacaoprof.recomendaria_professor == 4 then%>
+                        <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i>  
+                 <% else %>
+                        <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i> <i class="fas fa-star fa-2x blue-text"></i>                   
+                 <%end%>                         
+                 <%end%>        
+                 <%end%>     
+                 <%end%>   
+            </div>  
+           </div>  
+      </div>
+    </div>
+  </div>
 
 

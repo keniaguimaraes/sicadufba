@@ -3,7 +3,6 @@ class ComentarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comentar, only: [:show, :edit, :update, :destroy]
 
- $home ="home"
 
   # GET /comentars
   # GET /comentars.json
@@ -11,35 +10,51 @@ class ComentarsController < ApplicationController
     add_breadcrumb "Meus Comentários", comentars_path, :title => "Voltar para a Página principal"
     @comentars = Comentar.where("user_id =:user_id",{user_id:current_user.id}).all
                          .paginate(:page => params[:page], :per_page => 7)
-    $local == "index"
+    $local="index"                     
   end
   
   
   def all
-     add_breadcrumb "Todos Comentários", "comentars/0/all", :title => "Voltar para a Página principal"
+     add_breadcrumb "Exibindo Todos Comentários", "comentars/0/all", :title => "Voltar para a Página principal"
      @comentars = Comentar.all.order("data_comentario")
                          .paginate(:page => params[:page], :per_page => 7)
+      $local="mostra"  
+      
   end
 
 
   # GET /comentars/1
   # GET /comentars/1.json
   def show
-    @comentarios_disciplina = Comentar.select('users.email as email, cursos.nome curso ,disciplinas.nome as disciplina, disciplinacursos.disciplina_id, professors.nome,semestres.ano,comentars.comentario as comentario') 
-                                               .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
-                                               .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
-                                               .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
-                                               .joins('JOIN semestres on semestres.id = comentars.semestre_id')
-                                               .joins('join professors on professors.id = comentars.professor_id')
-                                               .joins('JOIN users ON users.id = comentars.user_id ')
-                                               .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
-   if $local == "mostra" then 
-        add_breadcrumb "Todos Comentários", "/comentars/0/all", :title => "Voltar para Anterior"
-       add_breadcrumb "Exibindo Comentário"        
-   else 
-      add_breadcrumb "Comentários",mostra_comentar_path(0,:disciplina_id =>id), :title => "Voltar para Anterior"
-      add_breadcrumb "Exibindo Comentário"  
-   end
+
+      @comentarios_disciplina = Comentar.select('users.email as email, cursos.nome curso ,disciplinas.nome as disciplina, disciplinacursos.disciplina_id as disciplina_id, professors.nome,semestres.ano,comentars.comentario as comentario') 
+                                                 .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
+                                                 .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
+                                                 .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
+                                                 .joins('JOIN semestres on semestres.id = comentars.semestre_id')
+                                                 .joins('join professors on professors.id = comentars.professor_id')
+                                                 .joins('JOIN users ON users.id = comentars.user_id ')
+                                                 .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
+    
+  
+     if $local == "mostra" then 
+          add_breadcrumb "Exibindo Todos Comentários", "/comentars/0/all", :title => "Voltar para Anterior"
+         add_breadcrumb "Exibindo Comentário"        
+     else if  $local == "index" then 
+        add_breadcrumb "Meus Comentários",comentars_path, :title => "Voltar para Anterior"
+        add_breadcrumb "Exibindo Comentário"  
+     else  
+          numero=" "
+          @comentarios_disciplina.each do |comentarios|
+            numero = comentarios.disciplina_id.to_s
+          end
+          
+          string = "/comentars/0/mostra?disciplina_id="+numero
+          add_breadcrumb "Todos Comentários",string, :title => "Voltar para Anterior" 
+          add_breadcrumb "Exibindo Comentário" 
+     end
+     end
+   
   end
   
   
@@ -53,7 +68,12 @@ class ComentarsController < ApplicationController
                                  .joins('JOIN users ON users.id = comentars.user_id ')
                                  .where("disciplinacursos.disciplina_id=:disciplina_id and comentars.bloqueio = '0' ",{disciplina_id: params[:disciplina_id]})
                                  .paginate(:page => params[:page], :per_page => 4)
-    $local = "mostra"
+     if $aux == "a" then 
+       $local = "demonstra"
+     else 
+       $local = "mostra"
+       $aux   = " "
+     end
   end  
 
   # GET /comentars/new
@@ -102,13 +122,11 @@ class ComentarsController < ApplicationController
         @comentar.update(denuncia: contabiliza_denuncia)
         menssagem = 'Comentário Denunciado!'  
         format.html { redirect_to "/comentars/0/mostra?disciplina_id="+@comentar.disciplinacurso.disciplina_id.to_s, notice:menssagem}
-     
       end  
   end  
   
   # GET /comentars/1/edit
   def edit
-    
     @disciplinacurso = Disciplinacurso.select("disciplinas.nome||' - ' || disciplinacursos.semestre as nome, disciplinacursos.* ")
                                        .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
                                        .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")

@@ -5,7 +5,7 @@ class AvaliacaoprofsController < ApplicationController
   # GET /avaliacaoprofs.json
   def index
     add_breadcrumb "Minhas Avaliações Docente", avaliacaoprofs_path, :title => "Voltar para a Página principal"
-    @avaliacaoprofs = Avaliacaoprof.all
+    @avaliacaoprofs = Avaliacaoprof.where("user_id =:user_id",{user_id:current_user.id}).all
   end
 
   # GET /avaliacaoprofs/1
@@ -23,7 +23,7 @@ class AvaliacaoprofsController < ApplicationController
 
   # GET /avaliacaoprofs/1/edit
   def edit
-        @professor = Professor.all.order("nome")
+    @professor = Professor.all.order("nome")
   end
 
   # POST /avaliacaoprofs
