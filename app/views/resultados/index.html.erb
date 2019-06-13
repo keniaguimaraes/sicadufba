@@ -20,16 +20,15 @@
                      <%= link_to apurarcoment_resultado_path(0),class:'' do %>
                         <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Apurar Comentários ">edit</i>  
                      <%end%>-->
-                     <%= link_to "Apurar", apurarcoment_resultado_path(0),  class:'btn waves-effect waves-light light-blue btn-small' %>
-                     <%= link_to "Relatórios", gerarelcoment_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small' %>
-                    
+                     <%= link_to "Apurar", apurarcoment_resultado_path(0),  class:'btn waves-effect waves-light light-blue btn-small white-text' %>
+                     <%= link_to "Relatórios", gerarelcoment_resultado_path(0,format: :pdf), target: '_blank', class:'btn waves-effect waves-light light-blue btn-small white-text' %>
                 </td>
               </tr>
               <tr>
                  <td>Apuração Avalições</td>
                  <td class="rigth actions">
-                     <%= link_to "Apurar", apuraravalia_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small' %>
-                     <%= link_to "Relatórios", gerarelavalia_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small' %>
+                     <%= link_to "Apurar", apuraravalia_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small white-text' %>
+                     <%= link_to "Relatórios", gerarelavalia_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small white-text' %>
                 </td>
               </tr>
         

@@ -33,7 +33,7 @@ class UserController < ApplicationController
         @user.update(bloqueio: false)
         menssagem= 'Usuário Desbloqueado!'  
         redirect_to "/user", notice:menssagem
-  end  
+   end  
   
   def edit
     @user = User.find(params[:id])

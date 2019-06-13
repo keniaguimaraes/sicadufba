@@ -65,6 +65,7 @@ resources :admin do
         get 'apuraravalia' => 'resultados#apuraravalia'
         get 'gerarelcoment' => 'resultados#gerarelcoment'
         get 'gerarelavalia' => 'resultados#gerarelavalia'
+        #get 'comprovante'=> 'cautelas#comprovante'
     end
  end
 

@@ -75,7 +75,7 @@ class ComentarsController < ApplicationController
        $aux   = " "
      end
   end  
-
+  
   # GET /comentars/new
   def new
     @comentar = Comentar.new

@@ -2,31 +2,29 @@
 <p id="notice"><%= notice %></p>
   <%= link_to 'Incluir Comentario', new_comentar_path %> 
   <div class="container">
-    
-    <br><br>
-    <h4 class="header center red-text">Sistema Colaborativo de Avaliação dos Docentes</h4>
     <div class="row center">
-      <h5 class="header col s12 light"><%= link_to  'Avalie o Docente da UFBA ', new_avaliacaoprof_path %>  <i class="fas fa-chalkboard-teacher fa-1x"></i></h5>
+      <h4 class="header col s12 m12 lg12 center blue-text">Sistema Colaborativo de Avaliação dos Docentes</h4>
     </div>
-    <div class="row">
-        <div class="row center">
-          <h5 class="header col s12 light"> <%= link_to  'Veja aqui o que já comentaram ', demonstra_comentarios_path %>  <i class="fas fa-comment-dots fa-1x"></i></h5>
-        </div>
+    <div class="row center">
+      <h5 class="header col s12 m12 lg12 light"><%= link_to  'Avalie o Docente da UFBA ', new_avaliacaoprof_path %>  <i class="fas fa-chalkboard-teacher fa-1x"></i></h5>
     </div>
-    <br><br>
+    
+    <div class="row center">
+      <h5 class="header col s12 m12 lg12 light"> <%= link_to  'Veja aqui o que já comentaram ', demonstra_comentarios_path %>  <i class="fas fa-comment-dots fa-1x"></i></h5>
+    </div>
+    <br>
   </div>
 </div>
 
 <%else%>    
 <br><br><br>
   <div class="section">
-    <h4 class="header center red-text">Sistema Colaborativo de Avaliação dos Docentes</h4>
-    <br><br>
+    <h4 class="header col s12 m12 lg12 center black-text">Sistema Colaborativo de Avaliação dos Docentes</h4>
+    <br>
       <div class="row center">
-        <h5 class="header col s12 light"> Pesquise. Avalie. Escolha. Colabore.</h5>
+        <h5 class="header col s12 blue-text"> Pesquise. Avalie. Escolha. Colabore.</h5>
       </div>
   </div>
-
     <div class="conteiner">
       <div class="row">
         <div class="col s12 m4">

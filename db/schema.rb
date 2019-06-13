@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_170124) do
+ActiveRecord::Schema.define(version: 2019_06_13_225631) do
 
   create_table "avaliacaoprofs", force: :cascade do |t|
     t.integer "user_id"
@@ -95,6 +95,24 @@ ActiveRecord::Schema.define(version: 2019_06_12_170124) do
 
   create_table "restricaos", force: :cascade do |t|
     t.string "palavra"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "resultados", force: :cascade do |t|
+    t.integer "tiporesultado_id"
+    t.datetime "data_apuracao"
+    t.datetime "data_abertura"
+    t.integer "semestre_id"
+    t.integer "qtd_disciplinas"
+    t.integer "qtd_comentarios"
+    t.integer "qtd_usuarios"
+    t.integer "qtd_docentes"
+    t.integer "qtd_avaliacoes"
+    t.integer "qtd_boa_didatica"
+    t.integer "qtd_bom_relacionamento"
+    t.integer "qtd_bom_dominio"
+    t.integer "qtd_nivel_recomendacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
