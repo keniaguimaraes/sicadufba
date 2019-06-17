@@ -1,0 +1,12 @@
+{
+  "name": "sicadufba",
+  "keywords": [
+    "dokku",
+    "rails"
+  ],
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rails db:migrate"
+    }
+  }
+}
