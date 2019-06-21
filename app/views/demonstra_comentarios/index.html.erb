@@ -1,9 +1,26 @@
  <div class="row">
  <div class="col s12 m9 lg9 offset-m2">
-          
-  <div class="card-panel">
+<div class="card-panel">
+  
+<% if @temequip == 0 %>
+<p> Não existe nenhum equipamento cadastrado. </p>
+<br> 
 
-
+<%else %>  
+  
+<div class="row">
+  <div class="col s9 m8 lg8 ">
+    <%= form_tag(demonstra_comentarios_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Infome a Disciplina"%>
+  </div>
+  <div class="col s2 m2 lg2" > 
+     <%= button_tag(type: "submit", class: "btn waves-effect waves-light light-blue btn-small white-text") do %>
+      <i class="material-icons white-text text-lighten-2 tooltipped" data-tooltip="pesqusiar">search</i> 
+     <% end %>
+  </div>
+  <% end %>
+</div>
+  
 <table class="striped">
   <thead>
     <tr>
@@ -29,7 +46,7 @@
      <%= will_paginate @comentarios %>
   </div>
 </div> 
-
+<%end%>
 
 
 </div> 

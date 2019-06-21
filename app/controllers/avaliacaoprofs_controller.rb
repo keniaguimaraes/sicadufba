@@ -45,7 +45,7 @@ class AvaliacaoprofsController < ApplicationController
 
     respond_to do |format|
       if @avaliacaoprof.save
-        format.html { redirect_to '/', notice: 'A avaliação foi Realizada com Sucesso!'}
+        format.html { redirect_to '/', notice: 'A Avaliação foi Realizada com Sucesso!'}
       else
         format.html { render :new }
         format.json { render json: @avaliacaoprof.errors, status: :unprocessable_entity }

@@ -22,9 +22,11 @@
         
         <p>
           <strong><b>Domínio de conteúdo?</b></strong>
-           <% if  @avaliacaoprof.dominio_conteudo == true then  %>
+           <% if  @avaliacaoprof.dominio_conteudo == 1 then  %>
                <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+			   <span> <i class="fas fa-thumbs-down fa-2x grey-text"></i></span> 
            <%else%>
+		       <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
                <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
            <%end%>
         
@@ -33,20 +35,24 @@
         <p>
           <strong><b>Possui um bom relacionamento com alunos?</b></strong>
         
-          <% if  @avaliacaoprof.relacionamento_alunos == true then  %>
-               <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+          <% if  @avaliacaoprof.relacionamento_alunos == 1 then  %>
+                <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+			    <span> <i class="fas fa-thumbs-down fa-2x grey-text"></i></span> 
            <%else%>
-               <span> <i class="fas fa-thumbs-down fa-2x red-tex"></i> </span> 
+               <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
+               <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
            <%end%>
         </p>
         
         <p>
           <strong><b>Possui didática?</b></strong>
           
-          <% if  @avaliacaoprof.possui_didatica == true then  %>
-               <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+          <% if  @avaliacaoprof.possui_didatica == 1 then  %>
+               <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
+               <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span>
            <%else%>
-               <span> <i class="fas fa-thumbs-down fa-2x red-tex"></i> </span> 
+               <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
+               <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
            <%end%>
         </p>
         

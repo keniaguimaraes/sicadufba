@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 2019_06_13_225631) do
     t.integer "professor_id"
     t.integer "semestre_id"
     t.datetime "data_avaliacao"
-    t.boolean "dominio_conteudo"
-    t.boolean "relacionamento_alunos"
-    t.boolean "possui_didatica"
+    t.integer "dominio_conteudo"
+    t.integer "relacionamento_alunos"
+    t.integer "possui_didatica"
     t.integer "recomendaria_professor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2019_06_13_225631) do
     t.datetime "data_comentario"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "denuncia"
-    t.boolean "bloqueio"
+    t.integer "denuncia", default: 0
+    t.boolean "bloqueio", default: false
     t.datetime "data_bloqueio"
   end
 
