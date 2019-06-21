@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_225631) do
+ActiveRecord::Schema.define(version: 2019_06_21_131731) do
 
   create_table "avaliacaoprofs", force: :cascade do |t|
     t.integer "user_id"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_225631) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "bloqueio", default: false
+    t.string "password"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

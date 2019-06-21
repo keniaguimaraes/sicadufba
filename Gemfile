@@ -47,6 +47,7 @@ gem "breadcrumbs_on_rails"
 gem 'rubocop-rails'
 gem 'nouislider-rails'
 
+
 group :development do
   gem 'sqlite3', '~> 1.3.6'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
