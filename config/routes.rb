@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :tags
   resources :coments
   resources :restricaos
-  resources :avaliacaos
   resources :itemavaliacaos
   resources :disciplinacursos
   resources :cursos
@@ -18,6 +17,7 @@ Rails.application.routes.draw do
   resources :admin
   resources :user
   resources :resultados
+  resources :faq
   
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -68,6 +68,14 @@ resources :admin do
         #get 'comprovante'=> 'cautelas#comprovante'
     end
  end
+ 
+ 
+  resources :faq do
+     member do
+        get 'comentarios' => 'faq#comentarios'
+        get 'avaliacoes' => 'faq#avaliacoes'
+     end
+  end     
 
   
 end
