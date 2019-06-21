@@ -1,4 +1,4 @@
-g<nav class="nav-extended light-blue darken-4">
+<nav class="nav-extended light-blue darken-4">
     <div class="nav-wrapper container">
    <a href="/" class="brand-logo"> <%= image_tag "logo.png"%></a>
 
@@ -16,7 +16,7 @@ g<nav class="nav-extended light-blue darken-4">
              <a href="#" class="dropdown-button white-text text-lighten-3" data-target="dropdown3"><i class="fas fa-user-circle fa-1x"></i> <%= current_user.username %> <i class="material-icons right">arrow_drop_down</i></a></li>
            </div>
          <%else%>
-           <a href="/login" ><i class="material-icons white-text">person_pin</i></a>
+           <a href="/users/sign_in" ><i class="material-icons white-text">person_pin</i></a>
          <%end%>  
        </ul>    
        

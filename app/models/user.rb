@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :cas_authenticatable, :registerable,
-  #:database_authenticatable, :registerable, 
-         :recoverable, :rememberable, :validatable
+   
+  #devise:cas_authenticatable, :registerable, #quando for autenticação da ufba
+   devise :database_authenticatable, :registerable, 
+  :recoverable, :rememberable, :validatable
          
          
   has_many :avaliacaos 
@@ -29,5 +30,5 @@ class User < ApplicationRecord
     errors.add(:username, :invalid)
    end
   end
-         
+   
 end
