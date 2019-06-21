@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  
+get '/check.txt', to: proc {[200, {}, ['it_works']]}
   root 'home#index', :as => 'contact_us'
 
  resources :comentars do
@@ -47,7 +48,7 @@ resources :admin do
  
  
  devise_scope :user do
-    get '/login' => 'devise/sessions#new'
+  #  get '/login' => 'devise/sessions#new'
     get '/logout' => 'devise/sessions#destroy'
     get '/perfil' => 'devise/registrations#edit'
     get '/user' => 'user#index'
