@@ -1,9 +1,17 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
+   
+  <% if @comentars.empty? then %> 
+    <div class="row">
+      <br>
+       <h5><div class="col s8 m8 lg8 offset-m2 "><b>Não Existem Comentários</b></div></h5>
+     </div>
+     
+   <%else%>    
+    
 
    <% @comentars.each do |comentar| %>
    
-     
    <% if comentar.bloqueio == true then 
         status = "Comentário Bloqueado"
       else
@@ -17,14 +25,14 @@
         <div class="col s12 m12 lg12 "><b><%= comentar.disciplinacurso.disciplina.nome %> </b></div>
       </div>
       <div class="row">
-        <div class="col s6 m6 lg6"><b>Professor</b> <%= comentar.professor.nome  %></div>
-         <div class="col s6 m6 lg6"><b>Data:</b><%=formato_data_hora(comentar.data_comentario)  %> </div> 
+        <div class="col s12 m7 lg7"><b>Professor</b> <%= comentar.professor.nome  %></div>
+         <div class="col s12 m4 lg4"><b>Data:</b><%=formato_data_hora(comentar.data_comentario)  %> </div> 
          <div class="row">
                 <div class="col s12 m12 lg12"><b>Usuário:</b><%=comentar.user.email  %> </div> 
-                <div class="col s12 m6 lg6"><b>Status: </b><%=status%> </div> 
-                <div class="col s12 m6 lg6"><b>Denuncias: </b><%=comentar.denuncia%> </div> 
+                <div class="col s12 m7 lg7"><b>Status: </b><%=status%> </div> 
+                <div class="col s12 m4 lg4"><b>Denuncias: </b><%=comentar.denuncia%> </div> 
          </div> 
-         <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
+         <div class="col s6 offset-s8 m2 offset-m10 lg2 offset-lg6">
                 <div>  
                     <%= link_to comentar_path(comentar),class:'' do %>
                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Mostrar">details</i>  
@@ -43,9 +51,15 @@
       
    </div>
    <% end %>
+ <% end %>
 </div>  
   
-   
+ <div class="row">
+  <div class="col s10 m6 lg6 offset-s2 offset-lg3 offset-m4">
+     <%= will_paginate @comentars %>
+  </div>
+</div> 
+  
 <script>
 $('.tooltipped').tooltip();
 </script>

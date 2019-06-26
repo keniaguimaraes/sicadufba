@@ -1,7 +1,7 @@
 module ApplicationHelper
  def formato_data_hora(data)
       if data.present?
-       data.strftime("%d/%m/%Y  %T")
+       data.strftime("%d/%m/%Y")
       end 
  end
  def flash_message

@@ -4,7 +4,7 @@ class UserController < ApplicationController
   $home ="home"
   def index
      add_breadcrumb "Usuario", "/user", :title => "Voltar para a Página principal"
-     @users = User.order(:email)
+     @users = User.order(:email).paginate(:page => params[:page], :per_page => 4)
   end
   
   def new

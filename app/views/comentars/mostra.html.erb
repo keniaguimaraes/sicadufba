@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+   <% if @comentarios_disciplina.empty? then %>
+        
+    <div class="row">
+      <br>
+       <h5><div class="col s8 m8 lg8 offset-m2 "><b>Não Existem Comentários</b></div></h5>
+     </div>
+     
+   <%else%>
 <% @comentarios_disciplina.each do |comentarios_disciplina| %>
   <div class="row">
     <div class="col s12 m5 lg5 offset-m1">
@@ -92,6 +100,7 @@
       </div>
     </div>
 <%end %>
+ <% end %>
  
 <div class="row">
   <div class="col s12 m6 lg6 offset-m3 offset-m4">

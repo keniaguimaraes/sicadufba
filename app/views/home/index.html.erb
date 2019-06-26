@@ -1,71 +1,44 @@
 <% if user_signed_in? %>
 <p id="notice"><%= flash_message %></p>
-
   <div class="container">
-    
-        <!--
-    <div class="row center">
-      <h4 class="header col s12 m12 lg12 center blue-text">Sistema Colaborativo de Avaliação dos Docentes</h4>
-    </div>-->
-    
-
-    <!-- <div class="row center">
-      <h5 class="header col s12 m12 lg12 light"> <%= link_to  'Veja aqui o que já comentaram ', demonstra_comentarios_path %>  <i class="fas fa-comment-dots fa-1x"></i></h5>
-    </div>
-    <hr/>
-   
-    <div class="row center">
-      <h5 class="header col s12 m12 lg12 light"><%= link_to  'Avalie o Docente da UFBA ', '' %>
-    
-    <div class="row center">
-      <h5 class="header col s12 m12 lg12 light"><%= link_to  'Visualize', '' %>  </h5>
-    </div>
-      <hr/> 
-    <div class="row center">
-      <h5 class="header col s12 m12 lg12 light"><%= link_to  'Resultado das Avaliações Docente do Semestre', '' %>  </h5>
-    </div>
-    </div>
-    
--->
     <div class="row">
-        <div class="col s12 m4">
+        <div class="col s12 m4 lg4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="fas fa-comment-dots fa-1x"></i></h2>
-            <h6 class="center"><b> <%= link_to  'Comentários ', demonstra_comentarios_path %></b></h6>
+            <h2 class="center   blue-grey-text text-darken-1"><i class="fas fa-comment-dots fa-1x"></i></h2>
+            <h6 class="center black-text"><b> <%= link_to  'Comentários ', demonstra_comentarios_path, class:'black-text' %></b></h6>
           
           </div>
         </div>
 
-        <div class="col s12 m4">
+        <div class="col s12 m4 lg4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="fas fa-chalkboard-teacher fa-1x"></i></h2>
-            <h6 class="center"><b>Avaliações</b></h6> 
+            <h2 class="center  blue-text text-darken-4"><i class="fas fa-chalkboard-teacher fa-1x"></i></h2>
+            <h6 class="center black-text"><b>Avaliar</b></h6> 
       
           </div>
         </div>
         
-        <div class="col s12 m4">
+        <div class="col s12 m4 lg4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="fas fa-chart-area fa-1x"></i></h2>
-            <h6 class="center"><b>Resultados</b></h6>
-         
+            <h2 class="center green-text text-darken-4"><i class="fas fa-chart-area fa-1x"></i></h2>
+            <h6 class="center black-text"><b>Resultados</b></h6>
           </div>
         </div>
         
-        <div class="col s12 m4">
+        <div class="col s12 m4 lg4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="fas fa-question-circle fa-1x"></i></h2>
-            <h6 class="center"><b><a  href="/faq">F.A.Q</a> </b></h6>
+            <h2 class="center red-text text-darken-4"><i class="fas fa-question-circle fa-1x"></i></h2>
+            <h6 class="center"><b><a href="/faq" class="black-text">F.A.Q</a> </b></h6>
           </div>
         </div>
 
      </div>
       <div class="row">
-         <div class="col s12 m1">
+         <div class="col s12 m1 lg1 ">
           <%= link_to 'Comentar', new_comentar_path, class: 'btn waves-effect waves-light light-blue white-text'  %> 
         </div>
         
-        <div class="col s12 m1 offset-m1">
+        <div class="col s12 m1 lg1 offset-m2 offset-lg2">
           <%= link_to 'Avaliar', new_avaliacaoprof_path, class: 'btn waves-effect waves-light light-blue white-text'  %> 
         </div>
       </div>  

@@ -38,23 +38,26 @@
      <div class="col s12 m12 lg12"> <%=collection_select(:avaliacaoprof, :semestre_id, @semestre, :id, :semestre, {:prompt => '' }, { class: 'js-searchable' })%></div>
    </div>
     
-   <div class="row">       
-     <div class="col s12 m12 lg12"><label><b>Possui domínio do conteúdo?</b></label> </div>
-     <div class="col s3 m2 lg2"><label> <%= f.radio_button :dominio_conteudo, value:1, id:"1", name:"1" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
-     <div class="col s3 m2 lg2"><label> <%= f.radio_button :dominio_conteudo, value:2, id:"2",name:"11" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
-   </div>  
-  
-   <div class="row">          
-     <div class="col s12 m12 lg12"> <label><b>Se relaciona bem com os alunos?</b></label> </div>
-     <div class="col s3 m2 lg2"><label> <%= f.radio_button :relacionamento_alunos, value:1, id:"3", name:"22" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label>  </div>
-     <div class="col s3 m2 lg2"><label> <%= f.radio_button :relacionamento_alunos, value:2, id:"4",name:"2" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label> </div>
-  </div > 
-  
-   <div class="row">    
-     <div class="col s12 m12 lg12">  <label><b>Possui boa didática? ?</b></label> </div>
-     <div class="col s3 m2 lg2"> <label> <%= f.radio_button :possui_didatica, value:1, id:"5", name:"32" %> <span> <i class="fas fa-thumbs-up fa-2x"></i> </span> </label></div>
-     <div class="col s3 m2 lg2"> <label> <%= f.radio_button :possui_didatica, value:2, id:"6",name:"32" %> <span> <i class="fas fa-thumbs-down fa-2x"></i> </span> </label></div>
-  </div>  
+    <div class="row">     
+        <div class="col s12 m12 lg12 grey-text"> <b>Possui domínio do conteúdo?</b> </div>
+        <div class="col s3 m2 lg2"><label ><%= f.radio_button :dominio_conteudo, 1, id:"1"%> <span><i class="fas fa-thumbs-up fa-2x"></span></i></label></div>
+        <div class="col s3 m2 lg2"><label><%= f.radio_button :dominio_conteudo, 2, id:"2" %> <span><i class="fas fa-thumbs-down fa-2x"></span></i></label></div>
+    </div> 
+    
+    
+    <div class="row">     
+        <div class="col s12 m12 lg12 grey-text"> <b>Se relaciona bem com os alunos?</b> </div>
+        <div class="col s3 m2 lg2"><label ><%= f.radio_button :relacionamento_alunos, 1, id:"3"%> <span><i class="fas fa-thumbs-up fa-2x"></span></i></label></div>
+        <div class="col s3 m2 lg2"><label><%= f.radio_button :relacionamento_alunos, 2, id:"4" %> <span><i class="fas fa-thumbs-down fa-2x"></span></i></label></div>
+    </div>
+    
+    <div class="row">     
+        <div class="col s12 m12 lg12 grey-text"> <b>Possui boa didática?</b> </div>
+        <div class="col s3 m2 lg2"><label ><%= f.radio_button :possui_didatica, 1, id:"5"%> <span><i class="fas fa-thumbs-up fa-2x"></span></i></label></div>
+        <div class="col s3 m2 lg2"><label><%= f.radio_button :possui_didatica, 2, id:"6" %> <span><i class="fas fa-thumbs-down fa-2x"></span></i></label></div>
+    </div>
+     
+  <br>
   
    <div class="row">        
    <div class="col s12 m12 lg12"><label><b> Gostaria de adicionar alguma tag?</b></label>  </div>  
@@ -65,16 +68,18 @@
        
       @tag.each do |tag| %>
         <div class="col "> 
-          <div class="chip" id=<%=tag.id.to_s%> >
+         <!-- <div class="chip" id=<%=tag.id.to_s%> >
             <%=tag.tag%>
-           </div>
+           </div>-->
+              <div class="chip" id=<%=tag.id.to_s%>>
+                <%=tag.tag%>
+              </div>
          </div>
-      
       <%end%>
       </div>
    </div>
   
-  
+ <br>
  <div class="row">         
    <div class="col s12 m12 lg12"> <label><b> Recomendaria esse professor? </b></label>  </div>
   <div class="col s12 m6 lg6">  <%= f.range_field(:recomendaria_professor, in: 1..5, id:'test5', class:'range-field') %> </div>
@@ -99,6 +104,12 @@
         //depois qe clica, pinta de verde e insere na lista faz o que
         //e depois?
       });
+      
+      $(".close").click(function(e){
+        e.preventDefault()
+        $(this).css({"background":"blue"})
+       
+      });
 
       $(".js-searchable").select2({
          placeholder: 'Informe o Professor',
@@ -110,35 +121,7 @@
 </script>
 
 
-<style>
-.noUi-connect {
-	background: purple;
-}
-.noUi-horizontal .noUi-handle, .noUi-vertical .noUi-handle {
-	background: purple;
-}
-.noUi-target.noUi-horizontal .noUi-tooltip {
-	background-color: purple;
-}
 
-/**** Custom styles for Range ****/
-input[type=range]::-webkit-slider-thumb {
-  background-color: skyblue;
-}
-input[type=range]::-moz-range-thumb {
-  background-color: skyblue;
-}
-input[type=range]::-ms-thumb {
-  background-color: skyblue;
-}
-/* For the globe and the text inside */
-input[type=range] + .thumb {
-  background-color: blue;
-}
-input[type=range] + .thumb.active .value {
-  color: #fff;
-}
-</style>
 
 
 

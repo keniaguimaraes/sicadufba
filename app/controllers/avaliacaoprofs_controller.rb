@@ -6,11 +6,14 @@ class AvaliacaoprofsController < ApplicationController
   def index
     add_breadcrumb "Minhas Avaliações Docente", avaliacaoprofs_path, :title => "Voltar para a Página principal"
     @avaliacaoprofs = Avaliacaoprof.where("user_id =:user_id",{user_id:current_user.id}).all
+                                   .paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /avaliacaoprofs/1
   # GET /avaliacaoprofs/1.json
   def show
+     add_breadcrumb "Minhas Avaliações Docente", avaliacaoprofs_path, :title => "Voltar para a Página principal"
+     add_breadcrumb "Exibindo Avaliação"
   end
 
   # GET /avaliacaoprofs/new
@@ -41,6 +44,7 @@ class AvaliacaoprofsController < ApplicationController
   def create
     @avaliacaoprof = Avaliacaoprof.new(avaliacaoprof_params)
     @tagselect =  params[:tags]
+   # @avaliacaoprof.dominio_conteudo = 1
     @ult_avaliacao = Avaliacaoprof.last
     if @ult_avaliacao.nil? 
       proximo = 1

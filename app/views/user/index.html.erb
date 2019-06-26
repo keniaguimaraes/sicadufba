@@ -10,17 +10,16 @@
       end  
     %>
     <div class= "card">
-      
       <div class="row">
         <br>
         <div class="col s12 m12 lg12 "><b>Curso: </b><%= user.curso.nome.split('-').first %> </div>
       </div>
       
       <div class="row">
-        <div class="col s8 m6 lg6"><b>Usuário: </b><%= user.email %></div>
-        <div class="col s4 m4 lg4"><b>Status: </b><%= status %> </div>
+        <div class="col s12 m6 lg6"><b>Usuário: </b><%= user.email %></div>
+        <div class="col s12 m4 lg4"><b>Status: </b><%= status %> </div>
        
-           <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
+           <div class="col s6 offset-s8 m2 offset-m10 lg2 offset-lg6">
                 <div>  
                      <%= link_to edit_user_path(user),class:'' do %>
                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
@@ -36,10 +35,17 @@
                        <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
                     <%end%>-->
            </div>
+           <br>
         </div>
       </div>
       
    </div>
+   
+      <div class="row">
+          <div class="col s12 m6 lg6 offset-m3 offset-m4">
+             <%= will_paginate @users %>
+          </div>
+      </div> 
    <% end %>
 </div>  
   

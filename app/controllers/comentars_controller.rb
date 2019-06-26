@@ -7,7 +7,7 @@ class ComentarsController < ApplicationController
   # GET /comentars
   # GET /comentars.json
   def index
-    add_breadcrumb "Meus Comentários", comentars_path, :title => "Voltar para a Página principal"
+    add_breadcrumb "Meus Comentários", comentars_path, :title => "Voltar para a página principal"
     @comentars = Comentar.where("user_id =:user_id",{user_id:current_user.id}).all
                          .paginate(:page => params[:page], :per_page => 7)
     $local="index"                     
@@ -15,11 +15,10 @@ class ComentarsController < ApplicationController
   
   
   def all
-     add_breadcrumb "Exibindo Todos Comentários", "comentars/0/all", :title => "Voltar para a Página principal"
+     add_breadcrumb "Todos Comentários", "comentars/0/all", :title => "Voltar para a página principal"
      @comentars = Comentar.all.order("data_comentario")
-                         .paginate(:page => params[:page], :per_page => 7)
+                         .paginate(:page => params[:page], :per_page =>7)
       $local="mostra"  
-      
   end
 
 
@@ -74,6 +73,9 @@ class ComentarsController < ApplicationController
        $local = "mostra"
        $aux   = " "
      end
+     
+     add_breadcrumb "Veja o que estão comentando",demonstra_comentarios_path, :title => "Voltar para Anterior" 
+    add_breadcrumb "Comentários da disciplina" 
   end  
   
   # GET /comentars/new
