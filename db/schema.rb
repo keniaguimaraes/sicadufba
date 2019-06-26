@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_21_131731) do
+ActiveRecord::Schema.define(version: 2019_06_26_123247) do
 
   create_table "avaliacaoprofs", force: :cascade do |t|
     t.integer "user_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_06_21_131731) do
     t.integer "recomendaria_professor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "disciplinacurso_id"
   end
 
   create_table "avaliacaos", force: :cascade do |t|

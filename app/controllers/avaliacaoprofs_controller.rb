@@ -16,7 +16,17 @@ class AvaliacaoprofsController < ApplicationController
   # GET /avaliacaoprofs/new
   def new
     @avaliacaoprof = Avaliacaoprof.new
+    
+    @disciplinacurso = Disciplinacurso.select(" ' ( ' ||disciplinacursos.semestre||' )  ' || disciplinas.nome as nome, disciplinacursos.* ")
+                                       .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
+                                       .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")
+                                       .where(" disciplinacursos.curso_id =:curso_id",{curso_id:current_user.curso_id}).all
+                                       .order("coalesce(disciplinacursos.semestre, '999')")
     @professor = Professor.all.order("nome")
+
+    @semestre   = Semestre.select(" cast(ano as char(4))||'.'||cast(codigo as char(1)) semestre,  * ").all
+                          .order("ano,codigo")
+ 
     add_breadcrumb "Avaliação Docente", avaliacaoprofs_path, :title => "Voltar para Anterior"
     add_breadcrumb "Incluir Avaliação Docente"
   end
@@ -89,7 +99,7 @@ class AvaliacaoprofsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def avaliacaoprof_params
-      params.require(:avaliacaoprof).permit(:user_id, :professor_id, :semestre_id, :data_avaliacao, :dominio_conteudo, :relacionamento_alunos, :possui_didatica, :recomendaria_professor)
+      params.require(:avaliacaoprof).permit(:user_id, :professor_id, :semestre_id,:disciplinacurso_id, :data_avaliacao, :dominio_conteudo, :relacionamento_alunos, :possui_didatica, :recomendaria_professor)
     end
     
     

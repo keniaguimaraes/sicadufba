@@ -20,12 +20,22 @@
  <div class="card-panel ">
    <%= f.hidden_field:user_id,:value =>current_user.id %>
    <%= f.hidden_field:data_avaliacao,:value => DateTime.now %>
-   <%= f.hidden_field:semestre_id,:value =>1 %>  
+
 
 
    <div class="row">
      <div class="col s12 m6 lg6"><b><%= f.label :professor_id, "Professor" %></b></div>
      <div class="col s12 m12 lg12"> <%=collection_select(:avaliacaoprof, :professor_id, @professor, :id, :nome, {:prompt => '' }, { class: 'js-searchable' })%></div>
+   </div>
+   
+   <div class="row">
+     <div class="col s12 m6 lg6"><b><%= f.label :disciplinacurso_id, "Disciplina" %></b></div>
+     <div class="col s12 m12 lg12"> <%=collection_select(:avaliacaoprof, :disciplinacurso_id, @disciplinacurso, :id, :nome, {:prompt => '' }, { class: 'js-searchable' })%></div>
+   </div>
+
+   <div class="row">
+     <div class="col s12 m6 lg6"><b><%= f.label :semestre_id, "Semestre" %></b></div>
+     <div class="col s12 m12 lg12"> <%=collection_select(:avaliacaoprof, :semestre_id, @semestre, :id, :semestre, {:prompt => '' }, { class: 'js-searchable' })%></div>
    </div>
     
    <div class="row">       
