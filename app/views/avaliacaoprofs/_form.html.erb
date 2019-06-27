@@ -67,13 +67,17 @@
      <% @tag = Tag.all 
        
       @tag.each do |tag| %>
-        <div class="col "> 
+        <div class="col"> 
          <!-- <div class="chip" id=<%=tag.id.to_s%> >
             <%=tag.tag%>
            </div>-->
-              <div class="chip" id=<%=tag.id.to_s%>>
-                <%=tag.tag%>
-              </div>
+    
+                <div class="chip" id=<%=tag.id.to_s%>  data-tag="<%=tag.tag%>" >
+                    <%=tag.tag%>
+            
+                </div>
+        
+              
          </div>
       <%end%>
       </div>
@@ -99,17 +103,38 @@
 <script>
       $(".chip").click(function(e){
         e.preventDefault()
-        $(this).css({"background":"green"})
-        $(this).append('<input type="hidden" name="tags[]" value="'+$(this).attr('id')+'">')
-        //depois qe clica, pinta de verde e insere na lista faz o que
-        //e depois?
-      });
+        
+        var existe_componente = document.getElementsByName('tags[]').length;
+        if (existe_componente > 0){
+            
+            var nome  = $(this).attr('id');
+            var achou = false;
+            
+             $.each($('input.taghidden'),function(i, field) {
+              if($(this).attr("type")=="hidden") {
+   
+                if(field.value==nome){
+                    achou = true;}
+              }         
+            });
+            
+             if (achou==false) { 
+                  $(this).css({"background":"green"})
+                  $(this).append('<input type="hidden" class="taghidden" id="tag'+$(this).attr('id')+'" name="tags[]" value="'+$(this).attr('id')+'">') }
+            else{
+                  $(this).css({"background":"#d3d3d3"})  
+                  var id ="tag"+ $(this).attr('id');
+                  var j = document.getElementById(id);
+                  j.remove();
+            }  
+
+        }else{
+                $(this).css({"background":"green"})
+                $(this).append('<input type="hidden" class="taghidden" id="tag'+$(this).attr('id')+'" name="tags[]" value="'+$(this).attr('id')+'">')
+        }
       
-      $(".close").click(function(e){
-        e.preventDefault()
-        $(this).css({"background":"blue"})
-       
       });
+
 
       $(".js-searchable").select2({
          placeholder: 'Informe o Professor',
