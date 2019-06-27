@@ -13,7 +13,7 @@
         <div class="col s12 m4 lg4">
           <div class="icon-block">
             <h2 class="center  blue-text text-darken-4"><i class="fas fa-chalkboard-teacher fa-1x"></i></h2>
-            <h6 class="center black-text"><b>Avaliar</b></h6> 
+            <h6 class="center black-text"><b> <%= link_to  'Avaliar ', new_avaliacaoprof_path, class:'black-text' %></b></h6> 
       
           </div>
         </div>
@@ -21,7 +21,7 @@
         <div class="col s12 m4 lg4">
           <div class="icon-block">
             <h2 class="center green-text text-darken-4"><i class="fas fa-chart-area fa-1x"></i></h2>
-            <h6 class="center black-text"><b>Resultados</b></h6>
+            <h6 class="center"><b><a href="/resultados" class="black-text">Resultados</a> </b></h6>
           </div>
         </div>
         
@@ -31,17 +31,8 @@
             <h6 class="center"><b><a href="/faq" class="black-text">F.A.Q</a> </b></h6>
           </div>
         </div>
-
      </div>
-      <div class="row">
-         <div class="col s12 m1 lg1 ">
-          <%= link_to 'Comentar', new_comentar_path, class: 'btn waves-effect waves-light light-blue white-text'  %> 
-        </div>
-        
-        <div class="col s12 m1 lg1 offset-m2 offset-lg2">
-          <%= link_to 'Avaliar', new_avaliacaoprof_path, class: 'btn waves-effect waves-light light-blue white-text'  %> 
-        </div>
-      </div>  
+     
 
 <%else%>    
 <br><br>

@@ -1,14 +1,23 @@
 class ResultadosController < ApplicationController
 
     def index
-        @resultados = Resultado.all
+        @resultados = Avaliacaoprof.select("professors.nome, count(professors.nome) qtd")
+                                    .joins("JOIN professors ON professors.id = avaliacaoprofs.professor_id" )
+                                    .group("professors.nome").all    
     end
     
-    def apura_avaliacoes
-     
-        
+    def professor
+      
+        @disciplina = Avaliacaoprof.select("professors.nome, count(professors.nome) qtd")
+                                    .joins("JOIN professors ON professors.id = avaliacaoprofs.professor_id" )
+                                    .group("professors.nome").all 
+                                    
+       # @qtdtags
+       # @qtdtags
+                                            
     end
     
+ 
     def apurarcoment
 
           @qtd_comentarios = Comentar.all   

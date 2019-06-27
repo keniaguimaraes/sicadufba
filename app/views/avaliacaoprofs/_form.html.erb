@@ -68,16 +68,9 @@
        
       @tag.each do |tag| %>
         <div class="col"> 
-         <!-- <div class="chip" id=<%=tag.id.to_s%> >
-            <%=tag.tag%>
-           </div>-->
-    
-                <div class="chip" id=<%=tag.id.to_s%>  data-tag="<%=tag.tag%>" >
+          <div class="chip" id=<%=tag.id.to_s%>  data-tag="<%=tag.tag%>" >
                     <%=tag.tag%>
-            
-                </div>
-        
-              
+           </div>
          </div>
       <%end%>
       </div>

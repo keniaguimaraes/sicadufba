@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <div class="row">
@@ -7,31 +8,25 @@
         <table class="striped">
           <thead>
             <tr>
-              <th><b>Módulos</b></th>
+              <th><b>Professores</b></th>
+              <th><b>Qtd. Avaliações</b></th>
               <th colspan="2"></th>
             </tr>
           </thead>
         
           <tbody>
-              <tr>
-                 <td>Apuração Comentários</td>
-                 <td class="rigth actions">
-                    <!--
-                     <%= link_to apurarcoment_resultado_path(0),class:'' do %>
-                        <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Apurar Comentários ">edit</i>  
-                     <%end%>-->
-                     <%= link_to "Apurar", apurarcoment_resultado_path(0),  class:'btn waves-effect waves-light light-blue btn-small white-text' %>
-                     <%= link_to "Relatórios", gerarelcoment_resultado_path(0,format: :pdf), target: '_blank', class:'btn waves-effect waves-light light-blue btn-small white-text' %>
-                </td>
-              </tr>
-              <tr>
-                 <td>Apuração Avalições</td>
-                 <td class="rigth actions">
-                     <%= link_to "Apurar", apuraravalia_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small white-text' %>
-                     <%= link_to "Relatórios", gerarelavalia_resultado_path(0), class:'btn waves-effect waves-light light-blue btn-small white-text' %>
-                </td>
-              </tr>
-        
+              <% @resultados.each do |resultado| %>
+                  <tr>
+                     <td><%= resultado.nome %></td>
+                     <td><%= resultado.qtd %></td>
+                     <td class="rigth actions">
+                  
+                       <%= link_to "/resultados/0/professor",class:'' do %>
+                          <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Ver Resultado">details</i>  
+                      <%end%>
+                    </td>
+                  </tr>
+             <% end %>
           </tbody>
         </table>
 
@@ -39,6 +34,10 @@
   </div>
 </div>
    
+
 <script>
 $('.tooltipped').tooltip();
 </script>
+
+
+

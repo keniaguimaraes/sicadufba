@@ -22,18 +22,20 @@
        <b>Usuário: </b><%= @comentar.user.email %>
     </div>
    </div>
-   <hr/>  
+ 
+   <div class="row">
+      <div class="col">
+     <b> Data:</b> <%= formato_data_hora(@comentar.data_comentario)%>
+    </div>
+    </div>
+ 
    <div class="row">
     <div class="col">
           <blockquote  class="blockquote mb-0"> <%= @comentar.comentario %>   </blockquote> 
     </div>
     </div>
-      <hr/>  
-    <div class="row">
-      <div class="col">
-     <b> Data:</b> <%= formato_data_hora(@comentar.data_comentario)%>
-    </div>
-    </div>
+      
+   
 </div>
 </div>
 </div>

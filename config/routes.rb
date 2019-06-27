@@ -69,6 +69,7 @@ resources :admin do
         get 'gerarelcoment' => 'resultados#gerarelcoment'
         get 'gerarelavalia' => 'resultados#gerarelavalia'
         #get 'comprovante'=> 'cautelas#comprovante'
+         get 'professor' => 'resultados#professor'
     end
  end
  
