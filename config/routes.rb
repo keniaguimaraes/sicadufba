@@ -61,7 +61,7 @@ resources :admin do
  end
  
 
- 
+
   resources :resultados do
      member do
         get 'apurarcoment' => 'resultados#apurarcoment'
@@ -73,13 +73,18 @@ resources :admin do
     end
  end
  
- 
+=begin 
   resources :faq do
      member do
-        get 'comentarios' => 'faq#comentarios'
+        get 'comentarios' => 'faq#comentarios', as: :comentarios
         get 'avaliacoes' => 'faq#avaliacoes'
-     end
-  end     
+      end
+  end    
+=end  
+  #  get 'faq/0/comentarios' => 'faq#comentarios'
 
-  
+  get "faq_avaliacoes", to: "faq#avaliacoes"
+  get 'faq_comentarios', to: 'faq#comentarios'
+
+
 end

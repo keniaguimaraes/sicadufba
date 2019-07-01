@@ -30,12 +30,12 @@
    
    <div class="row">
      <div class="col s12 m6 lg6"><b><%= f.label :disciplinacurso_id, "Disciplina" %></b></div>
-     <div class="col s12 m12 lg12"> <%=collection_select(:avaliacaoprof, :disciplinacurso_id, @disciplinacurso, :id, :nome, {:prompt => '' }, { class: 'js-searchable' })%></div>
+     <div class="col s12 m12 lg12"> <%=collection_select(:avaliacaoprof, :disciplinacurso_id, @disciplinacurso, :id, :nome, {:prompt => '' }, { class: 'js-searchable2' })%></div>
    </div>
 
    <div class="row">
      <div class="col s12 m6 lg6"><b><%= f.label :semestre_id, "Semestre" %></b></div>
-     <div class="col s12 m12 lg12"> <%=collection_select(:avaliacaoprof, :semestre_id, @semestre, :id, :semestre, {:prompt => '' }, { class: 'js-searchable' })%></div>
+     <div class="col s12 m12 lg12"> <%=collection_select(:avaliacaoprof, :semestre_id, @semestre, :id, :semestre, {:prompt => '' }, { class: 'js-searchable3' })%></div>
    </div>
     
     <div class="row">     
@@ -136,7 +136,29 @@
          tags: "true"
      });
      
+     
+      $(".js-searchable2").select2({
+         placeholder: 'Informe o Disciplina',
+         allowClear: true,
+         width:'100%',
+         tags: "true"
+     });
+     
+     
+      $(".js-searchable3").select2({
+         placeholder: 'Informe o Semestre',
+         allowClear: true,
+         width:'100%',
+         tags: "true"
+     });
+     
 </script>
+<style>
+
+.chip {
+cursor:pointer;
+}
+</style>
 
 
 

@@ -11,13 +11,9 @@ class ResultadosController < ApplicationController
         @disciplina = Avaliacaoprof.select("professors.nome, count(professors.nome) qtd")
                                     .joins("JOIN professors ON professors.id = avaliacaoprofs.professor_id" )
                                     .group("professors.nome").all 
-                                    
-       # @qtdtags
-       # @qtdtags
-                                            
     end
     
- 
+
     def apurarcoment
 
           @qtd_comentarios = Comentar.all   
