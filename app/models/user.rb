@@ -8,7 +8,7 @@ class User < ApplicationRecord
    # devise :cas_authenticatable, :registerable,
    #      :recoverable, :rememberable, :validatable
          
-         
+     
   has_many :avaliacaos 
   has_many :comentario
   has_many :comentar
