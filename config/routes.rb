@@ -62,16 +62,7 @@ resources :admin do
  
 
 
-  resources :resultados do
-     member do
-        get 'apurarcoment' => 'resultados#apurarcoment'
-        get 'apuraravalia' => 'resultados#apuraravalia'
-        get 'gerarelcoment' => 'resultados#gerarelcoment'
-        get 'gerarelavalia' => 'resultados#gerarelavalia'
-        #get 'comprovante'=> 'cautelas#comprovante'
-         get 'professor' => 'resultados#professor'
-    end
- end
+
  
 =begin 
   resources :faq do
@@ -85,6 +76,7 @@ resources :admin do
 
   get "faq_avaliacoes", to: "faq#avaliacoes"
   get 'faq_comentarios', to: 'faq#comentarios'
-
+  get 'resultado_professor', to: 'resultados#professor'
+  get 'resultado_comentario', to: 'resultados#comentarios'
 
 end

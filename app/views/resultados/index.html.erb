@@ -21,7 +21,7 @@
                      <td><%= resultado.qtd %></td>
                      <td class="rigth actions">
                   
-                       <%= link_to "/resultados/0/professor",class:'' do %>
+                       <%= link_to resultado_professor_path(:professor_id => resultado.professor_id),class:'' do %>
                           <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Ver Resultado">details</i>  
                       <%end%>
                     </td>

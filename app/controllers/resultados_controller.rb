@@ -1,19 +1,29 @@
 class ResultadosController < ApplicationController
 
     def index
-        @resultados = Avaliacaoprof.select("professors.nome, count(professors.nome) qtd")
+        @resultados = Avaliacaoprof.select("professors.nome, avaliacaoprofs.professor_id, count(professors.nome) qtd")
                                     .joins("JOIN professors ON professors.id = avaliacaoprofs.professor_id" )
-                                    .group("professors.nome").all    
+                                    .group("professors.nome, avaliacaoprofs.professor_id").all    
     end
     
     def professor
       
-        @disciplina = Avaliacaoprof.select("professors.nome, count(professors.nome) qtd")
-                                    .joins("JOIN professors ON professors.id = avaliacaoprofs.professor_id" )
-                                    .group("professors.nome").all 
+        @disciplina = Avaliacaoprof.select("disciplinas.nome,avaliacaoprofs.professor_id,count(disciplinas.nome)as qtd_avaliacoes ")
+                                    .joins("JOIN disciplinacursos ON disciplinacursos.id = avaliacaoprofs.disciplinacurso_id" )
+                                    .joins("JOIN disciplinas ON disciplinas.id = disciplinacursos.disciplina_id" )
+                                    .where("avaliacaoprofs.professor_id =:professor_id",{professor_id:params[:professor_id]})
+                                    .group("disciplinas.nome,avaliacaoprofs.professor_id").all 
+                                    
     end
     
-
+    
+    def comentario
+    
+      
+    
+    end
+    
+    
     def apurarcoment
 
           @qtd_comentarios = Comentar.all   

@@ -2,36 +2,53 @@
 <p id="notice"><%= flash_message %></p>
   <div class="container">
     <div class="row">
-        <div class="col s12 m4 lg4">
-          <div class="icon-block">
-            <h2 class="center   blue-grey-text text-darken-1"><i class="fas fa-comment-dots fa-1x"></i></h2>
-            <h6 class="center black-text"><b> <%= link_to  'Comentários ', demonstra_comentarios_path, class:'black-text' %></b></h6>
-          
-          </div>
-        </div>
 
         <div class="col s12 m4 lg4">
           <div class="icon-block">
-            <h2 class="center  blue-text text-darken-4"><i class="fas fa-chalkboard-teacher fa-1x"></i></h2>
-            <h6 class="center black-text"><b> <%= link_to  'Avaliar ', new_avaliacaoprof_path, class:'black-text' %></b></h6> 
-      
+            <%= link_to demonstra_comentarios_path,class:'center blue-grey-text text-darken-1' do %>
+               <center><i class="fas fa-comment-dots fa-4x"></i></center><p> 
+            <%end%>
+            <h6 class="center black-text"><b>Comentários</a> </b></h6>
           </div>
         </div>
         
         <div class="col s12 m4 lg4">
           <div class="icon-block">
-            <h2 class="center green-text text-darken-4"><i class="fas fa-chart-area fa-1x"></i></h2>
-            <h6 class="center"><b><a href="/resultados" class="black-text">Resultados</a> </b></h6>
+            <%= link_to new_avaliacaoprof_path,class:'center blue-text text-darken-4' do %>
+               <center><i class="fas fa-chalkboard-teacher fa-4x"></i></center><p> 
+            <%end%>
+            <h6 class="center black-text"><b>Avaliar</a> </b></h6>
           </div>
         </div>
         
+        <div class="col s12 m4 lg4">
+          <div class="icon-block">
+            <%= link_to "/resultados",class:'center green-text text-darken-4' do %>
+               <center><i class="fas fa-chart-area fa-4x"></i></center><p> 
+            <%end%>
+            <h6 class="center black-text"><b>Resultados</a> </b></h6>
+          </div>
+        </div>
+        
+        <div class="col s12 m4 lg4">
+          <div class="icon-block">
+            <br>
+            <%= link_to "/faq",class:'center red-text text-darken-4' do %>
+               <center><i class="fas fa-question-circle fa-4x"></i></center><p> 
+            <%end%>
+            <h6 class="center black-text"><b>F.A.Q </a> </b></h6>
+          </div>
+        </div>
+        
+        
+      <!--  
         <div class="col s12 m4 lg4">
           <div class="icon-block">
             <h2 class="center red-text text-darken-4"><i class="fas fa-question-circle fa-1x"></i></h2>
             <h6 class="center"><b><a href="/faq" class="black-text">F.A.Q</a> </b></h6>
           </div>
         </div>
-     </div>
+     </div>-->
      
 
 <%else%>    

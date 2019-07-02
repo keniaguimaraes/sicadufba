@@ -1,6 +1,30 @@
 <div class="row">
   <div class="col s12 m10 offset-m1 ">
     <div class="card-panel">
+         <% @disciplina.each do |disciplina| %>
+           <div class="row">
+             
+             <div class="col s12 m12 lg12"><h7><b><%=disciplina.nome%></b></h7></div>
+             <div class="col s12 m12 lg12"><b><h8>Qtd Avaliações:</b> <%=disciplina.qtd_avaliacoes%><h8></div>
+            <div class="col s12 m3 lg3"><b><h8>Dominio Conteudo:</b></h8></div>
+             <% 
+             professor=disciplina.professor_id
+             @dominio_conteudo_positivo = Avaliacaoprof.select("count(dominio_conteudo) as conteudo")
+                                                      .where("professor_id=:professor_id and dominio_conteudo = 1",{professor_id: professor}).all
+             @dominio_conteudo_negativo = Avaliacaoprof.select("count(dominio_conteudo) as conteudo")
+                                                      .where("professor_id=:professor_id and dominio_conteudo = 2",{professor_id: professor}).all                                           
+             @dominio_conteudo_positivo.each do |dominio| %>
+               <div class="col s12 m1 lg1"><i class="fas fa-thumbs-up fa-2x green-text"></i> <%=dominio.conteudo%></div>
+            <% end    %>  
+            <% @dominio_conteudo_negativo.each do |dominio2|%>
+               <div class="col s12 m1 lg1"><i class="fas fa-thumbs-down fa-2x red-text"></i> <%=dominio2.conteudo%></div>
+            <% end    %>
+          
+             <div class="col"></div>
+             <div class="col"></div>
+           </div>
+         <%end%>
+  
     </div>   
   </div>
  </div>   
