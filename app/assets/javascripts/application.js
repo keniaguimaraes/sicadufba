@@ -17,7 +17,9 @@
 //= require materialize-sprockets
 //= require select2
 //= require materialize/extras/nouislider
+
 //= require_tree .
+
 
 
 ('.dropdown-button').dropdown({
@@ -31,8 +33,10 @@
     ('.collapsible').collapsible();
     ('.tooltipped').tooltip();
     ('.modal').modal();
+    
+
+    
+    
 }); // end of document ready
-
-
 
 

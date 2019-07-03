@@ -3,7 +3,6 @@ class ComentarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comentar, only: [:show, :edit, :update, :destroy]
 
-
   # GET /comentars
   # GET /comentars.json
   def index
@@ -100,8 +99,12 @@ class ComentarsController < ApplicationController
      respond_to do |format|
         @comentar.update(bloqueio: true)
         @comentar.update(data_bloqueio: Time.now)
-        menssagem= 'Comentário Bloqueado!!'  
-       format.html { redirect_to "/comentars/0/all", notice:menssagem }
+        
+     
+       format.html { redirect_to "/comentars/0/all",notice: 'Person was successfully created.'}
+            # flash[:notice] = "Notification deleted"
+             
+             flash[:success] = "Woohoo!"
      end  
   end  
   
@@ -110,7 +113,8 @@ class ComentarsController < ApplicationController
       respond_to do |format|
         @comentar.update(bloqueio: false)
         menssagem= 'Comentário Desbloqueado!!'  
-        format.html { redirect_to "/comentars/0/all", notice:menssagem }
+        flash[:success] = "Registration Successful"  
+        format.html { redirect_to "/comentars/0/all",notice: 'Person was successfully created.' }
       end  
   end  
 

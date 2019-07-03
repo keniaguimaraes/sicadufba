@@ -1,30 +1,66 @@
 <div class="row">
   <div class="col s12 m10 offset-m1 ">
-    <div class="card-panel">
+   
          <% @disciplina.each do |disciplina| %>
-           <div class="row">
-             
-             <div class="col s12 m12 lg12"><h7><b><%=disciplina.nome%></b></h7></div>
-             <div class="col s12 m12 lg12"><b><h8>Qtd Avaliações:</b> <%=disciplina.qtd_avaliacoes%><h8></div>
-            <div class="col s12 m3 lg3"><b><h8>Dominio Conteudo:</b></h8></div>
-             <% 
-             professor=disciplina.professor_id
+         
+            <% 
+             professor = disciplina.professor_id
              @dominio_conteudo_positivo = Avaliacaoprof.select("count(dominio_conteudo) as conteudo")
                                                       .where("professor_id=:professor_id and dominio_conteudo = 1",{professor_id: professor}).all
              @dominio_conteudo_negativo = Avaliacaoprof.select("count(dominio_conteudo) as conteudo")
-                                                      .where("professor_id=:professor_id and dominio_conteudo = 2",{professor_id: professor}).all                                           
-             @dominio_conteudo_positivo.each do |dominio| %>
-               <div class="col s12 m1 lg1"><i class="fas fa-thumbs-up fa-2x green-text"></i> <%=dominio.conteudo%></div>
-            <% end    %>  
-            <% @dominio_conteudo_negativo.each do |dominio2|%>
-               <div class="col s12 m1 lg1"><i class="fas fa-thumbs-down fa-2x red-text"></i> <%=dominio2.conteudo%></div>
-            <% end    %>
-          
-             <div class="col"></div>
-             <div class="col"></div>
-           </div>
+                                                      .where("professor_id=:professor_id and dominio_conteudo = 2",{professor_id: professor}).all  
+                                                      
+             @relacionamento_positivo = Avaliacaoprof.select("count(relacionamento_alunos) as relacionamento")
+                                                      .where("professor_id=:professor_id and relacionamento_alunos = 1",{professor_id: professor}).all
+             @relacionamento_negativo = Avaliacaoprof.select("count(relacionamento_alunos) as relacionamento")
+                                                      .where("professor_id=:professor_id and relacionamento_alunos = 2",{professor_id: professor}).all                                                        
+             @possui_didatica_positivo = Avaliacaoprof.select("count(possui_didatica) as didatica")
+                                                      .where("professor_id=:professor_id and possui_didatica = 1",{professor_id: professor}).all
+             @possui_didatica_negativo = Avaliacaoprof.select("count(possui_didatica) as didatica")
+                                                      .where("professor_id=:professor_id and possui_didatica = 2",{professor_id: professor}).all                                          
+              %>  
+             <div class="card-panel">
+                 <div class="row">
+                   <div class="col s12 m12 lg12"><h7><b><%=disciplina.nome%><hr></b></h7></div>
+                 </div>
+                 <div class="row">
+                   <div class="col s12 m12 lg12"><b><h8>Qtd Avaliações:</b> <%=disciplina.qtd_avaliacoes%><h8></div>
+                 </div>
+                 <div class="row">
+                    <div class="col s12 m3 lg3"><b><h8>Dominio Conteudo:</b></h8></div>
+                         <% @dominio_conteudo_positivo.each do |dominio| %>
+                           <div class="col s4 m1 lg1"><i class="fas fa-thumbs-up fa-2x green-text"></i> <%=dominio.conteudo%></div>
+                        <% end    %>  
+                        <% @dominio_conteudo_negativo.each do |dominio2|%>
+                           <div class="col s4 m1 lg1"><i class="fas fa-thumbs-down fa-2x red-text"></i> <%=dominio2.conteudo%></div>
+                        <% end    %>
+                 </div>
+                 <div class="row">
+                    <div class="col s12 m3 lg3"><b><h8>Relacionamento Alunos:</b></h8></div>
+                        
+                         <%@relacionamento_positivo.each do |relacionamento| %>
+                           <div class="col s4 m1 lg1"><i class="fas fa-thumbs-up fa-2x green-text"></i> <%=relacionamento.relacionamento%></div>
+                        <% end    %>  
+                        <% @relacionamento_negativo.each do |relacionamento|%>
+                           <div class="col s4 m1 lg1"><i class="fas fa-thumbs-down fa-2x red-text"></i> <%=relacionamento.relacionamento%></div>
+                        <% end    %>
+                </div>
+                <div class="row">
+                    <div class="col s12 m3 lg3"><b><h8>Didatica:</b></h8></div>
+                         
+                              <%@possui_didatica_positivo.each do |didatica| %>
+                           <div class="col s4 m1 lg1"><i class="fas fa-thumbs-up fa-2x green-text"></i> <%=didatica.didatica%></div>
+                        <% end    %>  
+                        <% @possui_didatica_negativo.each do |didatica|%>
+                           <div class="col s4 m1 lg1"><i class="fas fa-thumbs-down fa-2x red-text"></i> <%=didatica.didatica%></div>
+                        <% end    %>
+                
+                 </div>
+                <div class="row">
+                       <div class="col s12 m3 lg3"><b><h8>Recomendação</b></h8></div>
+                </div>
+            </div>
          <%end%>
-  
     </div>   
   </div>
  </div>   

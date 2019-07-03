@@ -14,11 +14,16 @@
  
  *= require_tree .
  *= require_self
+
  
  */
 @import "materialize";
 @import "material_icons";
 @import "materialize/extras/nouislider";
+
+
+
+
 
 body {
     display: flex;
@@ -819,3 +824,4 @@ input[type=range]+.thumb {
 input[type=range]+.thumb.active{
   top: -35px !important;
 }
+

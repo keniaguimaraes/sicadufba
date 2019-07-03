@@ -13,9 +13,8 @@
     
   	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
     
-    
-    
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+ 
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
@@ -32,7 +31,15 @@
 
     <main>
       <div class="container">
+     
         <%= yield %>
+       <% flash.each do |message_type, message| %>
+        <%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
+      <% end %>   
+        
+
+	 
+	 
       </div>
     </main>
 

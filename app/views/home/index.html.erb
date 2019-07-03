@@ -1,5 +1,7 @@
+         <% flash.each do |type, msg| %>
+          <%= content_tag :span, msg, class: "#{type}", id: "puffly" %>
+         <% end %>
 <% if user_signed_in? %>
-<p id="notice"><%= flash_message %></p>
   <div class="container">
     <div class="row">
 
