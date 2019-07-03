@@ -1,6 +1,5 @@
 <% require 'time'%>
 <%= form_for(comentar) do |f| %>
- <%= f.error_notification %>
   <% if comentar.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comentar.errors.count, "error") %> prohibited this comentar from being saved:</h2>
