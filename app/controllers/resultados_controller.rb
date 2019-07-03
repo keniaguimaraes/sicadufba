@@ -1,5 +1,5 @@
 class ResultadosController < ApplicationController
-
+before_action :authenticate_user!
     def index
         @resultados = Avaliacaoprof.select("professors.nome, avaliacaoprofs.professor_id, count(professors.nome) qtd")
                                     .joins("JOIN professors ON professors.id = avaliacaoprofs.professor_id" )
@@ -8,11 +8,12 @@ class ResultadosController < ApplicationController
     
     def professor
       
-        @disciplina = Avaliacaoprof.select("disciplinas.nome,avaliacaoprofs.professor_id,count(disciplinas.nome)as qtd_avaliacoes ")
+        @disciplina = Avaliacaoprof.select("disciplinas.nome,avaliacaoprofs.professor_id,count(disciplinas.nome)as qtd_avaliacoes, disciplinacursos.id as disciplinacurso_id")
                                     .joins("JOIN disciplinacursos ON disciplinacursos.id = avaliacaoprofs.disciplinacurso_id" )
                                     .joins("JOIN disciplinas ON disciplinas.id = disciplinacursos.disciplina_id" )
                                     .where("avaliacaoprofs.professor_id =:professor_id",{professor_id:params[:professor_id]})
-                                    .group("disciplinas.nome,avaliacaoprofs.professor_id").all 
+                                    .group("disciplinas.nome,avaliacaoprofs.professor_id,disciplinacursos.id").all 
+                                    
                                     
     end
     

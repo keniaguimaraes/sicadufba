@@ -5,19 +5,27 @@
          
             <% 
              professor = disciplina.professor_id
+             disciplinacurso_id = disciplina.disciplinacurso_id
+             
              @dominio_conteudo_positivo = Avaliacaoprof.select("count(dominio_conteudo) as conteudo")
-                                                      .where("professor_id=:professor_id and dominio_conteudo = 1",{professor_id: professor}).all
+                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and dominio_conteudo = 1",{professor_id: professor,disciplinacurso_id: disciplinacurso_id}).all
              @dominio_conteudo_negativo = Avaliacaoprof.select("count(dominio_conteudo) as conteudo")
-                                                      .where("professor_id=:professor_id and dominio_conteudo = 2",{professor_id: professor}).all  
+                                                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and dominio_conteudo = 2",{professor_id: professor,disciplinacurso_id: disciplinacurso_id}).all
                                                       
              @relacionamento_positivo = Avaliacaoprof.select("count(relacionamento_alunos) as relacionamento")
-                                                      .where("professor_id=:professor_id and relacionamento_alunos = 1",{professor_id: professor}).all
+                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and relacionamento_alunos = 1",{professor_id: professor,disciplinacurso_id: disciplinacurso_id}).all
              @relacionamento_negativo = Avaliacaoprof.select("count(relacionamento_alunos) as relacionamento")
-                                                      .where("professor_id=:professor_id and relacionamento_alunos = 2",{professor_id: professor}).all                                                        
+                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and relacionamento_alunos = 2",{professor_id: professor,disciplinacurso_id: disciplinacurso_id}).all
              @possui_didatica_positivo = Avaliacaoprof.select("count(possui_didatica) as didatica")
-                                                      .where("professor_id=:professor_id and possui_didatica = 1",{professor_id: professor}).all
+                                                       .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and possui_didatica = 1",{professor_id: professor,disciplinacurso_id: disciplinacurso_id}).all
              @possui_didatica_negativo = Avaliacaoprof.select("count(possui_didatica) as didatica")
-                                                      .where("professor_id=:professor_id and possui_didatica = 2",{professor_id: professor}).all                                          
+                                                       .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and possui_didatica = 2",{professor_id: professor,disciplinacurso_id: disciplinacurso_id}).all
+             
+             @tags_associadas = Avaliacaoprof.select("tags.tag, count(tags.tag) as qtd_tag")
+			                                 .joins("join avaliacaotags on avaliacaotags.avaliacaoprof_id = avaliacaoprofs.id")
+											 .joins("join tags on tags.id = avaliacaotags.tag_id")
+                                             .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id ",{professor_id: professor,disciplinacurso_id: disciplinacurso_id}).all
+                                             .group("tags.tag").all	
               %>  
              <div class="card-panel">
                  <div class="row">
@@ -56,6 +64,20 @@
                         <% end    %>
                 
                  </div>
+                 
+                 
+			    <div class="row">
+                  <div class="col s12 m3 lg3"><b><h8>Tag Associadas</b></h8></div>  
+                  <%@tags_associadas.each do |tag| %>
+                          <div class="col"> 
+                             <div s2 m2 class="chip" >
+                             <qtd> <center><b><%=tag.qtd_tag%></b></center></qtd>  <%=tag.tag%> 
+                             </div>
+                          </div>
+			 			  
+                  <% end    %>
+                </div>
+			 
                 <div class="row">
                        <div class="col s12 m3 lg3"><b><h8>Recomendação</b></h8></div>
                 </div>
@@ -64,3 +86,19 @@
     </div>   
   </div>
  </div>   
+ 
+ <style>
+
+.chip {
+  display: inline-block;
+  padding: 0 25px;
+}  
+.chip qtd {
+  float: left;
+  margin: 0 5px 0 -26px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color:#a9a9a9;
+}
+</style>

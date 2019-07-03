@@ -1,6 +1,6 @@
 class AvaliacaoprofsController < ApplicationController
   before_action :set_avaliacaoprof, only: [:show, :edit, :update, :destroy]
-
+before_action :authenticate_user!
   # GET /avaliacaoprofs
   # GET /avaliacaoprofs.json
   def index
@@ -50,12 +50,15 @@ class AvaliacaoprofsController < ApplicationController
       proximo = 1
     else proximo = @ult_avaliacao.id + 1
     end 
-    @tagselect.each do |tagselect|
-      @avaliacaotag = Avaliacaotag.new
-      @avaliacaotag.tag_id = tagselect
-      @avaliacaotag.avaliacaoprof_id = proximo
-      @avaliacaotag.save
-    end  
+    
+    if  not @tagselect.nil?  then
+      @tagselect.each do |tagselect|
+        @avaliacaotag = Avaliacaotag.new
+        @avaliacaotag.tag_id = tagselect
+        @avaliacaotag.avaliacaoprof_id = proximo
+        @avaliacaotag.save
+      end  
+    end
 
     respond_to do |format|
       if @avaliacaoprof.save
