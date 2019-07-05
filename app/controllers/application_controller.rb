@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
 
   add_breadcrumb "Página Principal", "/", :options => { :title => "Página principal" } 
-=begin
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def configure_permitted_parameters
@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
-=end  
+
   def contact
-     add_breadcrumb "Contato"
+  
   end
 
   def send_contact
