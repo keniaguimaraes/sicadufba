@@ -1,16 +1,31 @@
+<div class="container">
   <div class="row">
-        <div class="col s12 m4 lg4 offset-m2">
+
+        <div class="col s12 m4 lg4">
           <div class="icon-block">
-            <h2 class="center  blue-grey-text text-darken-1"><i class="fas fa-comment-dots fa-1x"></i></h2>
-            <h6 class="center"><b><a  href="/faq_comentarios" class="black-text">Comentários</a> </b></h6>
+            <%= link_to '/faq_comentarios',class:'center blue-grey-text text-darken-1' do %>
+               <center><i class="fas fa-comment-dots fa-4x"></i></center><p> 
+            <%end%>
+            <h6 class="center black-text"><b>Comentários</a> </b></h6>
           </div>
         </div>
-
-        <div class="col s12  m4 lg4">
+        
+        <div class="col s12 m4 lg4">
           <div class="icon-block">
-            <h2 class="center  blue-text text-darken-4"><i class="fas fa-chalkboard-teacher fa-1x"></i></h2>
-            <h6 class="center"><b><a href="/faq_avaliacoes" class="black-text">Avaliações Docente</a></b></h6> 
-      
+            <%= link_to '/faq_avaliacoes',class:'center blue-text text-darken-4' do %>
+               <center><i class="fas fa-chalkboard-teacher fa-4x"></i></center><p> 
+            <%end%>
+            <h6 class="center black-text"><b>Avaliações Docente</a> </b></h6>
+          </div>
+        </div>
+        
+        <div class="col s12 m4 lg4">
+          <div class="icon-block">
+            <%= link_to "/faq_resultados",class:'center green-text text-darken-4' do %>
+               <center><i class="fas fa-chart-area fa-4x"></i></center><p> 
+            <%end%>
+            <h6 class="center black-text"><b>Resultados</a> </b></h6>
           </div>
         </div>
   </div>
+</div>

@@ -8,20 +8,20 @@
         <table class="striped">
           <thead>
             <tr>
-              <th><b>Professores</b></th>
+              <th><b>Semestre</b></th>
               <th><b>Qtd. Avaliações</b></th>
               <th colspan="2"></th>
             </tr>
           </thead>
         
           <tbody>
-              <% @resultados.each do |resultado| %>
+              <% @semestre.each do |semestre| %>
                   <tr>
-                     <td><%= resultado.nome %></td>
-                     <td><%= resultado.qtd %></td>
+                     <td><%= semestre.nome %></td>
+                     <td><%= semestre.qtd %></td>
                      <td class="rigth actions">
                   
-                       <%= link_to resultado_professor_path(:professor_id => resultado.professor_id, :ano_semestre => params[:ano_semestre]),class:'' do %>
+                       <%= link_to resultados_path(:ano_semestre => semestre.nome),class:'' do %>
                           <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Ver Resultado">details</i>  
                       <%end%>
                     </td>
@@ -29,6 +29,7 @@
              <% end %>
           </tbody>
         </table>
+
     </div>
   </div>
 </div>

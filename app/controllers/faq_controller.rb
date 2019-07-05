@@ -14,6 +14,11 @@ class FaqController < ApplicationController
       add_breadcrumb "F.A.Q", "/faq", :title => "Voltar para Anterior"
       add_breadcrumb "Avaliação"
     end  
+      
+    def resultados
+      add_breadcrumb "F.A.Q", "/faq", :title => "Voltar para Anterior"
+      add_breadcrumb "Resultados"
+    end 
     
     def show
     end  

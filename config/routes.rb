@@ -23,8 +23,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   get '/check.txt', to: proc {[200, {}, ['it_works']]}
-  root 'home#index', :as => 'contact_us'
-
+  root 'home#index'
  resources :comentars do
      member do
        get 'mostra'=> 'comentars#mostra'
@@ -45,8 +44,7 @@ resources :admin do
        get 'clear'=> 'admin#clear'
     end
  end
- 
- 
+
  devise_scope :user do
     get '/login' => 'devise/sessions#new'
     get '/logout' => 'devise/sessions#destroy'
@@ -60,23 +58,11 @@ resources :admin do
     end
  end
  
-
-
-
- 
-=begin 
-  resources :faq do
-     member do
-        get 'comentarios' => 'faq#comentarios', as: :comentarios
-        get 'avaliacoes' => 'faq#avaliacoes'
-      end
-  end    
-=end  
-  #  get 'faq/0/comentarios' => 'faq#comentarios'
-
   get "faq_avaliacoes", to: "faq#avaliacoes"
   get 'faq_comentarios', to: 'faq#comentarios'
+  get 'faq_resultados', to: 'faq#resultados'
   get 'resultado_professor', to: 'resultados#professor'
-  get 'resultado_comentario', to: 'resultados#comentarios'
-
+  get 'resultado_semestre', to: 'resultados#semestre'
+  get 'contato' => 'application#contact', :as => 'contact_us'
+  post 'contato' => 'application#send_contact', :as => 'send_contact'
 end

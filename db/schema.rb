@@ -26,17 +26,6 @@ ActiveRecord::Schema.define(version: 2019_06_26_123247) do
     t.integer "disciplinacurso_id"
   end
 
-  create_table "avaliacaos", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "professor_id"
-    t.integer "itemavaliacao_id"
-    t.boolean "resp_positiva"
-    t.boolean "resp_negativa"
-    t.date "data_avaliacao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "avaliacaotags", force: :cascade do |t|
     t.integer "avaliacaoprof_id"
     t.integer "tag_id"
