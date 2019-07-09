@@ -4,3 +4,11 @@ heroku pg:reset DATABASE --confirm sicadufba
 export SENHA_EMAIL=Sicadufba1*
 heroku config:set SENHA_EMAIL=Sicadufba1*
 dokku config:set SENHA_EMAIL=Sicadufba1*
+
+ruby -v correctly reported 2.1.5
+rvm list showed 2.1.5 as default (* character) ... but it was not selected as current (no = character)
+rvm use default fixed things, but new tmux sessions had the same problem
+rvm get head (or stable) didn't help or even report issues
+
+root@165.227.42.80
+dokku postgres:connect my-rails-app-pg
