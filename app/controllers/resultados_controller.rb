@@ -27,9 +27,9 @@ class ResultadosController < ApplicationController
     
     def semestre
      add_breadcrumb "Resultados por Semestre"
-     @semestre = Avaliacaoprof.select("cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) as nome, count(semestres.ano) as qtd ")
+     @semestre = Avaliacaoprof.select("cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) as nome, count(cast(semestres.ano as char(4))||cast(semestres.codigo as char(1))) as qtd ")
                                     .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                    .group(" cast(semestres.ano as char(4))||cast(semestres.codigo as char(1))").all 
+                                    .group("cast(semestres.ano as char(4))||cast(semestres.codigo as char(1))").all 
     end 
     
     def comentario
