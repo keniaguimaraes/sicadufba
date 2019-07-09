@@ -3,3 +3,4 @@ heroku pg:reset DATABASE
 heroku pg:reset DATABASE --confirm sicadufba
 export SENHA_EMAIL=Sicadufba1*
 heroku config:set SENHA_EMAIL=Sicadufba1*
+dokku config:set SENHA_EMAIL=Sicadufba1*

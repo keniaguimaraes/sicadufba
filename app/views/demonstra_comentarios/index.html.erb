@@ -3,7 +3,7 @@
 <div class="card-panel">
   
 <% if @temequip == 0 %>
-<p> Não existe nenhum equipamento cadastrado. </p>
+<p> Não existe nenhum comentário realizado. </p>
 <br> 
 
 <%else %>  
@@ -15,7 +15,7 @@
   </div>
   <div class="col s2 m2 lg2" > 
      <%= button_tag(type: "submit", class: "btn waves-effect waves-light light-blue btn-small white-text") do %>
-      <i class="material-icons white-text text-lighten-2 tooltipped" data-tooltip="pesqusiar">search</i> 
+      <i class="material-icons white-text text-lighten-2 tooltipped">search</i> 
      <% end %>
   </div>
   <% end %>
@@ -47,12 +47,12 @@
   </div>
 </div> 
 <%end%>
- <div class="row">
-         <div class="col s12 m1 lg1 ">
-          <%= link_to 'Comentar', new_comentar_path, class: 'btn waves-effect waves-light light-blue white-text'  %> 
-        </div>
-    </div>    
 
+ <div class="row">
+   <div class="col s12 m1 lg1 ">
+       <%= link_to 'Comentar', new_comentar_path, class: 'btn waves-effect waves-light light-blue white-text'  %> 
+    </div>
+ </div>    
 </div> 
 </div>
 </div> 

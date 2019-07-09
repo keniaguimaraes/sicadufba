@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :tipoperfils
   resources :avaliacaoprofs
   resources :comentariotags
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   resources :user
   resources :resultados
   resources :faq
+  resources :usuarios
   
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -48,7 +50,7 @@ resources :admin do
  devise_scope :user do
     get '/login' => 'devise/sessions#new'
     get '/logout' => 'devise/sessions#destroy'
-    get '/perfil' => 'devise/registrations#edit'
+   # get '/perfil' => 'devise/registrations#edit'
     get '/user' => 'user#index'
  end
  resources :user do
@@ -65,4 +67,12 @@ resources :admin do
   get 'resultado_semestre', to: 'resultados#semestre'
   get 'contato' => 'application#contact', :as => 'contact_us'
   post 'contato' => 'application#send_contact', :as => 'send_contact'
+  
+   resources :usuarios do
+     member do
+        get 'bloquear' => 'usuarios#bloquear'
+        get 'desbloquear' => 'usuarios#desbloquear'
+        get 'perfil' => 'usuarios#perfil'
+    end    
+ end
 end

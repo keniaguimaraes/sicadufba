@@ -1,11 +1,17 @@
 class AvaliacaoprofsController < ApplicationController
   before_action :set_avaliacaoprof, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!
+  before_action :authenticate_user!
   # GET /avaliacaoprofs
   # GET /avaliacaoprofs.json
   def index
     add_breadcrumb "Minhas Avaliações Docente", avaliacaoprofs_path, :title => "Voltar para a Página principal"
-    @avaliacaoprofs = Avaliacaoprof.where("user_id =:user_id",{user_id:current_user.id}).all
+    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    user_id=0
+    @usuarios.each do |usuario| 
+       user_id = usuario.id     
+    end 
+
+    @avaliacaoprofs = Avaliacaoprof.where("user_id =:user_id",{user_id:user_id}).all
                                    .paginate(:page => params[:page], :per_page => 7)
   end
 
@@ -19,11 +25,16 @@ before_action :authenticate_user!
   # GET /avaliacaoprofs/new
   def new
     @avaliacaoprof = Avaliacaoprof.new
-    
+    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    curso_id=0
+    @usuarios.each do |usuario| 
+       curso_id = usuario.curso_id     
+    end 
+             
     @disciplinacurso = Disciplinacurso.select(" ' ( ' ||disciplinacursos.semestre||' )  ' || disciplinas.nome as nome, disciplinacursos.* ")
                                        .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
                                        .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")
-                                       .where(" disciplinacursos.curso_id =:curso_id",{curso_id:current_user.curso_id}).all
+                                       .where(" disciplinacursos.curso_id =:curso_id",{curso_id:curso_id}).all
                                        .order("coalesce(disciplinacursos.semestre, '999')")
     @professor = Professor.all.order("nome")
 

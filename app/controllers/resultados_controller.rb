@@ -1,12 +1,13 @@
 class ResultadosController < ApplicationController
-before_action :authenticate_user!
+    before_action :authenticate_user!
+    
     def index
         add_breadcrumb "Resultados por Semestre", resultado_semestre_path, :title => "Voltar para a Página principal"
         add_breadcrumb "Restrição por Professor"
         @resultados = Avaliacaoprof.select("professors.nome, avaliacaoprofs.professor_id, count(professors.nome) qtd")
                                     .joins("JOIN professors ON professors.id = avaliacaoprofs.professor_id" )
                                     .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                    .where("semestres.ano||semestres.codigo =:ano_semestre",{ano_semestre:params[:ano_semestre]})
+                                    .where("cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{ano_semestre:params[:ano_semestre]})
                                     .group("professors.nome, avaliacaoprofs.professor_id").all    
     end
     
@@ -15,20 +16,20 @@ before_action :authenticate_user!
         add_breadcrumb "Result.Professor", resultado_professor_path, :title => "Voltar para a Página principal"
         add_breadcrumb "Resultados Avaliações"
       
-        @disciplina = Avaliacaoprof.select("disciplinas.nome,avaliacaoprofs.professor_id,disciplinas.codigo, count(disciplinas.nome)as qtd_avaliacoes, semestres.ano||semestres.codigo as ano, disciplinacursos.id as disciplinacurso_id")
+        @disciplina = Avaliacaoprof.select("disciplinas.nome,avaliacaoprofs.professor_id,disciplinas.codigo, count(disciplinas.nome)as qtd_avaliacoes, cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) as ano, disciplinacursos.id as disciplinacurso_id")
                                     .joins("JOIN disciplinacursos ON disciplinacursos.id = avaliacaoprofs.disciplinacurso_id" )
                                     .joins("JOIN disciplinas ON disciplinas.id = disciplinacursos.disciplina_id" )
                                     .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                    .where("avaliacaoprofs.professor_id =:professor_id and semestres.ano||semestres.codigo =:ano_semestre",{professor_id:params[:professor_id],ano_semestre:params[:ano_semestre]})
-                                    .group("disciplinas.nome,avaliacaoprofs.professor_id,disciplinacursos.id").all 
-                         
+                                    .where("avaliacaoprofs.professor_id =:professor_id and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id:params[:professor_id],ano_semestre:params[:ano_semestre]})
+                                    .group("disciplinas.nome,avaliacaoprofs.professor_id,disciplinacursos.id").all
+                                    
     end
     
     def semestre
      add_breadcrumb "Resultados por Semestre"
-     @semestre = Avaliacaoprof.select("semestres.ano||semestres.codigo as nome, count(semestres.ano) as qtd ")
+     @semestre = Avaliacaoprof.select("cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) as nome, count(semestres.ano) as qtd ")
                                     .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                    .group("semestres.ano||semestres.codigo").all 
+                                    .group(" cast(semestres.ano as char(4))||cast(semestres.codigo as char(1))").all 
     end 
     
     def comentario

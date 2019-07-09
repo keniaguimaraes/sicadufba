@@ -2,25 +2,33 @@
 <div id="main" class="container-fluid">
 
  <div class="row">
-   <div class="col s12 m8 lg8 offset-m2">
+   <div class="col s12 m9 lg9 offset-m2">
       <div class="card-panel ">
         
-        <p>
-          <strong><b>Professor: </b></strong>
+        <div class="row">
+        <div class="col s12 m8 lg8 "><strong><b>Professor: </b></strong>
           <%= @avaliacaoprof.professor.nome %>
-        </p>
+        </div>
+        </div>
         
-        <p>
+        <div class="row">
+        <div class="col s12 m8 lg8 ">
           <strong><b>Semestre: </b></strong>
           <%= @avaliacaoprof.semestre.ano %>
-        </p>
+         </div>
+        </div>
         
-        <p>
+        
+            <div class="row">
+        <div class="col s12 m8 lg8 ">
           <strong><b>Data Avaliação:</b></strong>
           <%= formato_data_hora(@avaliacaoprof.data_avaliacao) %>
-        </p>
+          </div>
+        </div>
         
-        <p>
+        
+           <div class="row">
+        <div class="col s12 m8 lg8">
           <strong><b>Domínio de conteúdo?</b></strong>
            <% if  @avaliacaoprof.dominio_conteudo == 1 then  %>
                <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
@@ -30,9 +38,12 @@
                <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
            <%end%>
         
-        </p>
+        </div>
+        </div>
         
-        <p>
+        
+            <div class="row">
+        <div class="col s12 m8 lg8 ">
           <strong><b>Possui um bom relacionamento com alunos?</b></strong>
         
           <% if  @avaliacaoprof.relacionamento_alunos == 1 then  %>
@@ -42,9 +53,12 @@
                <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
                <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
            <%end%>
-        </p>
+       </div>
+        </div>
         
-        <p>
+        
+            <div class="row">
+        <div class="col s12 m8 lg8 ">
           <strong><b>Possui didática?</b></strong>
           
           <% if  @avaliacaoprof.possui_didatica == 1 then  %>
@@ -54,19 +68,24 @@
                <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
                <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
            <%end%>
-        </p>
+         </div>
+        </div>
+     
+        <div class="row">
+            <div class="col s12 m8 lg8"> <strong><b>Tags relacionadas</b></strong><div><p>
+            
+                <% @tags = Avaliacaotag.where("avaliacaoprof_id =:avaliacaoprof_id",{avaliacaoprof_id:@avaliacaoprof.id}).all
+                  @tags.each do |tags| %>
+                    <div class="col"> 
+                      <div class="chip"><%=tags.tag.tag%></div>
+                    </div>
+                  <%end%>
+           
+        </div>
         
-        <p>  <strong><b>Tags relacionadas</b></strong>
-            <% @tags = Avaliacaotag.where("avaliacaoprof_id =:avaliacaoprof_id",{avaliacaoprof_id:@avaliacaoprof.id}).all
-              @tags.each do |tags| %>
-                <div class="col"> 
-                  <div class="chip"><%=tags.tag.tag%></div>
-                </div>
-              <%end%>
-              
-        </p><br><br>
+        <br>
            <div class="row"> 
-            <div class="col">  
+            <div class="col s12 m12 lg12 ">  
                   <strong><b>Nível de Recomendação: </b></strong>
                   <% if @avaliacaoprof.recomendaria_professor == 1 then %>
                          <i class="fas fa-star fa-2x blue-text"></i> 

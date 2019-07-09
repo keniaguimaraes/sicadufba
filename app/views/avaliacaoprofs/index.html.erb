@@ -9,10 +9,12 @@
       
       <div class="row">
         <br>
-        <div class="col s10 m10 lg10 "><b>Professor:</b> <%= avaliacaoprof.professor.nome %> </div>
+        <div class="col s10 m9 lg9 "><b>Professor:</b> <%= avaliacaoprof.professor.nome %> </div>
         <div class="col s12 m2 lg2 "> <b>Ano:</b> <%=avaliacaoprof.semestre.ano %>.<%=avaliacaoprof.semestre.codigo %> </div>
       </div>
-      
+      <div class="row">
+        <div class="col s10 m9 lg9 "><b>Disciplina:</b> <%= avaliacaoprof.disciplinacurso.disciplina.nome %> </div>
+      </div>
       <div class="row">
         <div class="col s6 m6 lg6"><b>Data:</b> <%= formato_data_hora(avaliacaoprof.data_avaliacao)%></b> </div>
        

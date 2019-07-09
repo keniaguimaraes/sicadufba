@@ -7,7 +7,12 @@ class ComentarsController < ApplicationController
   # GET /comentars.json
   def index
     add_breadcrumb "Meus Comentários", comentars_path, :title => "Voltar para a página principal"
-    @comentars = Comentar.where("user_id =:user_id",{user_id:current_user.id}).all
+    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    user_id=0
+    @usuarios.each do |usuario| 
+       user_id = usuario.id     
+    end
+    @comentars = Comentar.where("user_id =:user_id",{user_id:user_id}).all
                          .paginate(:page => params[:page], :per_page => 7)
     $local="index"                     
   end
@@ -25,13 +30,13 @@ class ComentarsController < ApplicationController
   # GET /comentars/1.json
   def show
 
-      @comentarios_disciplina = Comentar.select('users.email as email, cursos.nome curso ,disciplinas.nome as disciplina, disciplinacursos.disciplina_id as disciplina_id, professors.nome,semestres.ano,comentars.comentario as comentario') 
+      @comentarios_disciplina = Comentar.select('cursos.nome curso ,disciplinas.nome as disciplina, disciplinacursos.disciplina_id as disciplina_id, professors.nome,semestres.ano,comentars.comentario as comentario') 
                                                  .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
                                                  .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
                                                  .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
                                                  .joins('JOIN semestres on semestres.id = comentars.semestre_id')
                                                  .joins('join professors on professors.id = comentars.professor_id')
-                                                 .joins('JOIN users ON users.id = comentars.user_id ')
+                                                 .joins('JOIN usuarios ON usuarios.id = comentars.user_id ')
                                                  .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
     
   
@@ -57,13 +62,13 @@ class ComentarsController < ApplicationController
   
   
   def mostra
-       @comentarios_disciplina = Comentar.select('users.email as email, cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id, disciplinacursos.disciplina_id as disciplina_id') 
+       @comentarios_disciplina = Comentar.select(' cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id, disciplinacursos.disciplina_id as disciplina_id') 
                                  .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
                                  .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
                                  .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
                                  .joins('JOIN semestres on semestres.id = comentars.semestre_id')
                                  .joins('join professors on professors.id = comentars.professor_id')
-                                 .joins('JOIN users ON users.id = comentars.user_id ')
+                                 .joins('JOIN usuarios ON usuarios.id = comentars.user_id ')
                                  .where("disciplinacursos.disciplina_id=:disciplina_id and comentars.bloqueio = '0' ",{disciplina_id: params[:disciplina_id]})
                                  .paginate(:page => params[:page], :per_page => 4)
      if $aux == "a" then 
@@ -80,10 +85,15 @@ class ComentarsController < ApplicationController
   # GET /comentars/new
   def new
     @comentar = Comentar.new
+    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    curso_id=0
+    @usuarios.each do |usuario| 
+       curso_id = usuario.curso_id    
+    end
     @disciplinacurso = Disciplinacurso.select(" ' ( ' ||disciplinacursos.semestre||' )  ' || disciplinas.nome as nome, disciplinacursos.* ")
                                        .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
                                        .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")
-                                       .where(" disciplinacursos.curso_id =:curso_id",{curso_id:current_user.curso_id}).all
+                                       .where(" disciplinacursos.curso_id =:curso_id",{curso_id:curso_id}).all
                                        .order("coalesce(disciplinacursos.semestre, '999')")
     @professor = Professor.all.order("nome")
 
@@ -100,11 +110,10 @@ class ComentarsController < ApplicationController
         @comentar.update(bloqueio: true)
         @comentar.update(data_bloqueio: Time.now)
         
-     
-       format.html { redirect_to "/comentars/0/all",notice: 'Person was successfully created.'}
+       message='Comentário Bloqueado!'
+       format.html { redirect_to "/comentars/0/all",notice:message }
             # flash[:notice] = "Notification deleted"
-             
-             flash[:success] = "Woohoo!"
+        
      end  
   end  
   
@@ -113,8 +122,8 @@ class ComentarsController < ApplicationController
       respond_to do |format|
         @comentar.update(bloqueio: false)
         menssagem= 'Comentário Desbloqueado!!'  
-        flash[:success] = "Registration Successful"  
-        format.html { redirect_to "/comentars/0/all",notice: 'Person was successfully created.' }
+       
+        format.html { redirect_to "/comentars/0/all",notice:menssagem }
       end  
   end  
 
@@ -133,10 +142,15 @@ class ComentarsController < ApplicationController
   
   # GET /comentars/1/edit
   def edit
+    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    curso_id=0
+    @usuarios.each do |usuario| 
+       curso_id = usuario.curso_id    
+    end
     @disciplinacurso = Disciplinacurso.select("disciplinas.nome||' - ' || disciplinacursos.semestre as nome, disciplinacursos.* ")
                                        .joins(" join cursos on cursos.id = disciplinacursos.curso_id")
                                        .joins(" join disciplinas on disciplinas.id = disciplinacursos.disciplina_id")
-                                       .where(" disciplinacursos.curso_id =:curso_id",{curso_id:current_user.curso_id}).all
+                                       .where(" disciplinacursos.curso_id =:curso_id",{curso_id:curso_id}).all
                                        .order("cursos.nome")
     @professor = Professor.all.order("nome")
 
@@ -169,13 +183,13 @@ class ComentarsController < ApplicationController
     respond_to do |format|
        if (@permite) then
         if @coment.save
-          format.html { redirect_to '/', notice: 'Comentario Incluído!'}
+          format.html { redirect_to '/', notice: 'Comentário Incluído!'}
         else
           format.html { render :new }
           format.json { render json: @coment.errors, status: :unprocessable_entity }
         end
        else 
-          format.html { redirect_to '/', notice: 'Comentario não está no padrões permitidos! Favor refazer.' }
+          format.html { redirect_to '/', notice: 'O comentário não está nos padrões permitidos! Favor refazer.' }
        end   
     end 
 

@@ -1,3 +1,3 @@
 class Tipoperfil < ApplicationRecord
-    has_many:user
+    has_many:usuarios
 end

@@ -5,7 +5,11 @@
       <ul class="right hide-on-med-and-down">
          <% if user_signed_in? %>
           <ul id="dropdown3" class="dropdown-content">
-              <li><%= link_to 'Editar Perfil', edit_user_registration_path, :class => 'navbar-link' %></li>
+              <% @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+               @usuarios.each do |usuario| %>
+                 <li><%= link_to 'Editar Perfil', perfil_usuario_path(usuario), :class => 'navbar-link' %></li>
+               <% end %>
+             
                <li class="divider"></li>
                 <li><a href="<%=comentars_url%>" >Meus Comentários</a></li>
                 <li><a href="<%=avaliacaoprofs_url%>" >Minhas Avaliações</a></li>
@@ -46,7 +50,7 @@
     </div>
 
     <% if user_signed_in? %> 
-      <%if can? :admin, User %>
+      <%if can? :adminstrador, Usuario %>
         <div class="nav-content container">
          <ul id="dropdown2" class="dropdown-content">
               <li><a href="<%= crawlcurso_admin_path(0) %>">Cursos</a></li>
@@ -66,7 +70,7 @@
          
          <ul id="dropdown4" class="dropdown-content">
               <li><a  href="/comentars/0/all">Comentarios</a></li>
-              <li><a  href="/user">Usuários</a></li>
+              <li><a  href="/usuarios">Usuários</a></li>
               <li class="divider"></li>     
          </ul>
          
@@ -82,7 +86,15 @@
 
  <% if user_signed_in? %>
   <div class="row container">
-    <% @curso = Curso.where("id =:curso_id",{curso_id:current_user.curso_id}).all 
+    <%
+     curso_id= 1
+    
+    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+
+    @usuarios.each do |usuario| 
+       curso_id = usuario.curso_id    
+    end
+    @curso = Curso.where("id =:curso_id",{curso_id:curso_id}).all 
     @curso.each do |curso| %>
        <br> <b>Curso: <%= curso.nome %> </b> 
     <% end %>

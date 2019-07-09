@@ -2,7 +2,7 @@
 <br>
 <div class="container">
 
-   <% @users.each do |user| %>
+   <% @usuarios.each do |user| %>
     <% if user.bloqueio == true then 
         status = "Usuário Bloqueado"
       else
@@ -16,18 +16,18 @@
       </div>
       
       <div class="row">
-        <div class="col s12 m6 lg6"><b>Usuário: </b><%= user.email %></div>
+        <div class="col s12 m6 lg6"><b>Usuário: </b><%= user.username %></div>
         <div class="col s12 m4 lg4"><b>Status: </b><%= status %> </div>
        
            <div class="col s6 offset-s8 m2 offset-m10 lg2 offset-lg6">
                 <div>  
-                     <%= link_to edit_user_path(user),class:'' do %>
+                     <%= link_to edit_usuario_path(user),class:'' do %>
                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
                     <%end%>
-                    <%= link_to bloquear_user_path(user),class:'' do %>
+                    <%= link_to bloquear_usuario_path(user),class:'' do %>
                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Bloquear">block</i>  
                     <%end%>
-                    <%= link_to desbloquear_user_path(user),class:'' do %>
+                    <%= link_to desbloquear_usuario_path(user),class:'' do %>
                      <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Desbloquear">check</i>  
                     <%end%>
                     <!--
