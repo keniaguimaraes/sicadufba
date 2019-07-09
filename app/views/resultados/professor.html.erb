@@ -1,7 +1,10 @@
 <div class="row">
   <div class="col s12 m10 offset-m1 ">
    
-         <% @disciplina.each do |disciplina| %>
+         <% 
+         professor=0
+         disciplinacurso_id=0
+         @disciplina.each do |disciplina| %>
          
             <% 
              professor = disciplina.professor_id
@@ -156,7 +159,6 @@
     						<%end%> 
     							<i class="fas fa-star-half-alt fa-2x blue-text"></i>  						
     					<%end%> 	
-    					      
                 </div>
             </div>
          <%end%>
