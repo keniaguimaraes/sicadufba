@@ -21,7 +21,7 @@ class ResultadosController < ApplicationController
                                     .joins("JOIN disciplinas ON disciplinas.id = disciplinacursos.disciplina_id" )
                                     .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
                                     .where("avaliacaoprofs.professor_id =:professor_id and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id:params[:professor_id],ano_semestre:params[:ano_semestre]})
-                                    .group("disciplinas.nome,avaliacaoprofs.professor_id,disciplinacursos.id").all
+                                    .group("disciplinas.nome,avaliacaoprofs.professor_id,disciplinacursos.id,disciplinas.codigo,").all
                                     
     end
     
