@@ -50,7 +50,7 @@
     </div>
 
     <% if user_signed_in? %> 
-      <%if can? :adminstrador, Usuario %>
+      <%if can? :admin, Usuario %>
         <div class="nav-content container">
          <ul id="dropdown2" class="dropdown-content">
               <li><a href="<%= crawlcurso_admin_path(0) %>">Cursos</a></li>
