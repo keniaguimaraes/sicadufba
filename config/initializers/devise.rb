@@ -21,6 +21,7 @@ Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
   config.cas_base_url = "https://autenticacao.ufba.br/ca"
   config.cas_logout_url = "https://autenticacao.ufba.br/ca/logout"
+  config.cas_enable_single_sign_out = true
   
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
