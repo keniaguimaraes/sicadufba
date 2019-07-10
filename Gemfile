@@ -60,7 +60,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'sqlite3', '~> 1.3.6'
