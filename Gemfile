@@ -46,8 +46,6 @@ gem "breadcrumbs_on_rails"
 gem 'rubocop-rails'
 gem 'nouislider-rails'
 
-gem 'yarn'
-	
 #gem 'toastr-rails'
 
 #gem 'materialize-form'
