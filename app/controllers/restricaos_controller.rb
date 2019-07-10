@@ -35,7 +35,7 @@ class RestricaosController < ApplicationController
 
     respond_to do |format|
       if @restricao.save
-        format.html { redirect_to @restricao, notice: 'Restricao was successfully created.' }
+        format.html { redirect_to restricaos_path, notice: 'Restrição foi Criada com Sucesso!' }
        # format.json { render :show, status: :created, location: @restricao }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class RestricaosController < ApplicationController
   def update
     respond_to do |format|
       if @restricao.update(restricao_params)
-        format.html { redirect_to @restricao, notice: 'Restricao was successfully updated.' }
+        format.html { redirect_to @restricao, notice: 'Restrição foi Editada com Sucesso!' }
         format.json { render :show, status: :ok, location: @restricao }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class RestricaosController < ApplicationController
   def destroy
     @restricao.destroy
     respond_to do |format|
-      format.html { redirect_to restricaos_url, notice: 'Restricao was successfully destroyed.' }
+      format.html { redirect_to restricaos_url, notice: 'Restrição foi Excluída com Sucesso!' }
       format.json { head :no_content }
     end
   end

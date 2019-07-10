@@ -36,7 +36,7 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to @tag, notice: 'tag was successfully created.' }
+        format.html { redirect_to tags_path, notice: 'Tag foi Criada com Sucesso!' }
        # format.json { render :show, status: :created, location: @tag }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class TagsController < ApplicationController
   def update
     respond_to do |format|
       if @tag.update(tag_params)
-        format.html { redirect_to @tag, notice: 'tag was successfully updated.' }
+        format.html { redirect_to @tag, notice: 'Tag foi Editada com Sucesso!' }
         format.json { render :show, status: :ok, location: @tag }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class TagsController < ApplicationController
   def destroy
     @tag.destroy
     respond_to do |format|
-      format.html { redirect_to tags_url, notice: 'tag was successfully destroyed.' }
+      format.html { redirect_to tags_url, notice: 'Tag foi Deletada com Sucesso!' }
       format.json { head :no_content }
     end
   end

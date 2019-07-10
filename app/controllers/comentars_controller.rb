@@ -183,7 +183,7 @@ class ComentarsController < ApplicationController
     respond_to do |format|
        if (@permite) then
         if @coment.save
-          format.html { redirect_to '/', notice: 'Comentário Incluído!'}
+          format.html { redirect_to '/demonstra_comentarios', notice: 'Comentário Incluído!'}
         else
           format.html { render :new }
           format.json { render json: @coment.errors, status: :unprocessable_entity }
