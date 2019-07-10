@@ -9,4 +9,5 @@
       "postdeploy": "bundle exec rails db:migrate"
     }
   }
+   "yarn": "1.16.0"
 }
