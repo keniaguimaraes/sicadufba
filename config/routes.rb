@@ -49,7 +49,7 @@ resources :admin do
 
  devise_scope :user do
     get '/login' => 'devise/sessions#new'
-    get '/logout' => 'https://autenticacao.ufba.br/ca/logout'
+    get '/logout' => 'devise/sessions#destroy'
    # get '/perfil' => 'devise/registrations#edit'
     get '/user' => 'user#index'
  end
