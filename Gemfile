@@ -46,6 +46,7 @@ gem "breadcrumbs_on_rails"
 gem 'rubocop-rails'
 gem 'nouislider-rails'
 gem 'webpacker', '>= 3.5', '< 3.5.5'
+gem 'yarn'
 	
 #gem 'toastr-rails'
 
