@@ -1,5 +1,8 @@
 {
   "name": "prototipo",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+   "engines": {
+    "yarn": "1.16.0"
+  }
 }
