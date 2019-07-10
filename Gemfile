@@ -45,6 +45,7 @@ gem "select2-rails"
 gem "breadcrumbs_on_rails"
 gem 'rubocop-rails'
 gem 'nouislider-rails'
+gem  'webpacker'
 	
 #gem 'toastr-rails'
 
