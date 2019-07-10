@@ -1,6 +1,6 @@
 {
   "name": "prototipo",
   "private": true,
-  "dependencies": {},
-  "yarn": ">=0.25.2" 
+  "dependencies": {}
+  
 }
