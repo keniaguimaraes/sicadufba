@@ -2,9 +2,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
    
-  #devise:cas_authenticatable, :registerable, #quando for autenticação da ufba
-   devise :database_authenticatable, :registerable, 
-  :recoverable, :rememberable, :validatable
+  devise:cas_authenticatable
+  
+  # devise :database_authenticatable, :registerable, 
+  #:recoverable, :rememberable, :validatable
    # devise :cas_authenticatable, :registerable,
    #      :recoverable, :rememberable, :validatable
          
@@ -15,6 +16,7 @@ class User < ApplicationRecord
   #belongs_to:tipoperfil
   #belongs_to:curso
   
+=begin  
   validates :email, length: {minimum: 10, message: 'Deve ter Pelo Menos 10 Caracteres'}
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   
@@ -31,5 +33,6 @@ class User < ApplicationRecord
     errors.add(:username, :invalid)
    end
   end
+=end  
    
 end

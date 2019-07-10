@@ -6,6 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       ## Database authenticatable
      # t.string :nome,              null: false, default: ""
       t.string :username,              null: false, default: ""
+=begin      
       t.string :email,              null: false, default: ""
       t.integer:curso_id,      null: false, default: 0
       t.boolean :administrador, null: false, default:false 
@@ -39,10 +40,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
 
       t.timestamps null: false
+=end      
     end
 
-    add_index :users, :email,                unique: true
-    add_index :users, :reset_password_token, unique: true
+   # add_index :users, :email,                unique: true
+  #  add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
   end
