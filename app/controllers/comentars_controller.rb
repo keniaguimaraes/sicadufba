@@ -20,7 +20,7 @@ class ComentarsController < ApplicationController
   
   def all
      add_breadcrumb "Todos Comentários", "comentars/0/all", :title => "Voltar para a página principal"
-     @comentars = Comentar.all.order("data_comentario")
+     @comentars = Comentar.select("usuarios.username, comentars.*").joins("JOIN usuarios ON usuarios.id = comentars.user_id").all.order("data_comentario")
                          .paginate(:page => params[:page], :per_page =>7)
       $local="mostra"  
   end
