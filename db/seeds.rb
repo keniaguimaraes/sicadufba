@@ -5,8 +5,8 @@ Tipoperfil.create(perfil:'Sem Perfil')
 Tipoperfil.create(perfil:'Moderador 1')
 Tipoperfil.create(perfil:'Moderador 2')
 
-User.create(email:'adm@gmail.com', username:'Administrador',password:'123456', administrador:true,  curso_id:1,  tipoperfil_id:1, bloqueio:false)
-User.create(email:'adm2@gmail.com', username:'Estudante', password:'123456', administrador:false, curso_id:1, tipoperfil_id:1,bloqueio:false)
+#User.create(email:'adm@gmail.com', username:'Administrador',password:'123456', administrador:true,  curso_id:1,  tipoperfil_id:1, bloqueio:false)
+#User.create(email:'adm2@gmail.com', username:'Estudante', password:'123456', administrador:false, curso_id:1, tipoperfil_id:1,bloqueio:false)
 
 Semestre.create(ano:2018, codigo:1)
 Semestre.create(ano:2018, codigo:2)
