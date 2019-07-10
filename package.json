@@ -2,7 +2,5 @@
   "name": "prototipo",
   "private": true,
   "dependencies": {},
-   "engines": {
-    "yarn": "1.16.0"
-  }
+  "yarn": ">=0.25.2" 
 }
