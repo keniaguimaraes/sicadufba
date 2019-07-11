@@ -14,13 +14,11 @@ class Ability
  
     if user.administrador? 
       can :manage, :all
-   else
-      alias_action  :update  :to => :crud2 
-      alias_action  :create, :read, :update, :destroy,  :to => :crud 
-      can :crud, Avaliacaoprof
-      can :crud, Comentar
-      can :crud2, Usuario      
-   end
+    else
+      can :manage, Avaliacaoprof
+      can :manage, Comentar
+      can :read, Usuario      
+    end
     
      
     # The first argument to `can` is the action you are giving the user
