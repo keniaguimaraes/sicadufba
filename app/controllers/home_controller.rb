@@ -12,10 +12,10 @@ class HomeController < ApplicationController
          @usuario_adiciona.curso_id = 1
          @usuario_adiciona.save
        end    
-       @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+      
        @usuarios.each do |usuario|
         menssagem="Informe o seu curso"
-        if usuario.curso_id == 1 and usuario.username != 'Administrador'then 
+        if usuario.curso_id == 1 and usuario.username != 'kenia.arruda'then 
           redirect_to perfil_usuario_path(usuario), notice:menssagem   
         end
        end #end each      

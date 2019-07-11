@@ -34,5 +34,13 @@ class User < ApplicationRecord
    end
   end
 =end  
+ def cas_extra_attributes=(extra_attributes)
+    extra_attributes.each do |name, value|
+      case adm.to_sym
+      when :administrador
+        self.administrador = value
+      end
+    end
+  end
    
 end
