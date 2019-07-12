@@ -1,8 +1,8 @@
 <nav class="nav-extended light-blue darken-4">
     <div class="nav-wrapper container">
-   <a href="/" class="brand-logo"> <%= image_tag "logo.png"%></a>
+   <a href="/" class="brand-logo hide-on-small-only"> <%= image_tag "logo.png"%></a>
 
-      <ul class="right hide-on-med-and-down">
+      <ul class="right hide-on-med-and-down ">
          <% if user_signed_in? %>
           <ul id="dropdown3" class="dropdown-content">
               <% @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
@@ -14,7 +14,7 @@
                 <li><a href="<%=comentars_url%>" >Meus Comentários</a></li>
                 <li><a href="<%=avaliacaoprofs_url%>" >Minhas Avaliações</a></li>
               <li class="divider"></li>
-              <li><a href="https://autenticacao.ufba.br/ca/logout" >Sair</a></li>
+              <li><a href="/logout" >Sair</a></li>
            </ul>
            <div class="col s3 push-s2">
              <a href="#" class="dropdown-button white-text text-lighten-3" data-target="dropdown3"><i class="fas fa-user-circle fa-1x"></i> <%= current_user.username %> <i class="material-icons right">arrow_drop_down</i></a></li>
@@ -26,10 +26,10 @@
        
         <!-- MENU MOBILE -->
         <ul id="nav-mobile" class="sidenav">
-            <li class="blue-grey darken-4">
+            <li class="light-blue darken-4">
                 <div class="row">
                     <div class="col s10">
-                        <a href="/" class="subheader white-text"><i class="material-icons left">local_shipping</i>GR</a>
+                        <a href="/" class="subheader white-text">SICAD-UFBA</a>
                     </div>
                     <div class="col s2 " >
                         <a class="sidenav-close right">
@@ -40,13 +40,18 @@
             </li>
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
-                    <li class="padding-collapsible"><a href="#!">Fornecedores</a></li>
-                    <li class="padding-collapsible"><a href="#!">Clientes</a></li>
-                    <li class="padding-collapsible"><a href="#!">Transportadores</a></li>
+                  <% if user_signed_in? %>
+                    <li class="padding-collapsible"><a href="/users/sign_in">Entrar</a></li>
+                    <%else%>
+                      <li class="padding-collapsible"><a href="<%=comentars_url%>" >Meus Comentários</a></li>
+                      <li class="padding-collapsible"><a href="<%=avaliacaoprofs_url%>" >Minhas Avaliações</a></li>
+                      <li class="divider"></li>
+                      <liclass="padding-collapsible"><a href="/logout" >Sair</a></li>
+                    <%end%>
                 </ul>
             </li>
         </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons  white-text">menu</i></a>
+        <a href="/" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons  white-text">menu</i></a>
     </div>
 
     <% if user_signed_in? %> 
@@ -57,8 +62,8 @@
               <li><a href="<%= crawldisc_admin_path(0) %>" >Disciplinas</a></li>
               <li><a href="<%= crawlprof_admin_path(0) %>" >Professor</a></li>
               <li><a href="<%= crawltitle_admin_path(0) %>" >Título</a></li>
-              <!--<li class="divider"></li>
-              <li><a href="<%= clear_admin_path(0) %>">Limpar</a></li>-->
+         
+       
          </ul>
          
          <ul id="dropdown1" class="dropdown-content">
@@ -87,7 +92,7 @@
  <% if user_signed_in? %>
   <div class="row container">
     <%
-     curso_id = 1
+     curso_id= 1
     
     @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
 
@@ -118,6 +123,12 @@
     $('.collapsible').collapsible();
     $('.tooltipped').tooltip();
     $('.modal').modal();
+    
+    
+    $(document).on('ready page:change', function() {
+  Waves.displayEffect(); // Initialize buttons wave effects
+ $(".button-collapse").sideNav(); // Initialize collapse button
+});
      }); // end of document ready
 </script>
 
