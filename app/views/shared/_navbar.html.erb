@@ -41,12 +41,12 @@
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                   <% if user_signed_in? %>
-                    <li class="padding-collapsible"><a href="/users/sign_in">Entrar</a></li>
-                    <%else%>
                       <li class="padding-collapsible"><a href="<%=comentars_url%>" >Meus Comentários</a></li>
                       <li class="padding-collapsible"><a href="<%=avaliacaoprofs_url%>" >Minhas Avaliações</a></li>
                       <li class="divider"></li>
-                      <liclass="padding-collapsible"><a href="/logout" >Sair</a></li>
+                      <p><liclass="padding-collapsible"><a href="/logout" >Sair</a></li>
+                    <%else%>
+                      <li class="padding-collapsible"><a href="/users/sign_in">Entrar</a></li>
                     <%end%>
                 </ul>
             </li>
