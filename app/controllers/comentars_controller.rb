@@ -31,13 +31,13 @@ class ComentarsController < ApplicationController
   def show
 
       @comentarios_disciplina = Comentar.select('cursos.nome curso ,disciplinas.nome as disciplina, disciplinacursos.disciplina_id as disciplina_id, professors.nome,semestres.ano,comentars.comentario as comentario') 
-                                                 .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
-                                                 .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
-                                                 .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
-                                                 .joins('JOIN semestres on semestres.id = comentars.semestre_id')
-                                                 .joins('join professors on professors.id = comentars.professor_id')
-                                                 .joins('JOIN usuarios ON usuarios.id = comentars.user_id ')
-                                                 .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
+                                        .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
+                                        .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
+                                        .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
+                                        .joins('JOIN semestres on semestres.id = comentars.semestre_id')
+                                        .joins('join professors on professors.id = comentars.professor_id')
+                                        .joins('JOIN usuarios ON usuarios.id = comentars.user_id ')
+                                        .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
     
   
      if $local == "mostra" then 
@@ -107,9 +107,8 @@ class ComentarsController < ApplicationController
   def bloquear 
      @comentar = Comentar.find(params[:id])
      respond_to do |format|
-        @comentar.update(bloqueio: true)
-        @comentar.update(data_bloqueio: Time.now)
-        
+      @comentar.update(bloqueio: true)
+      @comentar.update(data_bloqueio: Time.now)
        message='Comentário Bloqueado!'
        format.html { redirect_to "/comentars/0/all",notice:message }
             # flash[:notice] = "Notification deleted"
@@ -122,20 +121,39 @@ class ComentarsController < ApplicationController
       respond_to do |format|
         @comentar.update(bloqueio: false)
         menssagem= 'Comentário Desbloqueado!!'  
-       
         format.html { redirect_to "/comentars/0/all",notice:menssagem }
       end  
   end  
 
   def denunciar
       @comentar = Comentar.find(params[:id])
+       
       contabiliza_denuncia = 0
       numero_denuncia = 0
       numero_denuncia = @comentar.denuncia
       contabiliza_denuncia = numero_denuncia + 1
-      respond_to do |format|
-        @comentar.update(denuncia: contabiliza_denuncia)
-        menssagem = 'Comentário Denunciado!'  
+      comentou = false
+      @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+      user_id = 0
+      @usuarios.each do |usuario| 
+        user_id = usuario.id
+      end
+    
+      @usuario_denuncia = Denunciacomentario.where("comentar_id =:comentar_id and usuario_id=:usuario_id",{comentar_id:@comentar.id, usuario_id:user_id}).all
+      if !(@usuario_denuncia.empty?) then 
+        comentou = true
+      end  
+     respond_to do |format|
+        if comentou==false then 
+         @comentar.update(denuncia: contabiliza_denuncia)
+         @comentardenuncia = Denunciacomentario.new
+         @comentardenuncia.usuario_id = user_id
+         @comentardenuncia.comentar_id =params[:id]
+         @comentardenuncia.save
+         menssagem = 'Comentário Denunciado!'  
+        else
+         menssagem= 'Você já denunciou esse comentário! Estamos apurando.' 
+        end  
         format.html { redirect_to "/comentars/0/mostra?disciplina_id="+@comentar.disciplinacurso.disciplina_id.to_s, notice:menssagem}
       end  
   end  

@@ -45,9 +45,9 @@
                       <li class="padding-collapsible"><a href="<%=avaliacaoprofs_url%>" >Minhas Avaliações</a></li>
                       <li class="divider"></li>
                       <p><liclass="padding-collapsible"><a href="/logout" >Sair</a></li>
-                    <%else%>
+                  <%else%>
                       <li class="padding-collapsible"><a href="/users/sign_in">Entrar</a></li>
-                    <%end%>
+                  <%end%>
                 </ul>
             </li>
         </ul>
@@ -62,15 +62,12 @@
               <li><a href="<%= crawldisc_admin_path(0) %>" >Disciplinas</a></li>
               <li><a href="<%= crawlprof_admin_path(0) %>" >Professor</a></li>
               <li><a href="<%= crawltitle_admin_path(0) %>" >Título</a></li>
-         
-       
          </ul>
          
          <ul id="dropdown1" class="dropdown-content">
               <li> <%= link_to 'Restrição ', restricaos_path, :class => 'navbar-link' %> </li>
               <li> <%= link_to 'Tag ', tags_path, :class => 'navbar-link' %> </li>
               <li> <%= link_to 'Perfil ', tipoperfils_path, :class => 'navbar-link' %> </li>
-            <!--  <li> <%= link_to 'Avaliação Docente ', tags_path, :class => 'navbar-link' %> </li>-->
          </ul>
          
          <ul id="dropdown4" class="dropdown-content">
@@ -94,13 +91,13 @@
     <%
      curso_id= 1
     
-    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+     @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
 
-    @usuarios.each do |usuario| 
+     @usuarios.each do |usuario| 
        curso_id = usuario.curso_id    
-    end
-    @curso = Curso.where("id =:curso_id",{curso_id:curso_id}).all 
-    @curso.each do |curso| %>
+     end
+     @curso = Curso.where("id =:curso_id",{curso_id:curso_id}).all 
+     @curso.each do |curso| %>
        <br> <b>Curso: <%= curso.nome %> </b> 
     <% end %>
 
@@ -119,16 +116,12 @@
     }); 
 
     $( document ).ready(function() {
-     $('.sidenav').sidenav();
+    $('.sidenav').sidenav();
     $('.collapsible').collapsible();
     $('.tooltipped').tooltip();
     $('.modal').modal();
     
-    
-    $(document).on('ready page:change', function() {
-  Waves.displayEffect(); // Initialize buttons wave effects
- $(".button-collapse").sideNav(); // Initialize collapse button
-});
+
      }); // end of document ready
 </script>
 
