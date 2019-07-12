@@ -22,9 +22,6 @@
 @import "materialize/extras/nouislider";
 
 
-
-
-
 body {
     display: flex;
     min-height: 100vh;
@@ -53,9 +50,6 @@ body {
     pointer-events: auto;
   }
 }
-
-
-
 
 .select2-container {
     box-sizing: border-box;
@@ -813,8 +807,8 @@ input[type=range]::-webkit-slider-thumb {
     border: none;
     height: 32px;
     width: 32px;
-    background: goldenrod;
-    background: url('http://iconizer.net/files/Duesseldorf/orig/heart.png') no-repeat;
+    background: blue;
+    background: url('https://iconizer.net/files/Cologne/orig/star.png') no-repeat;
     margin-top: -15px;
     border-radius: 0 !important;
 }
