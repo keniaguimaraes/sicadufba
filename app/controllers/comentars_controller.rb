@@ -1,7 +1,7 @@
 class ComentarsController < ApplicationController
   require 'lingua/stemmer'
   before_action :authenticate_user!
-  before_action :set_comentar, only: [:show, :edit, :update, :destroy]
+  before_action :index, only: [:show, :edit, :update, :destroy]
 
   # GET /comentars
   # GET /comentars.json

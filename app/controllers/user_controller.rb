@@ -1,6 +1,7 @@
 class UserController < ApplicationController
-
   before_action :authenticate_user! 
+  load_and_authorize_resource :only => [:edit]
+  
   $home ="home"
   def index
      add_breadcrumb "Usuario", "/user", :title => "Voltar para a Página principal"

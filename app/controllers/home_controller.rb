@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+
+
  def index
     if user_signed_in? then
        @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
@@ -14,8 +16,8 @@ class HomeController < ApplicationController
        end    
       
        @usuarios.each do |usuario|
-        menssagem="Informe o seu curso"
-        if usuario.curso_id == 1 and usuario.username != 'kenia.arruda'then 
+        menssagem ="Informe o seu curso!"
+        if usuario.curso_id == 1 and usuario.username != ENV['ADMINISTRADOR']then 
           redirect_to perfil_usuario_path(usuario), notice:menssagem   
         end
        end #end each      

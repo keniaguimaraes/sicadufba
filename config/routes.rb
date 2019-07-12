@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :tags
   resources :coments
   resources :restricaos
-  resources :itemavaliacaos
   resources :disciplinacursos
   resources :cursos
   resources :semestres

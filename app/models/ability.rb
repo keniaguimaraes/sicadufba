@@ -17,7 +17,7 @@ class Ability
     else
       can :manage, Avaliacaoprof
       can :manage, Comentar
-      can :read, Usuario      
+      can :update, Usuario      
     end
     
      

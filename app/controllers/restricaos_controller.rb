@@ -1,6 +1,7 @@
 class RestricaosController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_restricao, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource  
  $home ="home"
   # GET /restricaos
   # GET /restricaos.json

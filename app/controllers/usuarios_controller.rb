@@ -1,6 +1,8 @@
 class UsuariosController < ApplicationController
-   before_action :authenticate_user! 
-  $home ="home"
+   before_action :authenticate_user!
+   load_and_authorize_resource
+   skip_authorize_resource :only => :perfil
+    
   def index
      add_breadcrumb "Usuario", "/usuarios", :title => "Voltar para a Página principal"
      @usuarios = Usuario.order(:username).paginate(:page => params[:page], :per_page => 4)

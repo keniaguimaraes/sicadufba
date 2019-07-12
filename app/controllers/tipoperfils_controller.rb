@@ -1,6 +1,7 @@
 class TipoperfilsController < ApplicationController
   before_action :set_tipoperfil, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!
+  before_action :authenticate_user!
+  load_and_authorize_resource  
   # GET /tipoperfils
   # GET /tipoperfils.json
   def index
