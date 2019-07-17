@@ -819,3 +819,33 @@ input[type=range]+.thumb.active{
   top: -35px !important;
 }
 
+.collapsible-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.5;
+  padding: 1rem;
+  background-color: #2196f3 ;
+  border-bottom: 1px solid #ffffff ;
+  color: #fff;
+  font-size: 13px;
+}
+.collapsible-body {
+  display: none;
+  border-bottom: 1px solid #ffffff ;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 2rem;
+  background-color: #ffffff   ;
+}
+
+
+a:hover {  
+
+	font-size:110%; 
+	
+
+	}

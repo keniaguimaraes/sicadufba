@@ -1,7 +1,7 @@
 class FaqController < ApplicationController
    before_action :authenticate_user!
     def index
-      add_breadcrumb "F.A.Q","/faq", :title => "Voltar para Anterior"
+      add_breadcrumb "Ajuda","/faq", :title => "Voltar para Anterior"
 
     end
     
