@@ -139,16 +139,17 @@ class ComentarsController < ApplicationController
         user_id = usuario.id
       end
     
-      @usuario_denuncia = Denunciacomentario.where("comentar_id =:comentar_id and usuario_id=:usuario_id",{comentar_id:@comentar.id, usuario_id:user_id}).all
+      @usuario_denuncia = Denunciacomentario.select("denunciacomentarios.*").where(" comentar_id =:comentar_id and usuario_id=:usuario_id",{comentar_id:@comentar.id, usuario_id:user_id}).all
       if !(@usuario_denuncia.empty?) then 
         comentou = true
       end  
      respond_to do |format|
         if comentou==false then 
          @comentar.update(denuncia: contabiliza_denuncia)
+         
          @comentardenuncia = Denunciacomentario.new
          @comentardenuncia.usuario_id = user_id
-         @comentardenuncia.comentar_id =params[:id]
+         @comentardenuncia.comentar_id = @comentar.id
          @comentardenuncia.save
          menssagem = 'Comentário Denunciado!'  
         else

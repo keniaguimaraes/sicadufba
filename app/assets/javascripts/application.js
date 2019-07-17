@@ -16,6 +16,7 @@
 //= require materialize-sprockets
 //= require select2
 //= require materialize/extras/nouislider
+//= require toastr
 //= require_tree .
 
 
@@ -32,7 +33,21 @@
     ('.tooltipped').tooltip();
     ('.modal').modal();
     
-
+	 ('.toastr').options = {
+	                  "closeButton": false,
+	                  "debug": false,
+	                  "positionClass": "toast-bottom-right",
+	                  "onclick": null,
+	                  "showDuration": "500",
+	                  "hideDuration": "500",
+	                  "timeOut": "500",
+	                  "extendedTimeOut": "500",
+	                  "showEasing": "swing",
+	                  "hideEasing": "linear",
+	                  "showMethod": "fadeIn",
+	                  "hideMethod": "fadeOut"
+	              }
+	
     
     
 }); // end of document ready
