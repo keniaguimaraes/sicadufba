@@ -66,6 +66,7 @@ resources :admin do
   get 'resultado_semestre', to: 'resultados#semestre'
   get 'contato' => 'application#contact', :as => 'contact_us'
   post 'contato' => 'application#send_contact', :as => 'send_contact'
+  get 'todos_comentarios', to: 'comentars#mostra'
   
    resources :usuarios do
      member do
