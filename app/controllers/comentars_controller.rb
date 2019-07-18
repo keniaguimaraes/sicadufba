@@ -29,34 +29,10 @@ class ComentarsController < ApplicationController
   # GET /comentars/1
   # GET /comentars/1.json
   def show
-
-      @comentarios_disciplina = Comentar.select('cursos.nome curso ,disciplinas.nome as disciplina, disciplinacursos.disciplina_id as disciplina_id, professors.nome,semestres.ano,comentars.comentario as comentario') 
-                                        .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
-                                        .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
-                                        .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
-                                        .joins('JOIN semestres on semestres.id = comentars.semestre_id')
-                                        .joins('join professors on professors.id = comentars.professor_id')
-                                        .joins('JOIN usuarios ON usuarios.id = comentars.user_id ')
-                                        .where("disciplinacursos.disciplina_id=:disciplina_id",{disciplina_id: params[:disciplina_id]})
     
-  
-     if $local == "mostra" then 
-          add_breadcrumb "Exibindo Todos Comentários", "/comentars/0/all", :title => "Voltar para Anterior"
-         add_breadcrumb "Exibindo Comentário"        
-     else if  $local == "index" then 
-        add_breadcrumb "Meus Comentários",comentars_path, :title => "Voltar para Anterior"
-        add_breadcrumb "Exibindo Comentário"  
-     else  
-          numero=" "
-          @comentarios_disciplina.each do |comentarios|
-            numero = comentarios.disciplina_id.to_s
-          end
-          
-          string = "/comentars/0/mostra?disciplina_id="+numero
-          add_breadcrumb "Todos Comentários",string, :title => "Voltar para Anterior" 
-          add_breadcrumb "Exibindo Comentário" 
-     end
-     end
+      @comentarios_disciplina =  Comentar.find(params[:id])
+       add_breadcrumb "Exibindo Comentário" 
+    
    
   end
   

@@ -62,12 +62,12 @@ resources :admin do
   get "faq_avaliacoes", to: "faq#avaliacoes"
   get 'faq_comentarios', to: 'faq#comentarios'
   get 'faq_resultados', to: 'faq#resultados'
-  get 'resultado_professor', to: 'resultados#professor'
-  get 'resultado_semestre', to: 'resultados#semestre'
+  #get 'resultado_professor', to: 'resultados#professor'
+  get 'resultado_semestre', to: 'resultados#index'
   get 'contato' => 'application#contact', :as => 'contact_us'
   post 'contato' => 'application#send_contact', :as => 'send_contact'
+  get 'resultado_professor', to: 'resultados#professor'
   get 'todos_comentarios', to: 'comentars#mostra'
-  
    resources :usuarios do
      member do
         get 'bloquear' => 'usuarios#bloquear'

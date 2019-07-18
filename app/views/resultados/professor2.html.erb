@@ -1,41 +1,7 @@
-<div class = "container">
- <%@professor.each do |professor|%>
- <h6><b>Docente: <%=professor.professor.nome%></b></h6><hr class"hrt">
- <%end%> 
-
-<ul id="tabs-swipe-demo" class="tabs">
-   <% 
-   i = 0
-   @semestre.each do |semestre| 
-   i = i + 1 
+<div class="row">
+  <div class="col s12 m10 offset-m1 ">
    
-   id ='#test-swipe-'+i.to_s%>
-    <% if (i == 1) then %>
-      <li class="tab"><a class="active" href="<%=id%>"><b> <%=semestre.ano%></b></a></li>
-    <%else%>
-     <li class="tab"><a href="<%=id%>"><b> <%=semestre.ano%></b></a></li>
- 
-    <%end%> 
-   <%end%>
-  </ul>
-  
-   <% 
-   i = 0
-   @semestre.each do |semestre| 
-   i = i + 1%>
-   <%    @disciplina = Avaliacaoprof.select("disciplinas.nome,avaliacaoprofs.professor_id,disciplinas.codigo, count(disciplinas.nome)as qtd_avaliacoes, cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) as ano, disciplinacursos.id as disciplinacurso_id")
-                                    .joins("JOIN disciplinacursos ON disciplinacursos.id = avaliacaoprofs.disciplinacurso_id" )
-                                    .joins("JOIN disciplinas ON disciplinas.id = disciplinacursos.disciplina_id" )
-                                    .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                    .where("avaliacaoprofs.professor_id =:professor_id and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id:params[:professor_id],ano_semestre:semestre.ano})
-                                    .group("disciplinas.nome,avaliacaoprofs.professor_id,disciplinacursos.id,disciplinas.codigo,cast(semestres.ano as char(4))||cast(semestres.codigo as char(1))").all
-                                    
-      id= 'test-swipe-'+i.to_s                             
-                                  %>
-                                    
-    <div id="<%=id%>" class="col s12 red">
-   
-     <% @disciplina.each do |disciplina| %>
+         <% @disciplina.each do |disciplina| %>
          
             <% 
              professor = disciplina.professor_id
@@ -43,54 +9,54 @@
              
             @dominio_conteudo_positivo = Avaliacaoprof.select("count(dominio_conteudo) as conteudo")
                                                       .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and dominio_conteudo = 1 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: semestre.ano}).all
+                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and dominio_conteudo = 1 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: params[:ano_semestre]}).all
             @dominio_conteudo_negativo = Avaliacaoprof.select("count(dominio_conteudo) as conteudo")
                                                       .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and dominio_conteudo = 2 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: semestre.ano}).all
+                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and dominio_conteudo = 2 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: params[:ano_semestre]}).all
                                                       
              @relacionamento_positivo = Avaliacaoprof.select("count(relacionamento_alunos) as relacionamento")
                                                      .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and relacionamento_alunos = 1 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre:semestre.ano}).all
+                                                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and relacionamento_alunos = 1 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: params[:ano_semestre]}).all
             @relacionamento_negativo = Avaliacaoprof.select("count(relacionamento_alunos) as relacionamento")
                                                      .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and relacionamento_alunos = 2 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: semestre.ano}).all
+                                                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and relacionamento_alunos = 2 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: params[:ano_semestre]}).all
             @possui_didatica_positivo = Avaliacaoprof.select("count(possui_didatica) as didatica")
                                                       .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and possui_didatica = 1 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: semestre.ano}).all
+                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and possui_didatica = 1 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: params[:ano_semestre]}).all
             @possui_didatica_negativo = Avaliacaoprof.select("count(possui_didatica) as didatica")
                                                       .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and possui_didatica = 2 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: semestre.ano}).all
+                                                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and possui_didatica = 2 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: params[:ano_semestre]}).all
              
             @tags_associadas = Avaliacaoprof.select("tags.tag, count(tags.tag) as qtd_tag")
 			                                 .joins("join avaliacaotags on avaliacaotags.avaliacaoprof_id = avaliacaoprofs.id")
 											 .joins("join tags on tags.id = avaliacaotags.tag_id")
                                              .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                                             .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id  and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: semestre.ano}).all
+                                             .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id  and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id,ano_semestre: params[:ano_semestre]}).all
                                              .group("tags.tag").all	
                                                                  
             @stars1 = Avaliacaoprof.select("count(recomendaria_professor) as stars1")
                      .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 1 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre:semestre.ano}).all                                             
+                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 1 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: params[:ano_semestre]}).all                                             
             
             @stars2 = Avaliacaoprof.select("count(recomendaria_professor) as stars2")
                      .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 2 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: semestre.ano}).all                                             
+                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 2 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: params[:ano_semestre]}).all                                             
             @stars3 = Avaliacaoprof.select("count(recomendaria_professor) as stars3")
                      .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 3 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: semestre.ano}).all                                             
+                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 3 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: params[:ano_semestre]}).all                                             
             @stars4 = Avaliacaoprof.select("count(recomendaria_professor) as stars4")
                      .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 4 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre:semestre.ano}).all                                             
+                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 4 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: params[:ano_semestre]}).all                                             
             @stars5 = Avaliacaoprof.select("count(recomendaria_professor) as stars5")
                      .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 5 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: semestre.ano}).all   
+                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 5 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: params[:ano_semestre]}).all   
 		    	star_5=0
 				star_4=0
 				star_3=0
 				star_2=0
 				star_1=0	
 				
-              @stars1.each do |stars1| 
+               @stars1.each do |stars1| 
 			     star_1 = stars1.stars1
 			   end
 			   @stars2.each do |stars2| 
@@ -119,9 +85,10 @@
 			   result1 = 0.00
 			   result1 = (star_1 * 1).round(2)/disciplina.qtd_avaliacoes.round(2)
 			   recomendacao_final = 0.00
-			   recomendacao_final = result5+result4+result3+result2+result1 %>
+			   recomendacao_final = result5+result4+result3+result2+result1 
           
-                <div class="card-panel">
+              %>  
+             <div class="card-panel">
                  <div class="row">
                    <div class="col s12 m12 lg12"><h7><b><%=disciplina.codigo%> - <%=disciplina.nome%>  - <%=disciplina.ano%><hr></b></h7></div>
                  </div>
@@ -129,7 +96,7 @@
                    <div class="col s12 m12 lg12"><b><h8>Qtd Avaliações:</b> <%=disciplina.qtd_avaliacoes%><h8></div>
                  </div>
                  <div class="row">
-                    <div class="col s12 m4 lg4"><b><h8>Domínio Conteudo:</b></h8></div>
+                    <div class="col s12 m4 lg4"><b><h8>Dominio Conteudo:</b></h8></div>
                          <% @dominio_conteudo_positivo.each do |dominio| %>
                            <div class="col s4 m1 lg1"><i class="fas fa-thumbs-up fa-2x green-text"></i> <%=dominio.conteudo%></div>
                         <% end    %>  
@@ -138,7 +105,7 @@
                         <% end    %>
                  </div>
                  <div class="row">
-                    <div class="col s12 m4 lg4"><b><h8>Relacionamento com os Alunos:</b></h8></div>
+                    <div class="col s12 m4 lg4"><b><h8>Relacionamento Alunos:</b></h8></div>
                         
                          <%@relacionamento_positivo.each do |relacionamento| %>
                            <div class="col s4 m1 lg1"><i class="fas fa-thumbs-up fa-2x green-text"></i> <%=relacionamento.relacionamento%></div>
@@ -158,7 +125,7 @@
                         <% end    %>
                  </div>
                  
-			              <div class="row">
+			    <div class="row">
                   <div class="col s12 m3 lg3"><b><h8>Tag Associadas</b></h8></div>  
                   <%@tags_associadas.each do |tag| %>
                           <div class="col"> 
@@ -189,28 +156,15 @@
     						<%end%> 
     							<i class="fas fa-star-half-alt fa-2x blue-text"></i>  						
     					<%end%> 	
-           </div>
+    					      
+                </div>
             </div>
-               
-              
-              
-              
-   
-      <%end%>
-   
-    </div>
-  
-    <%end%>
+         <%end%>
+    </div>   
+  </div>
+ </div>   
  
-</div>  
-<script>
- $(document).ready(function(){
-    $('.tabs').tabs();
-  });
- 
-</script>
- 
-<style>
+ <style>
 
 .chip {
   display: inline-block;
@@ -224,28 +178,4 @@
   border-radius: 50%;
   background-color:#a9a9a9;
 }
-
-
-.tabs .tab a{
-            color:#000;
-        } /*Black color to the text*/
-
-        .tabs .tab a:hover {
-            background-color:#eee;
-            color:#000;
-        } /*Text color on hover*/
-
-        .tabs .tab a.active {
-            background-color:#90caf9  ;
-            color:#000;
-        } /*Background and text color when a tab is active*/
-
-        .tabs .indicator {
-            background-color:#000;
-        } /*Color of underline*/
-.hr {
-  background-color:#90caf9 ;
- 
-}        
-
 </style>

@@ -1,6 +1,4 @@
   
-<p id="notice"><%= notice %></p>
-
 <div class="container">
 
    <% if @comentars.empty? then %>
@@ -21,7 +19,7 @@
             
           <div class="row">
             <div class="col s6 m6 lg6"><b>Professor</b> <%= comentar.professor.nome  %></div>
-             <div class="col s6 m6 lg6"><b>Data:</b><%=comentar.data_comentario  %> </div> 
+             <div class="col s6 m6 lg6"><b>Data:</b><%=formato_data_hora(comentar.data_comentario)  %> </div> 
            
                <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
                     <div>  
