@@ -81,9 +81,11 @@
             @stars4 = Avaliacaoprof.select("count(recomendaria_professor) as stars4")
                      .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
                      .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 4 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre:semestre.ano}).all                                             
+            
             @stars5 = Avaliacaoprof.select("count(recomendaria_professor) as stars5")
                      .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
-                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 5 and semestres.ano||semestres.codigo =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: semestre.ano}).all   
+                     .where("professor_id=:professor_id and disciplinacurso_id =:disciplinacurso_id and recomendaria_professor = 5 and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id: professor,disciplinacurso_id: disciplinacurso_id, ano_semestre: semestre.ano}).all   
+		    
 		    	star_5=0
 				star_4=0
 				star_3=0
