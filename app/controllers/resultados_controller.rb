@@ -38,10 +38,13 @@ class ResultadosController < ApplicationController
                                     .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
                                     .where("avaliacaoprofs.professor_id =:professor_id ",{professor_id:params[:professor_id]})
                                     .group("cast(semestres.ano as char(4))||cast(semestres.codigo as char(1))").all 
-      @professor = Avaliacaoprof.select ("professors.nome")
+  
+                                
+      @professor = Avaliacaoprof.select("professors.nome, avaliacaoprofs.professor_id")
                                 .joins("JOIN professors ON professors.id = avaliacaoprofs.professor_id" )
                                 .where("avaliacaoprofs.professor_id =:professor_id ",{professor_id:params[:professor_id]})
-                                .group("professors.nome").all
+                                .group("professors.nome, avaliacaoprofs.professor_id").all    
+                                
                                     
                                             
     end

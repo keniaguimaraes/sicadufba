@@ -3,7 +3,7 @@
  <h6><b>Docente: <%=professor.nome%></b></h6><hr class"hr">
  <%end%> 
 
-<ul id="tabs-swipe-demo" class="tabs">
+<ul id="tabs-swipe-demo" class="tabs light-blue darken-4">
    <% 
    i = 0
    @semestre.each do |semestre| 
@@ -11,9 +11,9 @@
    
    id ='#test-swipe-'+i.to_s%>
     <% if (i == 1) then %>
-      <li class="tab"><a class="active" href="<%=id%>"><b> <%=semestre.ano%></b></a></li>
+      <li class="tab light-blue darken-3 "><a class="active white-text " href="<%=id%>"><b> <%=semestre.ano%></b></a></li>
     <%else%>
-     <li class="tab"><a href="<%=id%>"><b> <%=semestre.ano%></b></a></li>
+     <li class="tab light-blue darken-3 "><a href="<%=id%>" class="white-text"><b> <%=semestre.ano%></b></a></li>
  
     <%end%> 
    <%end%>
@@ -225,27 +225,8 @@
   background-color:#a9a9a9;
 }
 
-
-.tabs .tab a{
-            color:#000;
-        } /*Black color to the text*/
-
-        .tabs .tab a:hover {
-            background-color:#eee;
-            color:#000;
-        } /*Text color on hover*/
-
-        .tabs .tab a.active {
-            background-color:#90caf9  ;
-            color:#000;
-        } /*Background and text color when a tab is active*/
-
-        .tabs .indicator {
-            background-color:#000;
-        } /*Color of underline*/
-.hr {
-  background-color:#90caf9 ;
- 
-}        
+.tabs .indicator {
+    background-color: #000;
+}    
 
 </style>
