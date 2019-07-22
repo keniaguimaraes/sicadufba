@@ -61,6 +61,15 @@ class ComentarsController < ApplicationController
   # GET /comentars/new
   def new
     @comentar = Comentar.new
+=begin verificação de validação
+    @comentar.valid?
+
+    respond_to do |format|
+       message ='Comentário Bloqueado!'
+       format.html { redirect_to "/comentars/0/all",notice:message }
+     end  
+=end
+
     @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
     curso_id=0
     @usuarios.each do |usuario| 
@@ -85,7 +94,7 @@ class ComentarsController < ApplicationController
      respond_to do |format|
       @comentar.update(bloqueio: true)
       @comentar.update(data_bloqueio: Time.now)
-       message='Comentário Bloqueado!'
+       message ='Comentário Bloqueado!'
        format.html { redirect_to "/comentars/0/all",notice:message }
             # flash[:notice] = "Notification deleted"
         
@@ -103,7 +112,7 @@ class ComentarsController < ApplicationController
 
   def denunciar
       @comentar = Comentar.find(params[:id])
-       
+    
       contabiliza_denuncia = 0
       numero_denuncia = 0
       numero_denuncia = @comentar.denuncia
@@ -115,7 +124,8 @@ class ComentarsController < ApplicationController
         user_id = usuario.id
       end
     
-      @usuario_denuncia = Denunciacomentario.select("denunciacomentarios.*").where(" comentar_id =:comentar_id and usuario_id=:usuario_id",{comentar_id:@comentar.id, usuario_id:user_id}).all
+      @usuario_denuncia = Denunciacomentario.select("denunciacomentarios.*")
+                                             .where(" comentar_id =:comentar_id and usuario_id=:usuario_id",{comentar_id:@comentar.id, usuario_id:user_id}).all
       if !(@usuario_denuncia.empty?) then 
         comentou = true
       end  
@@ -159,16 +169,18 @@ class ComentarsController < ApplicationController
   
     @coment = Comentar.new(comentar_params)
     @comentario = @coment.comentario.split(' ')
-    @compara = Restricao.all
     
+    @comentario =  @comentario.map{|comentario| comentario.gsub /[^\w\s]/, ''}
+    
+    @compara = Restricao.all
     @restricao = []
-    @restricao =  @compara.map{|compara| compara.palavra}
+    @restricao =  @compara.map{|compara| compara.palavra.downcase}
     
   
     stemmer= Lingua::Stemmer.new(:language => "pt")
 
     @resultado = []
-    @resultado =  @comentario.select{ |comentario| @restricao.include?(stemmer.stem(comentario))}.map{ |comentario| comentario}
+    @resultado =  @comentario.select{ |comentario| @restricao.include?(stemmer.stem(comentario.downcase))}.map{ |comentario| comentario}
     
     @permite = true
     if  @resultado.present? then 
@@ -184,7 +196,7 @@ class ComentarsController < ApplicationController
           format.json { render json: @coment.errors, status: :unprocessable_entity }
         end
        else 
-          format.html { redirect_to '/', notice: 'O comentário não está nos padrões permitidos! Favor refazer.' }
+          format.html { redirect_to '/comentars/new', notice: 'O comentário não está nos padrões permitidos! Favor refazer.' }
        end   
     end 
 
