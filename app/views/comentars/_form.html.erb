@@ -1,5 +1,6 @@
 <% require 'time'%>
 <%= form_for(comentar) do |f| %>
+
   <% if comentar.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comentar.errors.count, "error") %> prohibited this comentar from being saved:</h2>
@@ -27,7 +28,7 @@
    <div class="row">
       <div class="col s12 m12 lg12">
           <b><%= f.label :disciplinacurso_id, "Disciplina" %></b>
-          <%=collection_select(:comentar, :disciplinacurso_id, @disciplinacurso, :id, :nome, { :prompt => ''}, { class: 'js-searchable-d' })%>
+          <%=collection_select(:comentar, :disciplinacurso_id, @disciplinacurso, :id, :nome,{:include_blank => true} , { class: 'js-searchable-d'})%>
       </div>
    </div>
     
@@ -35,7 +36,7 @@
    <div class="row">
       <div class="col s12 m12 lg12"> 
        <b><%= f.label :professor_id, "Professor" %></b>
-       <%=collection_select(:comentar, :professor_id, @professor, :id, :nome, { :prompt => ''}, { class: 'js-searchable' })%>
+       <%=collection_select(:comentar, :professor_id, @professor, :id, :nome,{:include_blank => true} , { class: 'js-searchable'} )%>
       </div>
    </div>
     
@@ -43,7 +44,7 @@
    <div class="row">
       <div class="col s12 m12 lg12"> 
           <b><%= f.label :semestre_id , "Semestre"%></b>
-          <%=collection_select(:comentar, :semestre_id, @semestre, :id, :semestre, {:prompt => '' }, { class: 'js-searchable-s' })%>
+          <%=collection_select(:comentar, :semestre_id, @semestre, :id, :semestre,{:include_blank => true} , { class: 'js-searchable-s' })%>
       </div>
    </div>
     
@@ -57,9 +58,9 @@
     
   <br>
   
-  <div class="row">         
+  <div class="row" id="d">         
    <div class="col s12 m6 lg6"> 
-     <%= f.submit "COMENTAR", class: 'btn waves-effect waves-light light-blue btn-small white-text' %>
+     <%= f.submit "COMENTAR", id:"a", class: 'btn waves-effect waves-light light-blue btn-small white-text' %>
    </div>  
   </div>  
   
@@ -70,22 +71,54 @@
 
 
 <script>
-     $(".js-searchable").select2({
+  $(".js-searchable").select2({
          placeholder: "Informe o Professor",
          allowClear: true,
          width:"100%"
-     });
- 
+  });
   $(".js-searchable-d").select2({
          placeholder: "Informe a Disciplina",
          allowClear: true,
          width:"100%"
-     });
-      $(".js-searchable-s").select2({
+  });
+  $(".js-searchable-s").select2({
          placeholder: "Informe o semestre",
          allowClear: true,
          width:"100%"
-     });
+  });
+     
+ $('form').submit(function(e) { 
+       
+      e.preventDefault();
+      
+       var professor = jQuery('.js-searchable').val();
+       var disciplina = jQuery('.js-searchable-d').val();
+       var semestre = jQuery('.js-searchable-s').val();
+       var comentario = jQuery('.materialize-textarea').val();
+     
+      if (professor == '') {
+         alert('O campo professor é obrigatório!');
+         e.stopPropagation();
+       };
+       
+      if (disciplina == '') {
+         alert('O campo disciplina é obrigatório!');
+          e.stopPropagation();
+       };
+     
+      if (semestre == '') {
+         alert('O campo semestre é obrigatório!');
+          e.stopPropagation();
+       };
+       
+    if (comentario == '') {
+         alert('O campo comentário está vazio!');
+          e.stopPropagation();
+       };
+     e.currentTarget.submit();
+  });
+ 
 </script>
+
 
 
