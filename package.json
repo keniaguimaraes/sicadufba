@@ -2,9 +2,4 @@
   "name": "prototipo",
   "private": true,
   "dependencies": {}
-   "engines": {
-    "yarn": "1.x",
-    "npm": "6.x"
-  }
-  
 }
