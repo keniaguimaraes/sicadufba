@@ -89,33 +89,33 @@
      
  $('form').submit(function(e) { 
        
-      e.preventDefault();
-      
-       var professor = jQuery('.js-searchable').val();
-       var disciplina = jQuery('.js-searchable-d').val();
-       var semestre = jQuery('.js-searchable-s').val();
-       var comentario = jQuery('.materialize-textarea').val();
-     
-      if (professor == '') {
-         alert('O campo professor é obrigatório!');
-         e.stopPropagation();
-       };
-       
-      if (disciplina == '') {
-         alert('O campo disciplina é obrigatório!');
-          e.stopPropagation();
-       };
-     
-      if (semestre == '') {
-         alert('O campo semestre é obrigatório!');
-          e.stopPropagation();
-       };
-       
-    if (comentario == '') {
-         alert('O campo comentário está vazio!');
-          e.stopPropagation();
-       };
-     e.currentTarget.submit();
+      var professor = jQuery('.js-searchable').val();
+      var disciplina = jQuery('.js-searchable-d').val();
+      var semestre = jQuery('.js-searchable-s').val();
+      var comentario = jQuery('.materialize-textarea').val();
+      if ((professor == '') || (disciplina == '')||(semestre == '')|| (comentario == '')) {
+            e.preventDefault();
+           if (professor == '') {
+             alert('O campo professor é obrigatório!');
+             e.stopPropagation();
+           };
+           
+           if (disciplina == '') {
+             alert('O campo disciplina é obrigatório!');
+              e.stopPropagation();
+           };
+           if (semestre == '') {
+             alert('O campo semestre é obrigatório!');
+              e.stopPropagation();
+           };
+           
+           if (comentario == '') {
+             alert('O campo comentário está vazio!');
+              e.stopPropagation();
+           };
+      } else {     
+         e.currentTarget.submit();
+      }
   });
  
 </script>
