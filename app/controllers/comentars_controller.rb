@@ -39,7 +39,7 @@ class ComentarsController < ApplicationController
                                  .joins('JOIN semestres on semestres.id = comentars.semestre_id')
                                  .joins('join professors on professors.id = comentars.professor_id')
                                  .joins('JOIN usuarios ON usuarios.id = comentars.user_id ')
-                                 .where("disciplinacursos.disciplina_id=:disciplina_id and comentars.bloqueio = '0' ",{disciplina_id: params[:disciplina_id]})
+                                 .where("disciplinacursos.disciplina_id=:disciplina_id and comentars.bloqueio = '0' and comentars.ocultar = '0' ",{disciplina_id: params[:disciplina_id]})
                                  .paginate(:page => params[:page], :per_page => 4)
                                  .order("comentars.data_comentario desc, professors.nome")
   
@@ -88,6 +88,25 @@ class ComentarsController < ApplicationController
         format.html { redirect_to "/comentars/0/all",notice:menssagem }
       end  
   end  
+
+
+  def mostrar 
+      @comentar = Comentar.find(params[:id])
+      respond_to do |format|
+        @comentar.update(ocultar: false)
+        message ='Comentário Habilitado!'
+        format.html { redirect_to "/comentars/0/all",notice:message }
+     end  
+  end 
+  
+  def ocultar 
+      @comentar = Comentar.find(params[:id])
+      respond_to do |format|
+        @comentar.update(bloqueio: true)
+        message ='Comentário Ocultado!'
+        format.html { redirect_to "/comentars/0/all",notice:message }
+     end  
+  end 
 
   def denunciar
       @comentar = Comentar.find(params[:id])

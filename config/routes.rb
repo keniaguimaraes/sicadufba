@@ -32,6 +32,8 @@ Rails.application.routes.draw do
        get 'bloquear'=> 'comentars#bloquear'
        get 'desbloquear'=> 'comentars#desbloquear'
        get 'denunciar'=> 'comentars#denunciar'
+       get 'mostrar'=> 'comentars#mostrar'
+       get 'ocultar'=> 'comentars#ocultar'
     end
  end
  
