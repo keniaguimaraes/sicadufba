@@ -14,7 +14,6 @@ class ComentarsController < ApplicationController
     end
     @comentars = Comentar.where("user_id =:user_id",{user_id:user_id}).all
                          .paginate(:page => params[:page], :per_page => 7)
-    $local="index"                     
   end
   
   
@@ -22,20 +21,15 @@ class ComentarsController < ApplicationController
      add_breadcrumb "Todos Comentários", "comentars/0/all", :title => "Voltar para a página principal"
      @comentars = Comentar.select("usuarios.username, comentars.*").joins("JOIN usuarios ON usuarios.id = comentars.user_id").all.order("data_comentario")
                          .paginate(:page => params[:page], :per_page =>7)
-      $local="mostra"  
   end
 
 
   # GET /comentars/1
   # GET /comentars/1.json
   def show
-    
-      @comentarios_disciplina =  Comentar.find(params[:id])
+       @comentarios_disciplina =  Comentar.find(params[:id])
        add_breadcrumb "Exibindo Comentário" 
-    
-   
   end
-  
   
   def mostra
        @comentarios_disciplina = Comentar.select(' cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id, disciplinacursos.disciplina_id as disciplina_id') 
@@ -47,31 +41,18 @@ class ComentarsController < ApplicationController
                                  .joins('JOIN usuarios ON usuarios.id = comentars.user_id ')
                                  .where("disciplinacursos.disciplina_id=:disciplina_id and comentars.bloqueio = '0' ",{disciplina_id: params[:disciplina_id]})
                                  .paginate(:page => params[:page], :per_page => 4)
-     if $aux == "a" then 
-       $local = "demonstra"
-     else 
-       $local = "mostra"
-       $aux   = " "
-     end
-     
-     add_breadcrumb "Veja o que estão comentando",demonstra_comentarios_path, :title => "Voltar para Anterior" 
+                                 .order("comentars.data_comentario desc, professors.nome")
+  
+    add_breadcrumb "Veja o que estão comentando",demonstra_comentarios_path, :title => "Voltar para Anterior" 
     add_breadcrumb "Comentários da disciplina" 
   end  
   
   # GET /comentars/new
   def new
     @comentar = Comentar.new
-=begin verificação de validação
-    @comentar.valid?
-
-    respond_to do |format|
-       message ='Comentário Bloqueado!'
-       format.html { redirect_to "/comentars/0/all",notice:message }
-     end  
-=end
 
     @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
-    curso_id=0
+    curso_id = 0
     @usuarios.each do |usuario| 
        curso_id = usuario.curso_id    
     end
@@ -90,14 +71,12 @@ class ComentarsController < ApplicationController
   end
 
   def bloquear 
-     @comentar = Comentar.find(params[:id])
-     respond_to do |format|
-      @comentar.update(bloqueio: true)
-      @comentar.update(data_bloqueio: Time.now)
-       message ='Comentário Bloqueado!'
-       format.html { redirect_to "/comentars/0/all",notice:message }
-            # flash[:notice] = "Notification deleted"
-        
+      @comentar = Comentar.find(params[:id])
+      respond_to do |format|
+        @comentar.update(bloqueio: true)
+        @comentar.update(data_bloqueio: Time.now)
+        message ='Comentário Bloqueado!'
+        format.html { redirect_to "/comentars/0/all",notice:message }
      end  
   end  
   
@@ -112,7 +91,6 @@ class ComentarsController < ApplicationController
 
   def denunciar
       @comentar = Comentar.find(params[:id])
-    
       contabiliza_denuncia = 0
       numero_denuncia = 0
       numero_denuncia = @comentar.denuncia
@@ -129,7 +107,7 @@ class ComentarsController < ApplicationController
       if !(@usuario_denuncia.empty?) then 
         comentou = true
       end  
-     respond_to do |format|
+      respond_to do |format|
         if comentou==false then 
          @comentar.update(denuncia: contabiliza_denuncia)
          
@@ -162,21 +140,27 @@ class ComentarsController < ApplicationController
     @semestre   = Semestre.select(" cast(ano as char(4))||'.'||cast(codigo as char(1)) semestre,  * ").all
                           .order("ano,codigo") 
   end
-
+  
+  def remover_acentos(texto)
+    return texto if texto.blank?
+    texto = texto.gsub(/(á|à|ã|â|ä)/, 'a').gsub(/(é|è|ê|ë)/, 'e').gsub(/(í|ì|î|ï)/, 'i').gsub(/(ó|ò|õ|ô|ö)/, 'o').gsub(/(ú|ù|û|ü)/, 'u')
+    texto = texto.gsub(/(Á|À|Ã|Â|Ä)/, 'A').gsub(/(É|È|Ê|Ë)/, 'E').gsub(/(Í|Ì|Î|Ï)/, 'I').gsub(/(Ó|Ò|Õ|Ô|Ö)/, 'O').gsub(/(Ú|Ù|Û|Ü)/, 'U')
+    texto = texto.gsub(/ñ/, 'n').gsub(/Ñ/, 'N')
+    texto = texto.gsub(/ç/, 'c').gsub(/Ç/, 'C')
+    texto
+  end
+  
   # POST /comentars
   # POST /comentars.json
   def create
-  
     @coment = Comentar.new(comentar_params)
     @comentario = @coment.comentario.split(' ')
-    
-    @comentario =  @comentario.map{|comentario| comentario.gsub /[^\w\s]/, ''}
+    @comentario =  @comentario.map{|comentario| remover_acentos(comentario).gsub /[^\w\s]/, ''}#remove acentuação
     
     @compara = Restricao.all
     @restricao = []
-    @restricao =  @compara.map{|compara| compara.palavra.downcase}
+    @restricao =  @compara.map{|compara| remover_acentos(compara.palavra).downcase}
     
-  
     stemmer= Lingua::Stemmer.new(:language => "pt")
 
     @resultado = []
@@ -189,12 +173,16 @@ class ComentarsController < ApplicationController
   
     respond_to do |format|
        if (@permite) then
-        if @coment.save
-          format.html { redirect_to '/demonstra_comentarios', notice: 'Comentário Incluído!'}
-        else
-          format.html { render :new }
-          format.json { render json: @coment.errors, status: :unprocessable_entity }
-        end
+        #if @coment.valid? 
+          if @coment.save
+            format.html { redirect_to '/demonstra_comentarios', notice: 'Comentário Incluído!'}
+          else
+            format.html { render :new }
+            format.json { render json: @coment.errors, status: :unprocessable_entity }
+          end
+        # else  format.html
+         #     @coment.errors.full_messages
+      #  end
        else 
           format.html { redirect_to '/comentars/new', notice: 'O comentário não está nos padrões permitidos! Favor refazer.' }
        end   
