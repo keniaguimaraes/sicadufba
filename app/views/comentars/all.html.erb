@@ -17,6 +17,12 @@
         status = "Comentário Habilitado"
       end  
    %>
+   <% if comentar.oculta == true then 
+        situacao = "Comentário Ocultado"
+      else
+        situacao = "Comentário Público"
+      end  
+    %>
    <div class= "card">
       
       <div class="row">
@@ -30,6 +36,7 @@
                 <div class="col s12 m12 lg12"><b>Usuário:</b><%=comentar.username  %> </div> 
                 <div class="col s12 m7 lg7"><b>Status: </b><%=status%> </div> 
                 <div class="col s12 m4 lg4"><b>Denuncias: </b><%=comentar.denuncia%> </div> 
+                <div class="col s12 m7 lg7"><b>Situação: </b><%=situacao%> </div> 
          </div> 
          <div class="col s6 offset-s8 m2 offset-m10 lg2 offset-lg6">
                 <div>  
@@ -61,4 +68,11 @@
   
 <script>
 $('.tooltipped').tooltip();
+</script>
+
+<script>
+  
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
 </script>

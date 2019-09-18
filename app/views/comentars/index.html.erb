@@ -10,7 +10,12 @@
      
    <%else%>
       <% @comentars.each do |comentar| %>
-       
+       <% if comentar.oculta == true then 
+        status = "Comentário Ocultado"
+      else
+        status = "Comentário Público"
+      end  
+      %>
        <div class= "card">
           <div class="row">
             <br>
@@ -20,18 +25,19 @@
           <div class="row">
             <div class="col s6 m6 lg6"><b>Professor</b> <%= comentar.professor.nome  %></div>
              <div class="col s6 m6 lg6"><b>Data:</b><%=formato_data_hora(comentar.data_comentario)  %> </div> 
+            <div class="col s12 m7 lg7"><b>Situação: </b><%=status%> </div>     
            
                <div class="col s6 offset-s9 m2 offset-m10 lg2 offset-lg6">
                     <div>  
                         <%= link_to comentar_path(comentar),class:'' do %>
-                          <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Mostrar">details</i>  
+                          <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Detalhes">details</i>  
                         <%end%>
-                        <%= link_to edit_comentar_path(comentar),class:'' do %>
-                          <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
+                        <%= link_to ocultar_comentar_path(comentar),class:'' do %>
+                          <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Ocultar">block</i>
                         <%end%>
-                        <!--<%= link_to comentar,:confirm => "Você tem ceretza?", :method => :delete, class:' '  do %>
-                           <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
-                        <%end%>-->
+                        <%= link_to mostrar_comentar_path(comentar),class:'' do %>
+                          <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Mostrar">check</i>
+                       <%end%>
                </div>
             </div>
           </div>
