@@ -7,7 +7,8 @@ class ComentarsController < ApplicationController
   # GET /comentars.json
   def index
     add_breadcrumb "Meus Comentários", comentars_path, :title => "Voltar para a página principal"
-    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    user = Digest::SHA2.new << current_user.username+ENV['CHAVE']
+    @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
     user_id=0
     @usuarios.each do |usuario| 
        user_id = usuario.id     
@@ -51,7 +52,8 @@ class ComentarsController < ApplicationController
   def new
     @comentar = Comentar.new
 
-    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    user = Digest::SHA2.new << current_user.username+ENV['CHAVE']
+    @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
     curso_id = 0
     @usuarios.each do |usuario| 
        curso_id = usuario.curso_id    
@@ -115,7 +117,8 @@ class ComentarsController < ApplicationController
       numero_denuncia = @comentar.denuncia
       contabiliza_denuncia = numero_denuncia + 1
       comentou = false
-      @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+      user = Digest::SHA2.new << current_user.username+ENV['CHAVE']
+      @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
       user_id = 0
       @usuarios.each do |usuario| 
         user_id = usuario.id
@@ -144,7 +147,8 @@ class ComentarsController < ApplicationController
   
   # GET /comentars/1/edit
   def edit
-    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    user = Digest::SHA2.new << current_user.username+ENV['CHAVE']
+    @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
     curso_id=0
     @usuarios.each do |usuario| 
        curso_id = usuario.curso_id    
@@ -172,41 +176,50 @@ class ComentarsController < ApplicationController
   # POST /comentars
   # POST /comentars.json
   def create
-    @coment = Comentar.new(comentar_params)
-    @comentario = @coment.comentario.split(' ')
-    @comentario =  @comentario.map{|comentario| remover_acentos(comentario).gsub /[^\w\s]/, ''}#remove acentuação
+     @coment = Comentar.new(comentar_params)
     
-    @compara = Restricao.all
-    @restricao = []
-    @restricao =  @compara.map{|compara| remover_acentos(compara.palavra).downcase}
-    
-    stemmer= Lingua::Stemmer.new(:language => "pt")
-
-    @resultado = []
-    @resultado =  @comentario.select{ |comentario| @restricao.include?(stemmer.stem(comentario.downcase))}.map{ |comentario| comentario}
-    
-    @permite = true
-    if  @resultado.present? then 
-       @permite = false
-    end
+     user_id =  @coment.user_id
+     disciplinacurso_id=  @coment.disciplinacurso_id
+     professor_id=  @coment.professor_id
+     semestre_id=  @coment.semestre_id
+     
+     @verifica_comentario = Comentar.select("id").where("user_id= :user_id and disciplinacurso_id= :disciplinacurso_id and professor_id=:professor_id and semestre_id= :semestre_id",{user_id:user_id, disciplinacurso_id:disciplinacurso_id,professor_id:professor_id,semestre_id:professor_id}).all
+     
+     if @verifica_comentario.empty? then  
+       
+      @comentario = @coment.comentario.split(' ')
+      @comentario =  @comentario.map{|comentario| remover_acentos(comentario).gsub /[^\w\s]/, ''}#remove acentuação
+      
+      @compara = Restricao.all
+      @restricao = []
+      @restricao =  @compara.map{|compara| remover_acentos(compara.palavra).downcase}
+      
+      stemmer = Lingua::Stemmer.new(:language => "pt")
   
-    respond_to do |format|
-       if (@permite) then
-        #if @coment.valid? 
-          if @coment.save
-            format.html { redirect_to '/demonstra_comentarios', notice: 'Comentário Incluído!'}
-          else
-            format.html { render :new }
-            format.json { render json: @coment.errors, status: :unprocessable_entity }
-          end
-        # else  format.html
-         #     @coment.errors.full_messages
-      #  end
-       else 
-          format.html { redirect_to '/comentars/new', notice: 'O comentário não está nos padrões permitidos! Favor refazer.' }
-       end   
-    end 
-
+      @resultado = []
+      @resultado =  @comentario.select{ |comentario| @restricao.include?(stemmer.stem(comentario.downcase))}.map{ |comentario| comentario}
+      
+      @permite = true
+      if  @resultado.present? then 
+         @permite = false
+      end
+    
+      respond_to do |format|
+         if (@permite) then
+            if @coment.save
+              format.html { redirect_to '/demonstra_comentarios', notice: 'Comentário Incluído!'}
+            else
+              format.html { render :new }
+              format.json { render json: @coment.errors, status: :unprocessable_entity }
+            end
+         else 
+            format.html { redirect_to '/comentars/new', notice: 'O comentário não está nos padrões permitidos! Favor refazer.' }
+         end   
+      end 
+     else  message = 'Você já realizou um comentário para esse disciplina, neste semestre.'+user_id.to_s+disciplinacurso_id.to_s+professor_id.to_s+semestre_id.to_s
+         redirect_to '/comentars/new', notice: message
+    
+     end
   end
 
   # PATCH/PUT /comentars/1

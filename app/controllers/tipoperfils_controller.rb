@@ -1,3 +1,4 @@
+
 class TipoperfilsController < ApplicationController
   before_action :set_tipoperfil, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!

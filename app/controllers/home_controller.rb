@@ -1,13 +1,12 @@
+require "digest/sha2"
 class HomeController < ApplicationController
-
-
  def index
     if user_signed_in? then
-       @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+       user = Digest::SHA2.new << current_user.username+ENV['CHAVE']
+       @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
        if @usuarios.empty?  then
          @usuario_adiciona = Usuario.new
-         @usuario_adiciona.username = current_user.username
-         @usuario_adiciona.user_id = current_user.id
+         @usuario_adiciona.username =  user.to_s
          @usuario_adiciona.tipoperfil_id = 1
          @usuario_adiciona.administrador = false
          @usuario_adiciona.bloqueio =  false

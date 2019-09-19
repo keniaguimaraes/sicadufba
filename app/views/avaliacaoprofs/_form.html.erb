@@ -1,5 +1,6 @@
 
-<% require 'time'%>
+<% require 'time'
+require 'digest/sha2'%>
 
 <%= form_for(avaliacaoprof) do |f| %>
   <% if avaliacaoprof.errors.any? %>
@@ -19,7 +20,8 @@
      
  <div class="card-panel ">
  
-   <%@usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+   <%user = Digest::SHA2.new << current_user.username+ENV['CHAVE']
+    @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
     user_id=0
     @usuarios.each do |usuario| 
     user_id = usuario.id%>

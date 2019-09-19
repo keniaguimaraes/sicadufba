@@ -1,5 +1,7 @@
 class ResultadosController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_
+    
+    user!
     
     def index
         #add_breadcrumb "Resultados por Semestre", resultado_semestre_path, :title => "Voltar para a Página principal"

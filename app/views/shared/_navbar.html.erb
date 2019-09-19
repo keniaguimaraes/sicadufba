@@ -5,8 +5,9 @@
       <ul class="right hide-on-med-and-down ">
          <% if user_signed_in? %>
           <ul id="dropdown3" class="dropdown-content">
-              <% @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
-               @usuarios.each do |usuario| %>
+              <% user = Digest::SHA2.new << current_user.username+ENV['CHAVE'] 
+                @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
+                @usuarios.each do |usuario| %>
                  <li><%= link_to 'Editar Perfil', perfil_usuario_path(usuario), :class => 'navbar-link' %></li>
                <% end %>
              
@@ -89,9 +90,9 @@
  <% if user_signed_in? %>
   <div class="row container">
     <%
-     curso_id= 1
-    
-     @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+     curso_id = 1
+     user = Digest::SHA2.new << current_user.username+ENV['CHAVE'] 
+     @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
 
      @usuarios.each do |usuario| 
        curso_id = usuario.curso_id    

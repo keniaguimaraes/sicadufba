@@ -5,7 +5,8 @@ class AvaliacaoprofsController < ApplicationController
   # GET /avaliacaoprofs.json
   def index
     add_breadcrumb "Minhas Avaliações Docente", avaliacaoprofs_path, :title => "Voltar para a Página principal"
-    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    user = Digest::SHA2.new << current_user.username+ENV['CHAVE']
+    @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
     user_id=0
     @usuarios.each do |usuario| 
        user_id = usuario.id     
@@ -25,7 +26,8 @@ class AvaliacaoprofsController < ApplicationController
   # GET /avaliacaoprofs/new
   def new
     @avaliacaoprof = Avaliacaoprof.new
-    @usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+    user = Digest::SHA2.new << current_user.username+ENV['CHAVE']
+    @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
     curso_id=0
     @usuarios.each do |usuario| 
        curso_id = usuario.curso_id     

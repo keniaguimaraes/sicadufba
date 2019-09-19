@@ -1,4 +1,6 @@
-<% require 'time'%>
+
+<% require 'time'
+   require 'digest/sha2' %>
 <%= form_for(comentar) do |f| %>
 
   <% if comentar.errors.any? %>
@@ -15,7 +17,9 @@
  <div class="row">
  <div class="col s12 m8 lg9 offset-m2">
   <div class="card-panel">
-   <%@usuarios = Usuario.where("username=:username",{username:current_user.username}).all
+   <%
+   user = Digest::SHA2.new << current_user.username+ENV['CHAVE']
+   @usuarios = Usuario.where("username=:username",{username:user.to_s}).all
     user_id=0
     @usuarios.each do |usuario| 
     user_id = usuario.id%>
