@@ -2,7 +2,6 @@ class ResultadosController < ApplicationController
     before_action :authenticate_user!
     
     def index
-        #add_breadcrumb "Resultados por Semestre", resultado_semestre_path, :title => "Voltar para a Página principal"
         add_breadcrumb "Resultados por Professor"
         @resultados = Avaliacaoprof.select("professors.nome, avaliacaoprofs.professor_id, count(professors.nome) qtd")
                                     .joins("JOIN professors ON professors.id = avaliacaoprofs.professor_id" )

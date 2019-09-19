@@ -56,31 +56,46 @@ class AvaliacaoprofsController < ApplicationController
   # POST /avaliacaoprofs.json
   def create
     @avaliacaoprof = Avaliacaoprof.new(avaliacaoprof_params)
-    @tagselect =  params[:tags]
-   # @avaliacaoprof.dominio_conteudo = 1
-    @ult_avaliacao = Avaliacaoprof.last
-    if @ult_avaliacao.nil? 
-      proximo = 1
-    else proximo = @ult_avaliacao.id + 1
-    end 
     
-    if  not @tagselect.nil?  then
-      @tagselect.each do |tagselect|
-        @avaliacaotag = Avaliacaotag.new
-        @avaliacaotag.tag_id = tagselect
-        @avaliacaotag.avaliacaoprof_id = proximo
-        @avaliacaotag.save
-      end  
-    end
-
-    respond_to do |format|
-      if @avaliacaoprof.save
-        format.html { redirect_to '/', notice: 'A Avaliação foi Realizada com Sucesso!'}
-      else
-        format.html { render :new }
-        format.json { render json: @avaliacaoprof.errors, status: :unprocessable_entity }
-      end
-    end
+    
+     user_id =  @avaliacaoprof.user_id
+     disciplinacurso_id=  @avaliacaoprof.disciplinacurso_id
+     professor_id=  @avaliacaoprof.professor_id
+     semestre_id=  @avaliacaoprof.semestre_id
+  
+     verifica_avaliacao = Avaliacaoprof.where("user_id=:user_id and disciplinacurso_id=:disciplinacurso_id and professor_id=:professor_id and semestre_id=:semestre_id",{user_id:user_id, disciplinacurso_id:disciplinacurso_id,professor_id:professor_id,semestre_id:semestre_id}).exists?
+     
+     if !verifica_avaliacao  then
+  
+        @tagselect =  params[:tags]
+       
+        @ult_avaliacao = Avaliacaoprof.last
+        if @ult_avaliacao.nil? 
+          proximo = 1
+        else proximo = @ult_avaliacao.id + 1
+        end 
+        
+        if  not @tagselect.nil?  then
+          @tagselect.each do |tagselect|
+            @avaliacaotag = Avaliacaotag.new
+            @avaliacaotag.tag_id = tagselect
+            @avaliacaotag.avaliacaoprof_id = proximo
+            @avaliacaotag.save
+          end  
+        end
+    
+        respond_to do |format|
+          if @avaliacaoprof.save
+            format.html { redirect_to '/', notice: 'A Avaliação foi Realizada com Sucesso!'}
+          else
+            format.html { render :new }
+            format.json { render json: @avaliacaoprof.errors, status: :unprocessable_entity }
+          end
+        end  
+     else 
+       message = 'Você já realizou a avaliação para esta disciplina neste semestre com esse professor!'
+       redirect_to '/avaliacaoprofs/new', notice: message
+     end   
   end
 
   # PATCH/PUT /avaliacaoprofs/1

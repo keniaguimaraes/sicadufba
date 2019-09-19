@@ -182,11 +182,10 @@ class ComentarsController < ApplicationController
      disciplinacurso_id=  @coment.disciplinacurso_id
      professor_id=  @coment.professor_id
      semestre_id=  @coment.semestre_id
+  
+      verifica_comentario = Comentar.where("user_id=:user_id and disciplinacurso_id=:disciplinacurso_id and professor_id=:professor_id and semestre_id=:semestre_id",{user_id:user_id, disciplinacurso_id:disciplinacurso_id,professor_id:professor_id,semestre_id:semestre_id}).exists?
      
-     @verifica_comentario = Comentar.select("id").where("user_id= :user_id and disciplinacurso_id= :disciplinacurso_id and professor_id=:professor_id and semestre_id= :semestre_id",{user_id:user_id, disciplinacurso_id:disciplinacurso_id,professor_id:professor_id,semestre_id:professor_id}).all
-     
-     if @verifica_comentario.empty? then  
-       
+     if !verifica_comentario  then
       @comentario = @coment.comentario.split(' ')
       @comentario =  @comentario.map{|comentario| remover_acentos(comentario).gsub /[^\w\s]/, ''}#remove acentuação
       
@@ -208,7 +207,6 @@ class ComentarsController < ApplicationController
          if (@permite) then
             if @coment.save
               format.html { redirect_to '/demonstra_comentarios', notice: 'Comentário Incluído!'}
-            else
               format.html { render :new }
               format.json { render json: @coment.errors, status: :unprocessable_entity }
             end
@@ -216,7 +214,7 @@ class ComentarsController < ApplicationController
             format.html { redirect_to '/comentars/new', notice: 'O comentário não está nos padrões permitidos! Favor refazer.' }
          end   
       end 
-     else  message = 'Você já realizou um comentário para esse disciplina, neste semestre.'+user_id.to_s+disciplinacurso_id.to_s+professor_id.to_s+semestre_id.to_s
+     else  message = 'Você já realizou um comentário para esta disciplina neste semestre!'
          redirect_to '/comentars/new', notice: message
     
      end
