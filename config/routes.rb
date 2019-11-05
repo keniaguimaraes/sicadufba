@@ -19,12 +19,11 @@ Rails.application.routes.draw do
   resources :resultados
   resources :faq
   resources :usuarios
-  
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   get '/check.txt', to: proc {[200, {}, ['it_works']]}
   root 'home#index'
+  
  resources :comentars do
      member do
        get 'mostra'=> 'comentars#mostra'
@@ -37,8 +36,7 @@ Rails.application.routes.draw do
     end
  end
  
- 
-resources :admin do
+ resources :admin do
      member do
        get 'crawlcurso'=> 'admin#crawlcurso'
        get 'crawldisc'=> 'admin#crawldisc'
@@ -60,7 +58,13 @@ resources :admin do
         get 'desbloquear' => 'user#desbloquear'
     end
  end
- 
+ resources :usuarios do
+     member do
+        get 'bloquear' => 'usuarios#bloquear'
+        get 'desbloquear' => 'usuarios#desbloquear'
+        get 'perfil' => 'usuarios#perfil'
+    end    
+ end
   get "faq_avaliacoes", to: "faq#avaliacoes"
   get 'faq_comentarios', to: 'faq#comentarios'
   get 'faq_resultados', to: 'faq#resultados'
@@ -70,11 +74,7 @@ resources :admin do
   post 'contato' => 'application#send_contact', :as => 'send_contact'
   get 'resultado_professor', to: 'resultados#professor'
   get 'todos_comentarios', to: 'comentars#mostra'
-   resources :usuarios do
-     member do
-        get 'bloquear' => 'usuarios#bloquear'
-        get 'desbloquear' => 'usuarios#desbloquear'
-        get 'perfil' => 'usuarios#perfil'
-    end    
- end
+  get 'politicas_privacidade' => 'application#politicas'
+  get 'termos_de_uso' => 'application#termos'
+ 
 end
