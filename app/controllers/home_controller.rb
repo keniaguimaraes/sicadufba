@@ -20,7 +20,9 @@ class HomeController < ApplicationController
           redirect_to perfil_usuario_path(usuario), notice:menssagem   
         end
        end #end each      
-    end          
+    end  
+    
+    @config_avaliacao = ConfigAvaliacao.order("id DESC limit 1").all 
  end
-      
+  
 end
