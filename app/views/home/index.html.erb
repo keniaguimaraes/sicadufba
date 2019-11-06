@@ -16,15 +16,15 @@
         
         <div class="col s12 m4 lg4">
           <div class="icon-block">
-              <%if (  formato_data_hora(Time.now) >= formato_data_hora(@config_avaliacao.data_inicio) ) and (formato_data_hora(Time.now) <= formato_data_hora(@config_avaliacao.data_fim))  then %>
+              <%if  formato_data_hora(Time.now) >= formato_data_hora(@config_avaliacao.data_inicio)  and formato_data_hora(Time.now) <= formato_data_hora(@config_avaliacao.data_fim)  then %>
                   <%= link_to new_avaliacaoprof_path,class:'center blue-text text-darken-4' do %>
                      <center><i class="fas fa-chalkboard-teacher fa-4x"></i></center><p> 
                   <%end%>
-                    <h6 class="center black-text"><b>Avaliar</a> </b></h6>
-                    <h10 class="center black-text"><center>A avaliação está disponível até <b><%=formato_data_hora(@config_avaliacao.data_fim)%><b></center> </h10>
+                    <h6 class="center black-text"><b>Avaliar</b></h6>
+                    <h10 class="center black-text"><center>A avaliação está disponível até <b><%=formato_data_hora(@config_avaliacao.data_fim)%></b></center> </h10>
               <%else%>
                    <center><i class="fas fa-chalkboard-teacher fa-4x"></i></center><p> 
-                   <h6 class="center black-text"><b>Avaliar</a> </b></h6><p>
+                   <h6 class="center black-text"><b>Avaliar</b></h6><p>
                    <h10 class="center black-text"><center>A avaliação ainda não está disponível! </center></a> </h10>
               <%end%>
            

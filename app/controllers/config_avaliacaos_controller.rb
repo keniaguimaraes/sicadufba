@@ -1,6 +1,6 @@
 class ConfigAvaliacaosController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_restricao, only: [:show, :edit, :update, :destroy]
+   before_action :authenticate_user!
+  before_action :set_config_avaliacao, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource  
 
   # GET /config_avaliacaos
