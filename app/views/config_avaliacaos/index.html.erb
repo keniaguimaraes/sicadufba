@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+ <div class="col s12 m8 lg9 offset-m2">
+   <div class="card-panel ">
+        <table class="striped">
+          <thead>
+            <tr>
+            <th>Data Inicio</th>
+            <th>Data Fim </th>
+               <th colspan="2"></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @config_avaliacaos.each do |config_avaliacao| %>
+              <tr>
+                 
+                 <td class="actions">
+                    <td><%= config_avaliacao.data_inicio %></td>
+                    <td><%= config_avaliacao.data_fim %></td>
+                 <%= link_to edit_config_avaliacao_path(config_avaliacao), class: '' do %>
+                   <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
+                  <% end%>
+                 <%= link_to config_avaliacao, method: :delete, data: { confirm: 'Você tem Certeza?'}, class: '' do %>
+                    <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Deletar" >delete</i> 
+                 <%end%>
+                 
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        
+  
+          
+             <div class="row">         
+           <div class="col s12 m6 lg6"> 
+             <%= link_to 'Adicionar', new_config_avaliacao_path, class: 'btn waves-effect waves-light light-blue'  %>
+           </div>
+          </div>
+ 
+    </div>
+  </div>
+</div>
+   
+<script>
+$('.tooltipped').tooltip();
+</script>

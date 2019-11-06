@@ -1,0 +1,2 @@
+class ConfigAvaliacao < ApplicationRecord
+end
