@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_155133) do
+ActiveRecord::Schema.define(version: 2019_11_06_135200) do
 
   create_table "avaliacaoprofs", force: :cascade do |t|
     t.integer "user_id"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 2019_07_08_155133) do
     t.integer "denuncia", default: 0
     t.boolean "bloqueio", default: false
     t.datetime "data_bloqueio"
+    t.boolean "oculta", default: false
+  end
+
+  create_table "config_avaliacaos", force: :cascade do |t|
+    t.datetime "data_inicio"
+    t.datetime "data_fim"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cursos", force: :cascade do |t|
@@ -52,6 +60,13 @@ ActiveRecord::Schema.define(version: 2019_07_08_155133) do
     t.string "sigla"
     t.string "codigo"
     t.string "curriculo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "denunciacomentarios", force: :cascade do |t|
+    t.integer "usuario_id"
+    t.integer "comentar_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -67,12 +82,6 @@ ActiveRecord::Schema.define(version: 2019_07_08_155133) do
   create_table "disciplinas", force: :cascade do |t|
     t.string "nome"
     t.string "codigo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "itemavaliacaos", force: :cascade do |t|
-    t.string "item"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -128,8 +137,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_155133) do
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
-    t.string "email", default: "", null: false
     t.boolean "administrador", default: false, null: false
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
   end
 
