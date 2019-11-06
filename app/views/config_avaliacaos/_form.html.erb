@@ -11,42 +11,40 @@
     </div>
   <% end %>
   
+   <div class="row">
+    <div class="col s12 m8 lg9 offset-m2 black-text">
+     
+ <div class="card-panel black-text ">
+   <div class="row">
+      <div class="col s12 m12 lg12 black-text"> 
+              <b >         <%= f.label :data_inicio %>  </b>
+                   <%= f.text_field  :data_inicio, class:'datepicker' %>  
+      </div> 
+                
+   </div>
+        
   <div class="row">
-    <div class="col s12 m8 lg8 offset-m2">
-       <div class="card-panel ">
-           <div class="row">
-               <div class="col s12 m6 lg6">
-                
-                    <div class="row">
-                      <div class="col s12 m6 lg6"><%= f.label :data_inicio %>  </div>
-                      <div class="col s12 m6 lg6"> <%= f.datetime_select :data_inicio %>  </div>
-                    </div> 
-                
-              </div>
-            </div>
-            <div class="row">
-               <div class="col s12 m6 lg6">
-                
-                    <div class="row">
-                      <div class="col s12 m6 lg6"><%= f.label :data_fim %>  </div>
-                      <div class="col s12 m6 lg6"> <%= f.datetime_select :data_fim %>  </div>
-                    </div> 
-                
-              </div>
-            </div>
-          
-             <br>
-             <div class="row">         
-               <div class="col s12 m12 lg12 white-text"></div> <%= f.submit "OK", class: 'btn waves-effect waves-light light-blue' %> </div>
-             </div>  
-            <% end %>
+     <div class="col s12 m12 lg12 black-text"> 
+        <b>  <%= f.label :data_fim %> </b>
+          <%= f.text_field  :data_fim, class:'datepicker' %>  
+     </div>
+   </div>
+  
+   <br>
+  <div class="row">         
+        <div class="col s12 m12 lg12"></div> <%= f.submit "OK", class: 'btn waves-effect waves-light light-blue white-text' %> </div>
+    </div>  
+   <% end %>
        </div>
     </div>
  </div>
 
-
-
-
+<script>
+ $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>  
+  
 
 
 
