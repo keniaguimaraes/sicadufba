@@ -23,6 +23,9 @@
                   <div class = "col">
                         <a href=""class="rodape black-text"><b>Professor:</b> <%=comentarios_disciplina.nome %></a>
                   </div> 
+                   <div class = "col">
+                        <a href=""class="rodape black-text"><b>Semestre:</b> <%=comentarios_disciplina.ano %></a>
+                  </div> 
                   <div class = "col"><a href=""class="rodape black-text"><b>Data:</b> <%= formato_data_hora(comentarios_disciplina.data_comentario) %></a></div> 
                   <div class = "col"><a href="<%= denunciar_comentar_path(comentarios_disciplina)%>" class="rodape red-text "> <b> Denunciar</b>  </a>
                   </div>      

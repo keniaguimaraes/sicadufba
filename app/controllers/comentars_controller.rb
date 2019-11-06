@@ -33,7 +33,19 @@ class ComentarsController < ApplicationController
   end
   
   def mostra
-       @comentarios_disciplina = Comentar.select(' cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id, disciplinacursos.disciplina_id as disciplina_id') 
+    if  params[:professor_id] != '0' then
+            @comentarios_disciplina = Comentar.select(' cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id, disciplinacursos.disciplina_id as disciplina_id') 
+                                 .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
+                                 .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
+                                 .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
+                                 .joins('JOIN semestres on semestres.id = comentars.semestre_id')
+                                 .joins('join professors on professors.id = comentars.professor_id')
+                                 .joins('JOIN usuarios ON usuarios.id = comentars.user_id ')
+                                 .where("disciplinacursos.disciplina_id=:disciplina_id and comentars.professor_id = :professor_id and comentars.semestre_id = :semestre_id  and  comentars.bloqueio = '0' and comentars.oculta = '0' ",{disciplina_id: params[:disciplina_id],professor_id: params[:professor_id],semestre_id: params[:semestre_id]})
+                                 .paginate(:page => params[:page], :per_page => 4)
+                                 .order("comentars.data_comentario desc, professors.nome")
+    else 
+             @comentarios_disciplina = Comentar.select(' cursos.nome curso ,disciplinas.nome as disciplina, professors.nome,semestres.ano,comentars.comentario,comentars.data_comentario,comentars.id, disciplinacursos.disciplina_id as disciplina_id') 
                                  .joins('JOIN disciplinacursos ON disciplinacursos.id = comentars.disciplinacurso_id ')
                                  .joins('JOIN disciplinas on disciplinas.id = disciplinacursos.disciplina_id ')
                                  .joins('JOIN cursos on cursos.id = disciplinacursos.curso_id ')
@@ -43,7 +55,7 @@ class ComentarsController < ApplicationController
                                  .where("disciplinacursos.disciplina_id=:disciplina_id and comentars.bloqueio = '0' and comentars.oculta = '0' ",{disciplina_id: params[:disciplina_id]})
                                  .paginate(:page => params[:page], :per_page => 4)
                                  .order("comentars.data_comentario desc, professors.nome")
-  
+    end
     add_breadcrumb "Veja o que estão comentando",demonstra_comentarios_path, :title => "Voltar para Anterior" 
     add_breadcrumb "Comentários da disciplina" 
   end  

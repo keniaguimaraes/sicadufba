@@ -31,7 +31,7 @@
 
   <tbody>
     <% @comentarios.each do |comentario| %>
-      <tr class="rows" data-href="<%=todos_comentarios_path(:disciplina_id => comentario.disciplina_id )%>">
+      <tr class="rows" data-href="<%=todos_comentarios_path(:disciplina_id => comentario.disciplina_id,:professor_id => 0, :semestre_id => 0  )%>">
         <td><%= comentario.nome%></td>
       </tr>
     <% end %>
@@ -56,7 +56,14 @@
 
 
 
- 
+
+<style>
+.rows {
+cursor:pointer;
+}
+</style>
+
+  
 <script>
 $(".rows").click(
   function(e){
@@ -64,10 +71,5 @@ $(".rows").click(
     return false;
   }
 )
+   
 </script>
-
-<style>
-.rows {
-cursor:pointer;
-}
-</style>

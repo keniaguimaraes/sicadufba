@@ -23,17 +23,17 @@
    i = 0
    @semestre.each do |semestre| 
    i = i + 1%>
-   <%    @disciplina = Avaliacaoprof.select("disciplinas.nome,avaliacaoprofs.professor_id,disciplinas.codigo, count(disciplinas.nome)as qtd_avaliacoes, cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) as ano, disciplinacursos.id as disciplinacurso_id")
+   <%    @disciplina = Avaliacaoprof.select("disciplinas.nome,avaliacaoprofs.professor_id,disciplinas.codigo, disciplinas.id as disciplina_id, count(disciplinas.nome)as qtd_avaliacoes, cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) as ano, disciplinacursos.id as disciplinacurso_id,avaliacaoprofs.semestre_id as semestre_id")
                                     .joins("JOIN disciplinacursos ON disciplinacursos.id = avaliacaoprofs.disciplinacurso_id" )
                                     .joins("JOIN disciplinas ON disciplinas.id = disciplinacursos.disciplina_id" )
                                     .joins("JOIN semestres ON semestres.id = avaliacaoprofs.semestre_id" )
                                     .where("avaliacaoprofs.professor_id =:professor_id and cast(semestres.ano as char(4))||cast(semestres.codigo as char(1)) =:ano_semestre",{professor_id:params[:professor_id],ano_semestre:semestre.ano})
-                                    .group("disciplinas.nome,avaliacaoprofs.professor_id,disciplinacursos.id,disciplinas.codigo,cast(semestres.ano as char(4))||cast(semestres.codigo as char(1))").all
+                                    .group("disciplinas.nome,avaliacaoprofs.professor_id, disciplinas.id,disciplinacursos.id,disciplinas.codigo, avaliacaoprofs.semestre_id, cast(semestres.ano as char(4))||cast(semestres.codigo as char(1))").all
                                     
       id= 'test-swipe-'+i.to_s                             
                                   %>
                                     
-    <div id="<%=id%>" class="col s12 red">
+    <div id="<%=id%>" class="col s12 ">
    
      <% @disciplina.each do |disciplina| %>
          
@@ -160,7 +160,7 @@
                         <% end    %>
                  </div>
                  
-			              <div class="row">
+			   <div class="row">
                   <div class="col s12 m3 lg3"><b><h8>Tag Associadas</b></h8></div>  
                   <%@tags_associadas.each do |tag| %>
                           <div class="col"> 
@@ -192,12 +192,16 @@
     							<i class="fas fa-star-half-alt fa-2x blue-text"></i>  						
     					<%end%> 	
            </div>
-            </div>
+           <div class="row">
+              <div class="col s12 m5 lg5">     
+			    <%= link_to todos_comentarios_path(:disciplina_id => disciplina.disciplina_id,:professor_id =>disciplina.professor_id,:semestre_id =>disciplina.semestre_id ),class:'' do %>
+                     <h8 class="black-text"><b>Veja aqui os comentários</b></h8> <i class="fas fa-comment-dots fa-1x"></i>
+                <%end%>	   
+    		  </div>			
+           </div>
+         
+     </div>
                
-              
-              
-              
-   
       <%end%>
    
     </div>
