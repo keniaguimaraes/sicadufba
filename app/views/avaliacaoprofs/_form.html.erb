@@ -84,17 +84,12 @@ require 'digest/sha2'%>
  <br>
  <div class="row">         
    <div class="col s12 m12 lg12"> <label><b> Recomendaria esse professor? </b></label>  </div>
-   <span class="tooltip"></span>
-  <div class="col s12 m6 lg6">  <%= f.range_field(:recomendaria_professor, in: 1..5, id:'test5', class:'range-slider' ) %> </div>
- 
-
-
- </div>  
-
- <br>
+   <div class="col s12 m6 lg6"> <%= f.range_field(:recomendaria_professor, in: 1..5, id:'slider',:step => 1 ) %> <p>
+   <div class="col s12 m6 lg6"> <b> <%= f.label :recomendaria_professor,"Valor 3", id:'texto', class: 'range_field blue-text' %></b></div>
+ <br> <br>
   
  <div class="row">         
-    <%= f.submit "Avaliar", class: 'btn waves-effect waves-light light-blue btn-small white-text'%>  </div>  
+    <%= f.submit "Avaliar", class: 'btn waves-effect waves-light white-text light-blue btn-small'%>  </div>  
  </div>  
 <% end %>
 
@@ -103,6 +98,13 @@ require 'digest/sha2'%>
 </div>
 
 <script>
+
+   var x1 = document.getElementById("slider")
+   x1.addEventListener('click', function() {
+      document.getElementById("texto").innerHTML = 'Valor '+x1.value;
+    });    
+  
+
       $(".chip").click(function(e){
         e.preventDefault()
         
@@ -165,27 +167,10 @@ require 'digest/sha2'%>
 </script>
 
 
-<script>
-   var slider = document.getElementById('range-slider');
-           noUiSlider.create(slider, {
-           start: [1, 5],
-           connect: true,
-           tooltips: [false, wNumb({decimals: 1}), true],
-           step: 1,
-           range: {
-             'min': 1,
-             'max': 5
-           },
-            format: wNumb({
-                decimals: 0
-            })
-           });
-        };   
-</script>
 
 <script>
  $('form').submit(function(e) { 
-       
+      
       var professor = jQuery('.js-searchable').val();
       var disciplina = jQuery('.js-searchable2').val();
       var semestre = jQuery('.js-searchable3').val();
