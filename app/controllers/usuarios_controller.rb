@@ -40,7 +40,11 @@ class UsuariosController < ApplicationController
   def edit
     
     @usuario = Usuario.find(params[:id])
-    @curso = Curso.where(" codigo in ('186140','196120','195140','112140')").all
+
+    
+    curso_id = @usuario.curso_id   
+    
+    @curso = Curso.where(" id = :curso",{curso:curso_id}).all
     
     add_breadcrumb "Usuários", "/usuarios", :title => "Voltar para Anterior"
     add_breadcrumb "Editando Usuário" 
@@ -48,7 +52,12 @@ class UsuariosController < ApplicationController
   
   def perfil
     @usuario = Usuario.find(params[:id])
-    @curso = Curso.where(" codigo in ('186140','196120','195140','112140')").all
+     # curso_id=0
+   # @usuario.each do |usuario| 
+       curso_id = @usuario.curso_id   
+   # end
+    @curso = Curso.where(" id = :curso",{curso:curso_id}).all
+    
     add_breadcrumb "Meu perfil", "/", :title => "Voltar para Anterior" 
   end
   

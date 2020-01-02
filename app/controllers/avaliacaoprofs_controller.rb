@@ -40,8 +40,9 @@ class AvaliacaoprofsController < ApplicationController
                                        .order("coalesce(disciplinacursos.semestre, '999')")
     @professor = Professor.all.order("nome")
 
-    @semestre   = Semestre.select(" cast(ano as char(4))||'.'||cast(codigo as char(1)) semestre,  * ").all
-                          .order("ano,codigo")
+    @semestre   = Semestre.select(" cast(ano as char(4))||'.'||cast(codigo as char(1)) semestre,  * ")
+                  .where("habilitado = 1 ").all
+                  .order("ano,codigo")
  
     add_breadcrumb "Avaliação Docente", avaliacaoprofs_path, :title => "Voltar para Anterior"
     add_breadcrumb "Incluir Avaliação Docente"
@@ -55,9 +56,8 @@ class AvaliacaoprofsController < ApplicationController
   # POST /avaliacaoprofs
   # POST /avaliacaoprofs.json
   def create
-    @avaliacaoprof = Avaliacaoprof.new(avaliacaoprof_params)
-    
-    
+     @avaliacaoprof = Avaliacaoprof.new(avaliacaoprof_params)
+  
      user_id =  @avaliacaoprof.user_id
      disciplinacurso_id=  @avaliacaoprof.disciplinacurso_id
      professor_id=  @avaliacaoprof.professor_id

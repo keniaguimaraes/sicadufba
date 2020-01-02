@@ -77,7 +77,8 @@ class ComentarsController < ApplicationController
                                        .order("coalesce(disciplinacursos.semestre, '999')")
     @professor = Professor.all.order("nome")
 
-    @semestre   = Semestre.select(" cast(ano as char(4))||'.'||cast(codigo as char(1)) semestre,  * ").all
+    @semestre   = Semestre.select(" cast(ano as char(4))||'.'||cast(codigo as char(1)) semestre,  * ")
+                           .where("habilitado = 1 ").all
                           .order("ano,codigo")
                         
     add_breadcrumb "Comentários", comentars_path, :title => "Voltar para Anterior"
