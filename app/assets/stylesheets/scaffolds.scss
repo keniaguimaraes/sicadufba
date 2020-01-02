@@ -19,18 +19,7 @@ pre {
   font-size: 11px;
 }
 
-a {
-  color: #000;
 
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
-}
 
 th {
   padding-bottom: 5px;
@@ -74,8 +63,8 @@ div {
   }
 
   ul li {
-    font-size: 12px;
-    list-style: square;
+   // font-size: 12px;
+    //list-style: square;
   }
 }
 
