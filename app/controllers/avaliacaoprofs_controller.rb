@@ -41,8 +41,8 @@ class AvaliacaoprofsController < ApplicationController
     @professor = Professor.all.order("nome")
 
     @semestre   = Semestre.select(" cast(ano as char(4))||'.'||cast(codigo as char(1)) semestre,  * ")
-                  .where("habilitado = 1 ").all
-                  .order("ano,codigo")
+                          .where("habilitado = '1' ").all
+                          .order("ano,codigo")
  
     add_breadcrumb "Avaliação Docente", avaliacaoprofs_path, :title => "Voltar para Anterior"
     add_breadcrumb "Incluir Avaliação Docente"
