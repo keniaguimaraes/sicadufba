@@ -14,7 +14,6 @@
  *= require toastr
  *= require_tree .
  *= require_self
-
  
  */
 @import "materialize";
@@ -22,6 +21,26 @@
 @import "materialize/extras/nouislider";
 
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+      
+.rodape{
+   font-size: 8px;
+}
+
+
+
+.row-left{
+  
+ color:'#ffff';
+}
 
 .input-field {
   [type="checkbox"] + label,
@@ -30,67 +49,6 @@
     pointer-events: auto;
   }
 }
-
-
-// Breadcrumbs
-.breadcrumbs {
-   line-height: 1.5;  padding-left: 0;
-  li { display: inline; list-style-type: none; margin-left: 0; }
-  li:before { padding-right: 3px; }
-  li:first-child:before { content: ""; padding-right: 0;   }
-  li:last-child {font-weight: bold;font-size:15px; color: #64b5f6;}
-} //.wvu-breadcrumbs
-
-
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 32px;
-    width: 32px;
-    background: blue;
-    background: url('https://iconizer.net/files/Cologne/orig/star.png') no-repeat;
-    margin-top: -15px;
-    border-radius: 0 !important;
-}
-input[type=range]+.thumb {
-    background-color: #FF8A80 !important;
-}
-input[type=range]+.thumb.active{
-  top: -35px !important;
-}
-
-
-
-.collapsible-header {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  line-height: 1.5;
-  padding: 1rem;
-  background-color: #2196f3 ;
-  border-bottom: 1px solid #ffffff ;
-  color: #fff;
-  font-size: 13px;
-}
-.collapsible-body {
-  display: none;
-  border-bottom: 1px solid #ffffff ;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 2rem;
-  background-color: #ffffff   ;
-}
-
-a:link, a:visited, a:active {
-	text-decoration: none;
-	}
-a:hover {text-decoration: underline;  
-	color:#000; 
-	font-size:100%; 
-	}
 
 .select2-container {
     box-sizing: border-box;
@@ -648,9 +606,9 @@ a:hover {text-decoration: underline;
     margin-right: 2px
 }
 
-/*.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove:hover {
-    color: #555*/
-
+.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove:hover {
+    color: #555
+}
 
 .select2-container--classic[dir="rtl"] .select2-selection--multiple .select2-selection__choice {
     float: right
@@ -735,6 +693,7 @@ a:hover {text-decoration: underline;
 
 
 
+
 .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single, .select2-container--default.select2-container--focus .select2-selection--multiple {
     height: 40px;
     border: none;
@@ -764,7 +723,7 @@ a:hover {text-decoration: underline;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
-  //  color: #fff;
+    color: #fff;
     margin-right: 5px
 }
 
@@ -818,5 +777,78 @@ a.subheader>i.material-icons.left{
   height: auto;
   line-height: inherit;
 }
+.collapsible li .collapsible-header i.right {
+  transition: transform .2s linear;
+}
+.collapsible li.active .collapsible-header i.right {
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.pagination li.active a {
+  color: #3875d7;
+}
 
 
+// Breadcrumbs
+.breadcrumbs {
+   line-height: 1.5;  padding-left: 0;
+  li { display: inline; list-style-type: none; margin-left: 0; }
+  li:before { padding-right: 3px; }
+  li:first-child:before { content: ""; padding-right: 0;   }
+  li:last-child {font-weight: bold;font-size:15px; color: #64b5f6;}
+} //.wvu-breadcrumbs
+
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 32px;
+    width: 32px;
+    background: blue;
+    background: url('https://iconizer.net/files/Cologne/orig/star.png') no-repeat;
+    margin-top: -15px;
+    border-radius: 0 !important;
+}
+input[type=range]+.thumb {
+    background-color: #FF8A80 !important;
+}
+input[type=range]+.thumb.active{
+  top: -35px !important;
+}
+
+.collapsible-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.5;
+  padding: 1rem;
+  background-color: #2196f3 ;
+  border-bottom: 1px solid #ffffff ;
+  color: #fff;
+  font-size: 13px;
+}
+.collapsible-body {
+  display: none;
+  border-bottom: 1px solid #ffffff ;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 2rem;
+  background-color: #ffffff   ;
+}
+
+
+a:link, a:visited {
+	text-decoration: none
+	}
+a:hover {
+	text-decoration: underline; 
+	color: #f00
+	}
+a:active {
+	text-decoration: none
+	}
