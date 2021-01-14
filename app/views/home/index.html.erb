@@ -1,4 +1,5 @@
-<%require "time"%>
+<% require "time" %>
+
 <% if user_signed_in? %>
 
   <div class="container">
@@ -12,13 +13,14 @@
             <h6 class="center black-text"><b>Comentários</a> </b></h6>
           </div>
         </div>
-        
-        
+         
         <div class="col s12 m4 lg4">
           <div class="icon-block">
-              <%  @config_avaliacao.each do |config_avaliacao|
-              
-              if  formato_data_hora(Time.now) >= formato_data_hora(config_avaliacao.data_inicio)  and formato_data_hora(Time.now) <= formato_data_hora(config_avaliacao.data_fim)  then %>
+          <%  @config_avaliacao.each do |config_avaliacao|
+              data =  Date.parse formato_data_hora(Time.now)
+              inicio = Date.parse formato_data_hora(config_avaliacao.data_inicio)
+              fim = Date.parse formato_data_hora(config_avaliacao.data_fim)
+              if data >= inicio  and  data  <= fim  then %>
                   <%= link_to new_avaliacaoprof_path,class:'center blue-text text-darken-4' do %>
                      <center><i class="fas fa-chalkboard-teacher fa-4x"></i></center><p> 
                   <%end%>
