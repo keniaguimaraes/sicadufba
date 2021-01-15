@@ -23,20 +23,20 @@
         situacao = "Comentário Público"
       end  
     %>
-   <div class= "card">
+   <div class= "card s12 m12 lg12">
       
-      <div class="row">
+      <div class="row s12 m12 lg12">
         <br>
         <div class="col s12 m12 lg12 "><b><%= comentar.disciplinacurso.disciplina.nome %> </b></div>
       </div>
-      <div class="row">
-        <div class="col s12 m7 lg7"><b>Professor</b> <%= comentar.professor.nome  %></div>
-         <div class="col s12 m4 lg4"><b>Data:</b><%=formato_data_hora(comentar.data_comentario)  %> </div> 
+      <div class="row s12 m12 lg12">
+        <div class="col col s12 m12 lg12"><b>Professor</b> <%= comentar.professor.nome  %></div>
+         <div class="col col s12 m12 lg12"><b>Data:</b><%=formato_data_hora(comentar.data_comentario)  %> </div> 
          <div class="row">
-                <div class="col s12 m12 lg12"><b>Usuário:</b><%=comentar.username  %> </div> 
-                <div class="col s12 m7 lg7"><b>Status: </b><%=status%> </div> 
-                <div class="col s12 m4 lg4"><b>Denuncias: </b><%=comentar.denuncia%> </div> 
-                <div class="col s12 m7 lg7"><b>Situação: </b><%=situacao%> </div> 
+                <div id= "div2" class="col s12 m12 lg12"><b>Usuário:</b><%=comentar.username %> </div> 
+                <div class="col s12 m12 lg12"><b>Status: </b><%=status%> </div> 
+                <div class="col s12 m12 lg12"><b>Denuncias: </b><%=comentar.denuncia%> </div> 
+                <div class="col s12 m12 lg12"><b>Situação: </b><%=situacao%> </div> 
          </div> 
          <div class="col s6 offset-s8 m2 offset-m10 lg2 offset-lg6">
                 <div>  
@@ -76,3 +76,14 @@ $('.tooltipped').tooltip();
     $('.sidenav').sidenav();
   });
 </script>
+<style type="text/css">
+  
+  
+  #div2 {
+   
+ 
+      word-wrap: break-word;
+    
+  }
+
+</style>

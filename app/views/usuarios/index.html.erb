@@ -9,17 +9,17 @@
         status = "Usuário Habilitado"
       end  
     %>
-    <div class= "card">
-      <div class="row">
+    <div class= "card  s12 m12 lg12">
+      <div class="row  s12 m12 lg12">
         <br>
         <div class="col s12 m12 lg12 "><b>Curso: </b><%= user.curso.nome.split('-').first %> </div>
       </div>
       
       <div class="row">
-        <div class="col s12 m12 lg12"><b>Usuário: </b><%= user.username %></div>
+        <div id="div2" class="col s12 m12 lg12"><b>Usuário:</b><%= user.username %> </div>
         <div class="col s12 m12 lg12"><b>Status: </b><%= status %> </div>
        
-           <div class="col s6 offset-s8 m2 offset-m10 lg2 offset-lg6">
+           <div class="col s7 offset-s7 m2 offset-m10 lg2 offset-lg6">
                 <div>  
                      <%= link_to edit_usuario_path(user),class:'' do %>
                       <i class="material-icons blue-text text-lighten-2 tooltipped"  data-tooltip="Editar">edit</i>  
@@ -53,3 +53,7 @@
 <script>
 $('.tooltipped').tooltip();
 </script>
+<style type="text/css">
+  #div2 {
+       word-wrap: break-word;}
+</style>
