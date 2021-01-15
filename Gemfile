@@ -46,7 +46,8 @@ gem "select2-rails"
 gem "breadcrumbs_on_rails"
 gem 'rubocop-rails'
 gem 'nouislider-rails'
-
+gem "nokogiri", ">= 1.11.0.rc4"
+gem "rack", ">= 2.1.4"
 #gem 'toastr-rails'
 
 #gem 'materialize-form'
@@ -67,13 +68,14 @@ group :development, :test do
   gem 'sqlite3', '~> 1.3.6'
   gem 'rubocop', require: false
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-    # Adds support for Capybara system testing and selenium driver
+
+end
+group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
-
+  
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
