@@ -46,8 +46,10 @@
 <%end%>
 
  <div class="row">
-   <div class="col s12 m1 lg1 ">
-       <%= link_to 'Comentar', new_comentar_path, class: 'btn waves-effect waves-light light-blue white-text'  %> 
+   <div class="col s12 m1 lg1 offset-s8 offset-m8 offset-m8">
+       <%= link_to new_comentar_path, class: "btn-floating btn-large waves-effect waves-light-blue" do %>
+        <i class="material-icons">add</i>
+       <%end%> 
     </div>
  </div>    
 </div> 
