@@ -48,6 +48,7 @@ gem 'rubocop-rails'
 gem 'nouislider-rails'
 gem "nokogiri", ">= 1.11.0.rc4"
 gem "rack", ">= 2.1.4"
+
 #gem 'toastr-rails'
 
 #gem 'materialize-form'
