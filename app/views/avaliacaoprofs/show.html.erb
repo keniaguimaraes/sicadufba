@@ -18,65 +18,65 @@
          </div>
         </div>
         
-         <div class="row">
-        <div class="col s12 m8 lg8 "><strong><b>Disciplina: </b></strong>
+        <div class="row">
+         <div class="col s12 m8 lg8 "><strong><b>Disciplina: </b></strong>
           <%= @avaliacaoprof.disciplinacurso.disciplina.nome %>
-        </div>
+         </div>
         </div>
         
         <div class="row">
          <div class="col s12 m8 lg8 ">
           <strong><b>Data Avaliação:</b></strong>
           <%= formato_data_hora(@avaliacaoprof.data_avaliacao) %>
-          </div>
+         </div>
         </div>
-        <% if (( @avaliacaoprof.relacionamento_alunos==1)or( @avaliacaoprof.relacionamento_alunos==2)) then  %>
+
+        <% if (( @avaliacaoprof.relacionamento_alunos==1) or ( @avaliacaoprof.relacionamento_alunos==2)) then  %>
         <div class="row">
          <div class="col s12 m8 lg8">
           <strong><b>Domínio de conteúdo?</b></strong>
            <% if  @avaliacaoprof.dominio_conteudo == 1 then  %>
-               <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
-			   <span> <i class="fas fa-thumbs-down fa-2x grey-text"></i></span> 
+                <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+			          <span> <i class="fas fa-thumbs-down fa-2x grey-text"></i></span> 
            <%else%>
-		       <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
+		           <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
                <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
            <%end%>
-       
         </div>
         </div>
-          <%end%> 
-           <% if (( @avaliacaoprof.relacionamento_alunos==1)or( @avaliacaoprof.relacionamento_alunos==2)) then  %>
+       <%end%> 
+
+       <% if (( @avaliacaoprof.relacionamento_alunos==1) or ( @avaliacaoprof.relacionamento_alunos==2)) then  %>
         <div class="row">
         <div class="col s12 m8 lg8 ">
           <strong><b>Possui um bom relacionamento com alunos?</b></strong>
-        
           <% if  @avaliacaoprof.relacionamento_alunos == 1 then  %>
-                <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
-			    <span> <i class="fas fa-thumbs-down fa-2x grey-text"></i></span> 
-           <%else%>
+             <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+			       <span> <i class="fas fa-thumbs-down fa-2x grey-text"></i></span> 
+          <%else%>
                <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
                <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
-           <%end%>
-       </div>
+          <%end%>
+        </div>
         </div>
        <%end%>    
         
-            <% if (( @avaliacaoprof.relacionamento_alunos==1)or( @avaliacaoprof.relacionamento_alunos==2)) then  %>
+      <% if (( @avaliacaoprof.relacionamento_alunos==1) or ( @avaliacaoprof.relacionamento_alunos==2)) then  %>
         <div class="row">
         <div class="col s12 m8 lg8 ">
           <strong><b>Possui didática?</b></strong>
-          
           <% if  @avaliacaoprof.possui_didatica == 1 then  %>
-               <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
-               <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span>
+          <span> <i class="fas fa-thumbs-up fa-2x green-text"></i> </span> 
+          <span> <i class="fas fa-thumbs-down fa-2x grey-text"></i></span> 
            <%else%>
-               <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
-               <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
+           <span> <i class="fas fa-thumbs-up fa-2x grey-text"></i> </span> 
+           <span> <i class="fas fa-thumbs-down fa-2x red-text"></i> </span> 
            <%end%>
          </div>
         </div>
-         <%end%>   
-        <div class="row">
+      <%end%> 
+
+      <div class="row">
             <div class="col s12 m8 lg8"> <strong><b>Tags relacionadas:</b></strong><div><p>
             
                 <% @tags = Avaliacaotag.where("avaliacaoprof_id =:avaliacaoprof_id",{avaliacaoprof_id:@avaliacaoprof.id}).all

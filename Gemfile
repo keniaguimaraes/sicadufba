@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'mechanize'
+gem 'mechanize', '>= 2.7.7'
 gem 'nokogumbo'
 gem 'unicorn'
 gem 'wicked_pdf'
